@@ -1,0 +1,13 @@
+{
+  "$schema": "../node_modules/@angular-devkit/schematics/collection-schema.json",
+  "schematics": {
+    "fsClass": {
+      "description": "A firebase firestore class schematic.",
+      "factory": "./firestore-class/index#fsClass"
+    },
+    "route-config": {
+      "description": "A module schematic with built in routing.",
+      "factory": "./ngc-module/index#ngcModule"
+    }
+  }
+}
