@@ -15,13 +15,14 @@ export function ngcModule(_options: any): Rule {
 
     const sourceTemplates = url('./templates');
 
-    // tree.rename(name + ".module.ts", name.substring(1) + ".module.ts");
+    // console.log(_context);
+    _options.name = name.slice(1);
+    console.log(_options.name);
 
     const sourceParametrized = apply(sourceTemplates, [
       template({
         ..._options,
-        ...strings,
-        name
+        ...strings
       }), move(path)
     ]);
 

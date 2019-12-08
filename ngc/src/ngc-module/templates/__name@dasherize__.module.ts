@@ -9,4 +9,4 @@ import { CommonModule } from '@angular/common';
     CommonModule
   ]
 })
-export class <%= classify(name.substr(1)) %>Module { }
+export class <%= classify(name) %>Module { }
