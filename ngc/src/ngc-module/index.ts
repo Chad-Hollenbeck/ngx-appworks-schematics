@@ -1,4 +1,4 @@
-import { Rule, SchematicContext, Tree, url, template, apply, move, mergeWith } from '@angular-devkit/schematics';
+import { Rule, SchematicContext, Tree, url, template, move, apply, mergeWith } from '@angular-devkit/schematics';
 import { parseName } from '@schematics/angular/utility/parse-name';
 import { strings } from '@angular-devkit/core';
 
@@ -7,7 +7,6 @@ import { strings } from '@angular-devkit/core';
 // per file.
 export function ngcModule(_options: any): Rule {
   return (tree: Tree, _context: SchematicContext) => {
-
     const defaultProjectPath = 'src/app';
 
     const parsedPath = parseName(defaultProjectPath, _options.name);
@@ -16,12 +15,14 @@ export function ngcModule(_options: any): Rule {
 
     const sourceTemplates = url('./templates');
 
+    // tree.rename(name + ".module.ts", name.substring(1) + ".module.ts");
+
     const sourceParametrized = apply(sourceTemplates, [
       template({
         ..._options,
         ...strings,
         name
-      }), move(path + "/_config")
+      }), move(path)
     ]);
 
     return mergeWith(sourceParametrized)(tree, _context);

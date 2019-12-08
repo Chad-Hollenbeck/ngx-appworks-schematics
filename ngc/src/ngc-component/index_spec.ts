@@ -6,10 +6,10 @@ import * as path from 'path';
 const collectionPath = path.join(__dirname, '../collection.json');
 
 
-describe('ngc-module', () => {
+describe('ngc-component', () => {
   it('works', () => {
     const runner = new SchematicTestRunner('schematics', collectionPath);
-    const tree = runner.runSchematic('ngc-module', {}, Tree.empty());
+    const tree = runner.runSchematic('ngc-component', {}, Tree.empty());
 
     expect(tree.files).toEqual([]);
   });

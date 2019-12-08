@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "experimentalDecorators": true,
     "baseUrl": "tsconfig",
     "lib": [
       "es2018",
@@ -29,6 +30,7 @@
     "src/**/*"
   ],
   "exclude": [
-    "src/*/files/**/*"
+    "src/*/templates/**/*",
+    "src/app/**"
   ]
 }

@@ -5,9 +5,14 @@
       "description": "A firebase firestore class schematic.",
       "factory": "./firestore-class/index#fsClass"
     },
-    "route-config": {
-      "description": "A module schematic with built in routing.",
-      "factory": "./ngc-module/index#ngcModule"
+    "ngc-component": {
+      "description": "A blank schematic.",
+      "factory": "./ngc-component/index#ngcComponent"
+    },
+    "ngcModule": {
+      "description": "A blank schematic.",
+      "factory": "./ngc-module/index#ngcModule",
+      "schema": "./_schemas/name-schema.json"
     }
   }
 }
