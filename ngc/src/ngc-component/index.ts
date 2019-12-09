@@ -1,4 +1,6 @@
-import { Rule, SchematicContext, Tree, chain, externalSchematic } from '@angular-devkit/schematics';
+import { Rule, SchematicContext, Tree, chain, url, apply, template, move, mergeWith } from '@angular-devkit/schematics';
+import { parseName } from '@schematics/angular/utility/parse-name';
+import { strings } from '@angular-devkit/core';
 // import { parseName } from '@schematics/angular/utility/parse-name';
 
 
@@ -7,20 +9,28 @@ import { Rule, SchematicContext, Tree, chain, externalSchematic } from '@angular
 
 // You don't have to export the function as default. You can also have more than one rule factory
 // per file.
-export function ngcModule(options: any): Rule {
+export function ngcComponent(_options: any): Rule {
   return chain([
-    externalSchematic('@schematics/angular', 'module', options),
     (tree: Tree, _context: SchematicContext) => {
-      // const defaultProjectPath = 'src/app';
-      //
-      // const parsedPath = parseName(defaultProjectPath, options.name);
-      //
-      // const { name, path } = parsedPath;
-      //
-      // tree.getDir(path).visit(filepath => {
-      //   tree.re
-      // })
+      const defaultProjectPath = 'src/app';
 
-      return tree;
-  }]);
+      const parsedPath = parseName(defaultProjectPath, _options.name);
+
+      const { name, path } = parsedPath;
+
+      const sourceTemplates = url('./templates');
+
+      // console.log(_context);
+      _options.name = name.slice(1);
+      console.log(_options.name);
+
+      const sourceParametrized = apply(sourceTemplates, [
+        template({
+          ..._options,
+          ...strings
+        }), move(path)
+      ]);
+
+      return mergeWith(sourceParametrized)(tree, _context);
+    }]);
 }

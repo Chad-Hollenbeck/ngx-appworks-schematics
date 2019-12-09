@@ -5,9 +5,11 @@
       "description": "A firebase firestore class schematic.",
       "factory": "./firestore-class/index#fsClass"
     },
-    "ngc-component": {
+    "ngcComponent": {
       "description": "A blank schematic.",
-      "factory": "./ngc-component/index#ngcComponent"
+      "factory": "./ngc-component/index#ngcComponent",
+      "schema": "./_schemas/name-schema.json"
+
     },
     "ngcModule": {
       "description": "A blank schematic.",
