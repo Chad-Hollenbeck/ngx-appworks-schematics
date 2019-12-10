@@ -18,17 +18,20 @@ export function ngcComponent(_options: any): Rule {
 
       const { name, path } = parsedPath;
 
+      // _options.name = name.slice(1);
+
+      const newPath = path + '/+' + name;
+
       const sourceTemplates = url('./templates');
 
-      // console.log(_context);
-      _options.name = name.slice(1);
-      console.log(_options.name);
+
 
       const sourceParametrized = apply(sourceTemplates, [
         template({
           ..._options,
-          ...strings
-        }), move(path)
+          ...strings,
+          name
+        }), move(newPath)
       ]);
 
       return mergeWith(sourceParametrized)(tree, _context);

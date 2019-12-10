@@ -15,6 +15,17 @@
       "description": "A blank schematic.",
       "factory": "./ngc-module/index#ngcModule",
       "schema": "./_schemas/name-schema.json"
+    },
+    "ngcClass": {
+      "description": "A blank schematic.",
+      "factory": "./ngc-class/index#ngcClass",
+      "schema": "./_schemas/name-schema.json"
+
+    },
+    "ngcService": {
+      "description": "A blank schematic.",
+      "factory": "./ngc-service/index#ngcService",
+      "schema": "./_schemas/name-schema.json"
     }
   }
 }

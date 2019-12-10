@@ -5,26 +5,22 @@ import { strings } from '@angular-devkit/core';
 
 // You don't have to export the function as default. You can also have more than one rule factory
 // per file.
-export function ngcModule(_options: any): Rule {
+export function ngcClass(_options: any): Rule {
   return (tree: Tree, _context: SchematicContext) => {
     const defaultProjectPath = 'src/app';
 
     const parsedPath = parseName(defaultProjectPath, _options.name);
 
     const { path } = parsedPath;
-    // const modelsPath = path + '/models';
 
     const sourceTemplates = url('./templates');
-
-    // console.log(_context);
-    // _options.name = name.slice(1);
-    // console.log(_options.name);
+    const newPath = path + '/models/';
 
     const sourceParametrized = apply(sourceTemplates, [
       template({
         ..._options,
         ...strings
-      }), move(path)
+      }), move(newPath)
     ]);
 
     return mergeWith(sourceParametrized)(tree, _context);
