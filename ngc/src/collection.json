@@ -26,10 +26,14 @@
       "factory": "./ngc-service/index#ngcService",
       "schema": "./_schemas/name-schema.json"
     },
-    "serviceFirestore": {
+    "ngcServiceFirestore": {
       "description": "A Firestore CRUD service.",
-      "factory": "./service-firestore/index#serviceFirestore",
+      "factory": "./ngc-service-firestore/index#ngcServiceFirestore",
       "schema": "./_schemas/name-prompt-schema.json"
+    },
+    "ngc-routing": {
+      "description": "A blank schematic.",
+      "factory": "./ngc-routing/index#ngcRouting"
     }
   }
 }

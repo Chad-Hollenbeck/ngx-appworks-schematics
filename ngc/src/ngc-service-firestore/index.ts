@@ -6,7 +6,7 @@ import { classify } from '@angular-devkit/core/src/utils/strings';
 
 // You don't have to export the function as default. You can also have more than one rule factory
 // per file.
-export function serviceFirestore(_options: any): Rule {
+export function ngcServiceFirestore(_options: any): Rule {
   return (tree: Tree, _context: SchematicContext) => {
     const defaultProjectPath = 'src/app';
 
