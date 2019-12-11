@@ -6,14 +6,13 @@ import { classify } from '@angular-devkit/core/src/utils/strings';
 
 // You don't have to export the function as default. You can also have more than one rule factory
 // per file.
-export function ngcService(_options: any): Rule {
+export function serviceFirestore(_options: any): Rule {
   return (tree: Tree, _context: SchematicContext) => {
     const defaultProjectPath = 'src/app';
 
     const parsedPath = parseName(defaultProjectPath, _options.name);
 
     const { name, path } = parsedPath;
-
     const sourceTemplates = url('./templates');
 
     const newPath = path + '/services/';
@@ -51,10 +50,10 @@ export function ngcService(_options: any): Rule {
         + ngModuleStr + declarationParts.slice(0, declarationParts.length - 1).join(declarationSplitStr)
         + "  "
         + classify(name) + "Service,\n  " + declarationSplitStr + declarationParts[declarationParts.length - 1]
-      // console.log(updatedContent);
       tree.overwrite(path + '/' + moduleName, updatedContent);
     }
 
+    console.log(_options);
     return mergeWith(sourceParametrized)(tree, _context);
   };
 }
