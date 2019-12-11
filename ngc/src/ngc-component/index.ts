@@ -31,8 +31,8 @@ export function ngcComponent(_options: any): Rule {
       ]);
 
       // Register component with parent module
-      const _moduleNamePrefix = path.split('+')[1];
-      const moduleName = _moduleNamePrefix + '.module.ts';
+      const featureName = path.split('+')[1];
+      const moduleName = featureName + '.module.ts';
 
       const moduleBuffer = tree.read(path + '/' + moduleName);
       if(moduleBuffer != null){
@@ -51,6 +51,44 @@ export function ngcComponent(_options: any): Rule {
 
         tree.overwrite(path + '/' + moduleName, updatedContent);
       }
+
+      // Register component with routing
+      const routesFilename = featureName + '.routes.ts';
+      const routingBuffer = tree.read(path + '/routes/' + routesFilename);
+      if(routingBuffer){
+        const content = routingBuffer.toString();
+        const importSplitString = "\nexport";
+        const routePathSplitStr = "\n]";
+
+        let newContent = '';
+        // Register component with route with default name
+        const importParts = content.split(importSplitString);
+
+        newContent += importParts[0] + "import { "+ classify(name) +"Component } from '../" + name + "/" + name + ".component;\n" + importSplitString;
+
+        const registerParts = importParts[1].split(routePathSplitStr);
+
+        newContent += registerParts[0]
+        + "{path: '"+name+"', component: "+classify(name)+"Component}," + routePathSplitStr;
+
+        tree.overwrite(path + '/routes/' + routesFilename, newContent);
+      }
+      // Register component with routing names file
+      const routeNamesFilename = featureName + '.routes.names.ts';
+      const routeNameBuffer = tree.read(path + '/routes/' + routeNamesFilename);
+      if(routeNameBuffer){
+        const content = routeNameBuffer.toString();
+        const splitChar = "\n}";
+
+
+        // Register component with route with default name
+        const importParts = content.split(splitChar);
+
+        const newContent = importParts[0] + name.replace('-', '_').toUpperCase() + " : '" + name + "'\n" + splitChar;
+
+        tree.overwrite(path + '/routes/' + routesFilename, newContent);
+      }
+
 
       return mergeWith(sourceParametrized)(tree, _context);
     }]);

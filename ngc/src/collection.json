@@ -1,10 +1,6 @@
 {
   "$schema": "../node_modules/@angular-devkit/schematics/collection-schema.json",
   "schematics": {
-    "fsClass": {
-      "description": "A firebase firestore class schematic.",
-      "factory": "./firestore-class/index#fsClass"
-    },
     "ngcComponent": {
       "description": "A default component.",
       "factory": "./ngc-component/index#ngcComponent",
@@ -31,7 +27,7 @@
       "factory": "./ngc-service-firestore/index#ngcServiceFirestore",
       "schema": "./_schemas/name-prompt-schema.json"
     },
-    "ngc-routing": {
+    "ngcRouting": {
       "description": "A blank schematic.",
       "factory": "./ngc-routing/index#ngcRouting"
     }
