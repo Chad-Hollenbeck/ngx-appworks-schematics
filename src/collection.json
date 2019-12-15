@@ -1,35 +1,36 @@
 {
   "$schema": "../node_modules/@angular-devkit/schematics/collection-schema.json",
   "schematics": {
-    "ngcComponent": {
+    "ngc-component": {
       "description": "A default component.",
       "factory": "./ngc-component/index#ngcComponent",
       "schema": "./_schemas/name-schema.json"
 
     },
-    "ngcModule": {
+    "ngc-module": {
       "description": "A default module.",
       "factory": "./ngc-module/index#ngcModule",
       "schema": "./_schemas/name-schema.json"
     },
-    "ngcClass": {
+    "ngc-class": {
       "description": "A default class.",
       "factory": "./ngc-class/index#ngcClass",
       "schema": "./_schemas/name-schema.json"
     },
-    "ngcService": {
+    "ngc-service": {
       "description": "A Default service.",
       "factory": "./ngc-service/index#ngcService",
       "schema": "./_schemas/name-schema.json"
     },
-    "ngcServiceFirestore": {
+    "ngc-service-firestore": {
       "description": "A Firestore CRUD service.",
       "factory": "./ngc-service-firestore/index#ngcServiceFirestore",
       "schema": "./_schemas/name-prompt-schema.json"
     },
-    "ngcRouting": {
+    "ngc-routes": {
       "description": "A blank schematic.",
-      "factory": "./ngc-routing/index#ngcRouting"
+      "factory": "./ngc-routing/index#ngcRouting",
+      "schema": "./_schemas/name-schema.json"
     }
   }
 }

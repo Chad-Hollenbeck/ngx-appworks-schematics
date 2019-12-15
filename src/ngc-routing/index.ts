@@ -1,6 +1,6 @@
-import { Rule, SchematicContext, Tree, mergeWith, move, apply, url, template } from '@angular-devkit/schematics';
+import { Rule, SchematicContext, Tree, url, template, move, apply, mergeWith } from '@angular-devkit/schematics';
 import { parseName } from '@schematics/angular/utility/parse-name';
-import { strings } from '@angular-devkit/core/src/utils';
+import { strings } from '@angular-devkit/core';
 
 
 // You don't have to export the function as default. You can also have more than one rule factory
@@ -11,16 +11,20 @@ export function ngcRouting(_options: any): Rule {
 
     const parsedPath = parseName(defaultProjectPath, _options.name);
 
-    const { path } = parsedPath;
+    const {name, path } = parsedPath;
+    const routePath = path + '/' + name + '/' + '/routes/';
 
     const sourceTemplates = url('./templates');
-    const newPath = path + '/routes/';
+
+    // console.log(_context);
+    _options.name = name.slice(1);
+    // console.log(_options.name);
 
     const sourceParametrized = apply(sourceTemplates, [
       template({
         ..._options,
         ...strings
-      }), move(newPath)
+      }), move(routePath)
     ]);
 
     return mergeWith(sourceParametrized)(tree, _context);
