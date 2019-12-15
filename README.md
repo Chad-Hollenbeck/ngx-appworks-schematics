@@ -1,28 +1,25 @@
-# Getting Started With Schematics
+# NGC Schematics
 
-This repository is a basic Schematic implementation that serves as a starting point to create and publish Schematics to NPM.
+A set of personal Angular schematics I created to speed up my hobby and professional development.
 
-### Testing
+## Schematics List
+All of my feature folders are prefixed with `+` which breaks the default angular cli file generation for a multitude of schematics. Most of my schematics were created with this issue in mind.
 
-To test locally, install `@angular-devkit/schematics-cli` globally and use the `schematics` command line tool. That tool acts the same as the `generate` command of the Angular CLI, but also has a debug mode.
+### ngc-class
+Creates a class file with the `{class-name}.module.ts` naming convention in a `models` folder inside the designated feature folder.
 
-Check the documentation with
-```bash
-schematics --help
-```
+### ngc-component
+A blank component with a few default services added to the constructor.
 
-### Unit Testing
 
-`npm run test` will run the unit tests, using Jasmine as a runner and test framework.
+### ngc-module
+This module accepts a feature name with the `+` prefix and still generates the module file correctly.
 
-### Publishing
+### ngc-routing
+Creates a routes folder which contains a routes.ts and routes.names.ts file in the designated feature folder.
 
-To publish, simply do:
+### ngc-service-firestore
+Most of my applications are built to integrate with Google's Firebase Firestore database. This service provides all CRUD functionality with a prompt for the class to use for the bindings.
 
-```bash
-npm run build
-npm publish
-```
-
-That's it!
- 
+### ngc-service
+A blank service for handling component to component data or other non Firebase Firestore data. 
