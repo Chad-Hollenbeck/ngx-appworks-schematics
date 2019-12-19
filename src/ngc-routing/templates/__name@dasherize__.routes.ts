@@ -1,5 +1,5 @@
-import { <%= camelize(name) %>RouteNames } from './<%= dasherize(name) %>.routes.names';
+import { <%= uppercase(name) %>_ROUTE_NAMES } from './<%= dasherize(name) %>.routes.names';
 
-export const <%= classify(name) %>_Routes = [
+export const <%= uppercase(name) %>_ROUTES = [
 
 ]

@@ -3,10 +3,10 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { <%= classify(className) %>VM } from '../models/<%= dasherize(className) %>.class';
+import { <%= classify(className) %>VM } from '../models/<%= dasherize(className) %>.model';
 
 @Injectable()
-export class <%= classify(name) %> Service {
+export class <%= classify(name) %>Service {
   <%= camelize(className) %>Collection: AngularFirestoreCollection;
 
   constructor(private afa: AngularFireAuth, private firestore: AngularFirestore) {
@@ -20,7 +20,7 @@ export class <%= classify(name) %> Service {
    */
   add(data): Observable<<%= classify(className) %>VM> {
     if (!data.id) { data.id = this.firestore.createId(); }
-    return this.getSingleById(data);
+    return this.get(data);
   }
 
   /**
@@ -72,7 +72,7 @@ export class <%= classify(name) %> Service {
    * Get all by custom query field & operator
    * @author chollenbeck 2019-12-11
    */
-  getAllByQuery(field: string, operator: string, value: any):Promise<firebase.firestore.QuerySnapshot> {
+  getAllByQuery(field: string, operator: firebase.firestore.WhereFilterOp, value: any):Promise<firebase.firestore.QuerySnapshot> {
     return this.<%= camelize(className) %>Collection.ref.where(field, operator, value).get();
   }
 
@@ -81,7 +81,7 @@ export class <%= classify(name) %> Service {
    * @author chollenbeck 2019-12-11
    */
   get(id: string): Observable<<%= classify(className) %>VM> {
-    return this.<%= classify(className) %>Collection.doc(id).valueChanges();
+    return this.<%= camelize(className) %>Collection.doc<<%= classify(className) %>VM>(id).valueChanges();
   }
 
 

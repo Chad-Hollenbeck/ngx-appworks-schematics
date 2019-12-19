@@ -1,7 +1,7 @@
 import { Rule, SchematicContext, Tree, chain, url, apply, template, move, mergeWith } from '@angular-devkit/schematics';
 import { parseName } from '@schematics/angular/utility/parse-name';
 import { strings } from '@angular-devkit/core';
-import { classify, camelize } from '@angular-devkit/core/src/utils/strings';
+import { classify, underscore } from '@angular-devkit/core/src/utils/strings';
 
 // You don't have to export the function as default. You can also have more than one rule factory
 // per file.
@@ -17,7 +17,15 @@ export function ngcComponent(_options: any): Rule {
       // Const params for use in template
       const { name, path } = parsedPath;
       const componentName = (name.substr(0, 1) == "+") ? name : '+' + name;
-      const newPath = path + '/' + componentName;
+      const pathSplitChar = '/';
+      const modulePathParts = path.split(pathSplitChar);
+      const featurePath = pathSplitChar + modulePathParts[1] + // /src
+                      pathSplitChar + modulePathParts[2] + // /app
+                      pathSplitChar + "+" + modulePathParts[3];
+                       // /+featureName
+      const newPath = featurePath + pathSplitChar + componentName;
+
+      // console.log(newPath);
 
       // templates folder path
       const sourceTemplates = url('./templates');
@@ -33,10 +41,10 @@ export function ngcComponent(_options: any): Rule {
 
       // Register component with parent module
       const pathParts = path.split("/");
-      const featureName = pathParts[pathParts.length -1];
-      console.log(featureName);
+      const featureName = '+' + pathParts[pathParts.length -1];
       const moduleName = featureName.substr(1) + '.module.ts';
-      const moduleBuffer = tree.read(path + '/' + moduleName);
+
+      const moduleBuffer = tree.read(featurePath + '/' + moduleName);
       if(moduleBuffer != null){
         const content = moduleBuffer.toString();
 
@@ -49,14 +57,16 @@ export function ngcComponent(_options: any): Rule {
         const declarationParts = contentParts[1].split(declarationSplitStr);
 
         // Put it all together
-        let updatedContent = contentParts[0] + "import { "+classify(name)+"Component } from './"+name+"/"+name+".component';\n" + ngModuleStr + declarationParts[0] + "  " + classify(name)+"Component,\n  " + declarationSplitStr + declarationParts.slice(1).join(declarationSplitStr);
+        let updatedContent = contentParts[0] + "import { "+classify(name)+"Component } from './+"+name+"/"+name+".component';\n" + ngModuleStr + declarationParts[0] + "  " + classify(name)+"Component,\n  " + declarationSplitStr + declarationParts.slice(1).join(declarationSplitStr);
 
-        tree.overwrite(path + '/' + moduleName, updatedContent);
+        tree.overwrite(featurePath + '/' + moduleName, updatedContent);
       }
 
       // Register component with routing
       const routesFilename = featureName.substr(1) + '.routes.ts';
-      const routingBuffer = tree.read(path + '/routes/' + routesFilename);
+      console.log(routesFilename);
+
+      const routingBuffer = tree.read(featurePath + '/routes/' + routesFilename);
       if(routingBuffer){
         const content = routingBuffer.toString();
         const importSplitString = "export";
@@ -66,20 +76,20 @@ export function ngcComponent(_options: any): Rule {
         // Register component with route with default name
         const importParts = content.split(importSplitString);
 
-        newContent += importParts[0] + "import { "+ classify(name) +"Component } from '../+" + name + "/" + name + ".component;\n" + importSplitString;
+        newContent += importParts[0] + "import { "+ classify(name) +"Component } from '../+" + name + "/" + name + ".component';\n" + importSplitString;
 
         const registerParts = importParts[1].split(routePathSplitStr);
 
         newContent += registerParts[0]
-        + "{path: " + camelize(featureName.substr(1)) + 'RouteNames.' + name.toUpperCase() + ", component: "+classify(name)+"Component}," + routePathSplitStr;
+        + "{path: " + (featureName.substr(1).toUpperCase()) + '_ROUTE_NAMES.' + name.toUpperCase() + ", component: "+classify(underscore(name))+"Component}," + routePathSplitStr;
 
-        tree.overwrite(path + '/routes/' + routesFilename, newContent);
+        tree.overwrite(featurePath + '/routes/' + routesFilename, newContent);
       }
 
 
       // Register component with routing names file
       const routeNamesFilename = featureName.substr(1) + '.routes.names.ts';
-      const routeNameBuffer = tree.read(path + '/routes/' + routeNamesFilename);
+      const routeNameBuffer = tree.read(featurePath + '/routes/' + routeNamesFilename);
       if(routeNameBuffer){
         const content = routeNameBuffer.toString();
         const splitChar = "\n}";
@@ -90,7 +100,7 @@ export function ngcComponent(_options: any): Rule {
 
         const newContent = importParts[0] + name.replace('-', '_').toUpperCase() + " : '" + name + "',\n" + splitChar;
 
-        tree.overwrite(path + '/routes/' + routeNamesFilename, newContent);
+        tree.overwrite(featurePath + '/routes/' + routeNamesFilename, newContent);
       }
 
 

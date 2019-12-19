@@ -1,2 +1,2 @@
-export const <%= camelize(name) %>RouteNames = {
+export const <%= uppercase(name) %>_ROUTE_NAMES = {
 }

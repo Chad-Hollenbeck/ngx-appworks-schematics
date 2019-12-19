@@ -12,12 +12,12 @@ export function ngcModule(_options: any): Rule {
     const parsedPath = parseName(defaultProjectPath, _options.name);
 
     const {name, path } = parsedPath;
-    const componentPath = path + '/' + name;
+    const componentPath = path + '/+' + name;
 
     const sourceTemplates = url('./templates');
 
     // console.log(_context);
-    _options.name = name.slice(1);
+    // _options.name = name.slice(1);
     // console.log(_options.name);
 
     const sourceParametrized = apply(sourceTemplates, [

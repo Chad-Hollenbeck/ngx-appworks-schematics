@@ -14,8 +14,12 @@ export function ngcServiceFirestore(_options: any): Rule {
 
     const { name, path } = parsedPath;
     const sourceTemplates = url('./templates');
-
-    const newPath = path + '/services/';
+    const pathSplitChar = '/';
+    const modulePathParts = path.split(pathSplitChar);
+    const featurePath = pathSplitChar + modulePathParts[1] + // /src
+                    pathSplitChar + modulePathParts[2] + // /app
+                    pathSplitChar + "+" + modulePathParts[3];
+    const newPath = featurePath + '/services/';
 
     const sourceParametrized = apply(sourceTemplates, [
       template({
@@ -30,7 +34,7 @@ export function ngcServiceFirestore(_options: any): Rule {
     const _moduleNamePrefix = path.split('+')[1];
     const moduleName = _moduleNamePrefix + '.module.ts';
 
-    const moduleBuffer = tree.read(path + '/' + moduleName);
+    const moduleBuffer = tree.read(featurePath + '/' + moduleName);
     if (moduleBuffer != null) {
       const content = moduleBuffer.toString();
 
@@ -50,7 +54,7 @@ export function ngcServiceFirestore(_options: any): Rule {
         + ngModuleStr + declarationParts.slice(0, declarationParts.length - 1).join(declarationSplitStr)
         + "  "
         + classify(name) + "Service,\n  " + declarationSplitStr + declarationParts[declarationParts.length - 1]
-      tree.overwrite(path + '/' + moduleName, updatedContent);
+      tree.overwrite(featurePath + '/' + moduleName, updatedContent);
     }
 
     console.log(_options);

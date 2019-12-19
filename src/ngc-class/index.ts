@@ -11,15 +11,21 @@ export function ngcClass(_options: any): Rule {
 
     const parsedPath = parseName(defaultProjectPath, _options.name);
 
-    const { path } = parsedPath;
+    const { name, path } = parsedPath;
 
     const sourceTemplates = url('./templates');
-    const newPath = path + '/models/';
+    const pathSplitChar = '/';
+    const modulePathParts = path.split(pathSplitChar);
+    const featurePath = pathSplitChar + modulePathParts[1] + // /src
+                    pathSplitChar + modulePathParts[2] + // /app
+                    pathSplitChar + "+" + modulePathParts[3];
+    const newPath = featurePath + '/models/';
 
     const sourceParametrized = apply(sourceTemplates, [
       template({
         ..._options,
-        ...strings
+        ...strings,
+        name
       }), move(newPath)
     ]);
 

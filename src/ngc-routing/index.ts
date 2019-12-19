@@ -11,22 +11,32 @@ export function ngcRouting(_options: any): Rule {
 
     const parsedPath = parseName(defaultProjectPath, _options.name);
 
-    const {name, path } = parsedPath;
-    const routePath = path + '/' + name + '/' + '/routes/';
+    const { name, path } = parsedPath;
+    const featureName = (name.substr(0, 1) == '+') ? name : '+' + name;
+    const routePath = path + '/' + featureName + '/' + '/routes/';
 
     const sourceTemplates = url('./templates');
 
     // console.log(_context);
-    _options.name = name.slice(1);
+    _options.name = (name.substr(0, 1) == '+') ? name.slice(1) : name;
+
+    // if (_options.name.substring(_options.name.length - 1) == 's') {
+    //   _options.name = _options.name.substring(0, _options.name.length - 1); //remove the trailing 's'
+    // }
     // console.log(_options.name);
 
     const sourceParametrized = apply(sourceTemplates, [
       template({
         ..._options,
-        ...strings
+        ...strings,
+        uppercase
       }), move(routePath)
     ]);
 
     return mergeWith(sourceParametrized)(tree, _context);
   };
+}
+
+function uppercase(str: string) {
+  return str.toUpperCase();
 }
