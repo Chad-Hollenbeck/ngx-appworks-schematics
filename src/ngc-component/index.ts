@@ -57,7 +57,7 @@ export function ngcComponent(_options: any): Rule {
         const declarationParts = contentParts[1].split(declarationSplitStr);
 
         // Put it all together
-        let updatedContent = contentParts[0] + "import { "+classify(name)+"Component } from './+"+name+"/"+name+".component';\n" + ngModuleStr + declarationParts[0] + "  " + classify(name)+"Component,\n  " + declarationSplitStr + declarationParts.slice(1).join(declarationSplitStr);
+        let updatedContent = contentParts[0] + "import { "+classify(name)+"Component } from './+"+moduleName+"/"+name+".component';\n" + ngModuleStr + declarationParts[0] + "  " + classify(name)+"Component,\n  " + declarationSplitStr + declarationParts.slice(1).join(declarationSplitStr);
 
         tree.overwrite(featurePath + '/' + moduleName, updatedContent);
       }
@@ -76,7 +76,7 @@ export function ngcComponent(_options: any): Rule {
         // Register component with route with default name
         const importParts = content.split(importSplitString);
 
-        newContent += importParts[0] + "import { "+ classify(name) +"Component } from '../+" + name + "/" + name + ".component';\n" + importSplitString;
+        newContent += importParts[0] + "import { "+ classify(name) +"Component } from '../+" + moduleName + "/" + name + ".component';\n" + importSplitString;
 
         const registerParts = importParts[1].split(routePathSplitStr);
 
