@@ -15,12 +15,12 @@
     "ngc-class": {
       "description": "A default class.",
       "factory": "./ngc-class/index#ngcClass",
-      "schema": "./_schemas/name-schema.json"
+      "schema": "./_schemas/scd-schema.json"
     },
     "ngc-service": {
       "description": "A Default service.",
       "factory": "./ngc-service/index#ngcService",
-      "schema": "./_schemas/name-schema.json"
+      "schema": "./_schemas/name-prompt-schema.json"
     },
     "ngc-service-firestore": {
       "description": "A Firestore CRUD service.",
