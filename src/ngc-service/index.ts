@@ -32,8 +32,14 @@ export function ngcService(_options: any): Rule {
 
 
     // Register service with parent module
-    const _moduleNamePrefix = path.split('+')[1];
-    const moduleName = _moduleNamePrefix + '.module.ts';
+    // const _moduleNamePrefix = path.split('+')[1];
+    // const moduleName = _moduleNamePrefix + '.module.ts';
+    //
+    // const moduleBuffer = tree.read(featurePath + '/' + moduleName);
+
+    const pathParts = path.split("/");
+    const featureName = '+' + pathParts[pathParts.length -1];
+    const moduleName = featureName.substr(1) + '.module.ts';
 
     const moduleBuffer = tree.read(featurePath + '/' + moduleName);
     if (moduleBuffer != null) {
@@ -53,8 +59,8 @@ export function ngcService(_options: any): Rule {
       let updatedContent = contentParts[0]
         + "import { " + classify(name) + "Service } from './services/" + name + ".service';\n"
         + ngModuleStr + declarationParts.slice(0, declarationParts.length - 1).join(declarationSplitStr)
-        + "  "
-        + classify(name) + "Service,\n  " + declarationSplitStr + declarationParts[declarationParts.length - 1]
+        + "  \n"
+        + classify(name) + "Service, " + declarationSplitStr + declarationParts[declarationParts.length - 1]
       // console.log(updatedContent);
       tree.overwrite(featurePath + '/' + moduleName, updatedContent);
     }

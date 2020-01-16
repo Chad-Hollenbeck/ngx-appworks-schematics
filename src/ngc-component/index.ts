@@ -57,7 +57,7 @@ export function ngcComponent(_options: any): Rule {
         const declarationParts = contentParts[1].split(declarationSplitStr);
 
         // Put it all together
-        let updatedContent = contentParts[0] + "import { "+classify(name)+"Component } from './+"+featureName.substr(1)+"/"+name+".component';\n" + ngModuleStr + declarationParts[0] + "  " + classify(name)+"Component,\n  " + declarationSplitStr + declarationParts.slice(1).join(declarationSplitStr);
+        let updatedContent = contentParts[0] + "import { "+classify(name)+"Component } from './+"+name+"/"+name+".component';\n" + ngModuleStr + declarationParts[0] + "  " + classify(name)+"Component,\n  " + declarationSplitStr + declarationParts.slice(1).join(declarationSplitStr);
 
         tree.overwrite(featurePath + '/' + moduleName, updatedContent);
       }
@@ -76,12 +76,12 @@ export function ngcComponent(_options: any): Rule {
         // Register component with route with default name
         const importParts = content.split(importSplitString);
 
-        newContent += importParts[0] + "import { "+ classify(name) +"Component } from '../+" + featureName.substr(1) + "/" + name + ".component';\n" + importSplitString;
+        newContent += importParts[0] + "import { "+ classify(name) +"Component } from '../+" + name + "/" + name + ".component';\n" + importSplitString;
 
         const registerParts = importParts[1].split(routePathSplitStr);
 
         newContent += registerParts[0]
-        + "{path: " + (featureName.substr(1).toUpperCase()) + '_ROUTE_NAMES.' + name.toUpperCase() + ", component: "+classify(underscore(name))+"Component}," + routePathSplitStr;
+        + "{path: " + (featureName.substr(1).toUpperCase()) + '_ROUTE_NAMES.' + underscore(name.toUpperCase()) + ", component: "+classify(underscore(name))+"Component}," + routePathSplitStr;
 
         tree.overwrite(featurePath + '/routes/' + routesFilename, newContent);
       }
@@ -98,7 +98,7 @@ export function ngcComponent(_options: any): Rule {
         // Register component with route with default name
         const importParts = content.split(splitChar);
 
-        const newContent = importParts[0] + underscore(name).toUpperCase() + " : '" + name + "',\n" + splitChar;
+        const newContent = importParts[0] + "\n" + underscore(name).toUpperCase() + " : ''," + splitChar;
 
         tree.overwrite(featurePath + '/routes/' + routeNamesFilename, newContent);
       }
