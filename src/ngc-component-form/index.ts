@@ -1,7 +1,7 @@
 import { Rule, SchematicContext, Tree, chain, url, apply, template, move, mergeWith } from '@angular-devkit/schematics';
 import { parseName } from '@schematics/angular/utility/parse-name';
 import { strings } from '@angular-devkit/core';
-import { classify, underscore } from '@angular-devkit/core/src/utils/strings';
+import { classify } from '@angular-devkit/core/src/utils/strings';
 
 // You don't have to export the function as default. You can also have more than one rule factory
 // per file.
@@ -61,48 +61,6 @@ export function ngcComponent(_options: any): Rule {
 
         tree.overwrite(featurePath + '/' + moduleName, updatedContent);
       }
-
-      // Register component with routing
-      const routesFilename = featureName.substr(1) + '.routes.ts';
-      console.log(routesFilename);
-
-      const routingBuffer = tree.read(featurePath + '/routes/' + routesFilename);
-      if(routingBuffer){
-        const content = routingBuffer.toString();
-        const importSplitString = "export";
-        const routePathSplitStr = "\n]";
-
-        let newContent = '';
-        // Register component with route with default name
-        const importParts = content.split(importSplitString);
-
-        newContent += importParts[0] + "import { "+ classify(name) +"Component } from '../+" + name + "/" + name + ".component';\n" + importSplitString;
-
-        const registerParts = importParts[1].split(routePathSplitStr);
-
-        newContent += registerParts[0]
-        + "{path: " + (featureName.substr(1).toUpperCase()) + '_ROUTE_NAMES.' + underscore(name.toUpperCase()) + ", component: "+classify(underscore(name))+"Component}," + routePathSplitStr;
-
-        tree.overwrite(featurePath + '/routes/' + routesFilename, newContent);
-      }
-
-
-      // Register component with routing names file
-      const routeNamesFilename = featureName.substr(1) + '.routes.names.ts';
-      const routeNameBuffer = tree.read(featurePath + '/routes/' + routeNamesFilename);
-      if(routeNameBuffer){
-        const content = routeNameBuffer.toString();
-        const splitChar = "\n}";
-
-
-        // Register component with route with default name
-        const importParts = content.split(splitChar);
-
-        const newContent = importParts[0] + "\n" + underscore(name).toUpperCase() + " : ''," + splitChar;
-
-        tree.overwrite(featurePath + '/routes/' + routeNamesFilename, newContent);
-      }
-
 
       return mergeWith(sourceParametrized)(tree, _context);
     }]);
