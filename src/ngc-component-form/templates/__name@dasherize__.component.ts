@@ -13,7 +13,7 @@ import { <%= classify(className) %> VM } from '../models/<%= dasherize(className
 
 
 @Component({
-  selector: 'app-<%= dasherize(name)-form %>',
+  selector: 'app-<%= dasherize(name) %>',
   templateUrl: './<%= dasherize(name) %>.component.html',
   styleUrls: []
 })

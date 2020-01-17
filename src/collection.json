@@ -9,12 +9,12 @@
     "ngc-component-form": {
       "description": "A form component.",
       "factory": "./ngc-component-form/index#ngcFormComponent",
-      "schema": "./_schemas/name-schema.json"
+      "schema": "./_schemas/name-prompt-schema.json"
     },
     "ngc-component-table": {
       "description": "A table component.",
       "factory": "./ngc-component-table/index#ngcTableComponent",
-      "schema": "./_schemas/name-schema.json"
+      "schema": "./_schemas/name-prompt-schema.json"
     },
     "ngc-module": {
       "description": "A default module.",

@@ -5,7 +5,7 @@ import { <%= classify(className) %>VM } from '../models/<%= dasherize(className)
 
 
 @Component({
-  selector: 'app-<%= dasherize(name)-table %>',
+  selector: 'app-<%= dasherize(name) %>',
   templateUrl: './<%= dasherize(name) %>.component.html',
   styleUrls: []
 })
