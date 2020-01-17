@@ -5,7 +5,16 @@
       "description": "A default component.",
       "factory": "./ngc-component/index#ngcComponent",
       "schema": "./_schemas/name-schema.json"
-
+    },
+    "ngc-component-form": {
+      "description": "A form component.",
+      "factory": "./ngc-component-form/index#ngcFormComponent",
+      "schema": "./_schemas/name-schema.json"
+    },
+    "ngc-component-table": {
+      "description": "A table component.",
+      "factory": "./ngc-component-table/index#ngcTableComponent",
+      "schema": "./_schemas/name-schema.json"
     },
     "ngc-module": {
       "description": "A default module.",
