@@ -5,7 +5,9 @@ import { Observable } from 'rxjs';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { <%= classify(className) %>VM } from '../models/<%= dasherize(className) %>.model';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class <%= classify(name) %>Service {
   <%= camelize(className) %>Collection: AngularFirestoreCollection;
 

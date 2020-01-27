@@ -7,7 +7,9 @@ import { <%= classify(className) %>VM } from '../models/<%= dasherize(className)
 
 
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class <%= classify(name) %>Service {
 
   baseUrl: string;

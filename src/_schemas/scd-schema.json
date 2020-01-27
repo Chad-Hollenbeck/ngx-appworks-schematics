@@ -13,8 +13,8 @@
     },
     "isSCD": {
       "type": "boolean",
-      "description" : "Use slowly changing dimensions?",
-      "x-prompt" : "SCD will replace create/update dates with start/end date fields"
+      "x-prompt" : "Use slowly changing dimensions?",
+      "description" : "SCD will replace create/update dates with start/end date fields"
     }
   },
   "required": [

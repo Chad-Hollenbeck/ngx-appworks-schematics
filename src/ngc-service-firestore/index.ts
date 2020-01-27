@@ -1,7 +1,6 @@
 import { Rule, SchematicContext, Tree, url, apply, template, move, mergeWith } from '@angular-devkit/schematics';
 import { parseName } from '@schematics/angular/utility/parse-name';
 import { strings } from '@angular-devkit/core';
-import { classify } from '@angular-devkit/core/src/utils/strings';
 
 
 // You don't have to export the function as default. You can also have more than one rule factory
@@ -30,34 +29,6 @@ export function ngcServiceFirestore(_options: any): Rule {
     ]);
 
 
-    // Register service with parent module
-    const _moduleNamePrefix = path.split('+')[1];
-    const moduleName = _moduleNamePrefix + '.module.ts';
-
-    const moduleBuffer = tree.read(featurePath + '/' + moduleName);
-    if (moduleBuffer != null) {
-      const content = moduleBuffer.toString();
-
-      // Import split
-      const ngModuleStr = "\n@NgModule";
-      const contentParts = content.split(ngModuleStr);
-
-      // Declaration split
-      const declarationSplitStr = "]";
-      const declarationParts = contentParts[1].split(declarationSplitStr);
-
-      // console.log(declarationParts);
-
-      // Put it all together
-      let updatedContent = contentParts[0]
-        + "import { " + classify(name) + "Service } from './services/" + name + ".service';\n"
-        + ngModuleStr + declarationParts.slice(0, declarationParts.length - 1).join(declarationSplitStr)
-        + "  "
-        + classify(name) + "Service,\n  " + declarationSplitStr + declarationParts[declarationParts.length - 1]
-      tree.overwrite(featurePath + '/' + moduleName, updatedContent);
-    }
-
-    console.log(_options);
     return mergeWith(sourceParametrized)(tree, _context);
   };
 }

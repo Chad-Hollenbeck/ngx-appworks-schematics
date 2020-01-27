@@ -81,7 +81,7 @@ export function ngcComponent(_options: any): Rule {
         const registerParts = importParts[1].split(routePathSplitStr);
 
         newContent += registerParts[0]
-        + "{path: " + (featureName.substr(1).toUpperCase()) + '_ROUTE_NAMES.' + underscore(name.toUpperCase()) + ", component: "+classify(underscore(name))+"Component}," + routePathSplitStr;
+        + "{path: " + (featureName.substr(1).toUpperCase()) + '_ROUTE_NAMES.' + underscore(name).toUpperCase() + ", component: "+classify(underscore(name))+"Component}," + routePathSplitStr;
 
         tree.overwrite(featurePath + '/routes/' + routesFilename, newContent);
       }
