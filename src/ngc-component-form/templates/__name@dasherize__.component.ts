@@ -3,13 +3,12 @@ import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { AppService } from '@app/app.service';
 import { Subscription } from 'rxjs';
 import { FormGroup, Validators } from '@angular/forms';
-import { <%= classify(className) %> VM } from '../models/<%= dasherize(className) %>.model';
-import { <%= classify(className) %> Service } from '../services/<%= dasherize(className) %>.service';
+import { <%= classify(className) %>VM } from '../models/<%= dasherize(className) %>.model';
+import { <%= classify(className) %>Service } from '../services/<%= dasherize(className) %>.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { first } from 'rxjs/operators';
 import { APP_ROUTE_NAMES } from '@app/app.routes.names';
-import { <%= classify(className) %> VM } from '../models/<%= dasherize(className) %>.model';
 
 
 @Component({
@@ -17,19 +16,19 @@ import { <%= classify(className) %> VM } from '../models/<%= dasherize(className
   templateUrl: './<%= dasherize(name) %>.component.html',
   styleUrls: []
 })
-export class <%= classify(name) %> FormComponent implements OnInit, OnDestroy {
+export class <%= classify(name) %>FormComponent implements OnInit, OnDestroy {
 
   loading: boolean;
   submitting: boolean;
   subs: Subscription;
 
   detailForm: FormGroup;
-  selectedItem: CustomerVM;
+  selectedItem: <%= classify(className) %>VM;
 
   @Input() id: number;
   @Input() isNew: boolean;
 
-  constructor(private appService: AppService, private <%= dasherize(className) %> Service: <%= classify(className) %> Service, private router: Router, private toastr: ToastrService) {
+  constructor(private appService: AppService, private <%= dasherize(className) %>Service: <%= classify(className) %>Service, private router: Router, private toastr: ToastrService) {
     this.subs = new Subscription();
 
     this.detailForm = this.appService.buildFormGroup(new <%= classify(className) %> VM());
@@ -51,7 +50,7 @@ export class <%= classify(name) %> FormComponent implements OnInit, OnDestroy {
   }
 
   loadData() {
-    this.customerService.getById(this.id).pipe(first()).subscribe(
+    this.<%= dasherize(className) %>Service.getById(this.id).pipe(first()).subscribe(
       (resp) => {
         this.selectedItem = resp.body;
 
@@ -75,10 +74,10 @@ export class <%= classify(name) %> FormComponent implements OnInit, OnDestroy {
   }
 
   add(data: any) {
-    this.<%= dasherize(className) %> Service.add(data).pipe(first()).subscribe(
+    this.<%= dasherize(className) %>Service.add(data).pipe(first()).subscribe(
       (resp) => {
         this.router.navigate([APP_ROUTE_NAMES.<%= (className).toUpperCase() %>, resp.body.id]);
-        this.toastr.success("Customer saved");
+        this.toastr.success("<%= classify(className) %> saved");
       }
     )
   }
@@ -86,10 +85,10 @@ export class <%= classify(name) %> FormComponent implements OnInit, OnDestroy {
   update(data: any) {
     if (!data.id) data.id = this.id;
     // Update
-    this.<%= dasherize(className) %> Service.update(data).pipe(first()).subscribe(
+    this.<%= dasherize(className) %>Service.update(data).pipe(first()).subscribe(
       (resp) => {
         this.router.navigate([APP_ROUTE_NAMES.<%= (className).toUpperCase() %>, resp.body.id]);
-        this.toastr.success("Customer updated");
+        this.toastr.success("<%= classify(className) %> updated");
       }
     )
   }

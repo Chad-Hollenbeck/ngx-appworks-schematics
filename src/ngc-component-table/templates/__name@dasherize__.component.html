@@ -23,9 +23,9 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let dept of displayedItems">
-            <td class="align-middle" [ngClass]="{'border-danger border-left border-bottom-0 border-top-0' : !dept.isActive}">
-              <a [routerLink]="[dept.id]">{{dept.name}}</a></td>
+          <tr *ngFor="let item of displayedItems">
+            <td class="align-middle" [ngClass]="{'border-danger border-left border-bottom-0 border-top-0' : !item.isActive}">
+              <a [routerLink]="[item.id]">{{item.name}}</a></td>
           </tr>
         </tbody>
       </table>

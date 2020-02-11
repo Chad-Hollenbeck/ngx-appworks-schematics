@@ -1,6 +1,6 @@
 {
   "name": "@schematics/ngc",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "A set of custom schematics",
   "scripts": {
     "build": "rimraf schematics-ngc-* && tsc -p tsconfig.json && npm pack",
