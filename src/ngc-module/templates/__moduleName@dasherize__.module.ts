@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from '@app/shared/shared.module';
+<% if (routing) { %>import { <%= classify(moduleName) %>RoutingModule } from './routes/<%= moduleName %>.routes.module';<% } %>
+
 
 // **************************************************
 // Components & Services
@@ -9,6 +11,7 @@ import { SharedModule } from '@app/shared/shared.module';
   declarations: [],
   imports: [
     SharedModule,
+    <% if(routing) { %> <%= classify(moduleName) %>RoutingModule,<% } %>
   ],
   exports: []
 })

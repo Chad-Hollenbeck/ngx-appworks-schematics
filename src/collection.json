@@ -4,7 +4,7 @@
     "component": {
       "description": "A default component.",
       "factory": "./ngc-component/index#ngcComponent",
-      "schema": "./schema/module-file-model.json"
+      "schema": "./schema/module-file.json"
     },
     "component-form": {
       "description": "A form component.",
@@ -24,7 +24,7 @@
     "class": {
       "description": "A default class.",
       "factory": "./ngc-class/index#ngcClass",
-      "schema": "./schema/module-file-model.json"
+      "schema": "./schema/module-file-class.json"
     },
     "service": {
       "description": "A Default service.",

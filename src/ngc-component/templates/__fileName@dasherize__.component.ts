@@ -1,17 +1,18 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AppService } from '@app/app.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-<%= dasherize(name) %>',
-  templateUrl: './<%= dasherize(name) %>.component.html',
+  selector: 'app-<%= dasherize(fileName) %>',
+  templateUrl: './<%= dasherize(fileName) %>.component.html',
   styleUrls: []
 })
-export class <%= classify(name) %>Component implements OnInit, OnDestroy {
+export class <%= classify(fileName) %>Component implements OnInit, OnDestroy {
 
   loading: boolean;
 
   constructor(private appService: AppService, private toastr: ToastrService) {
-    this.appService.pageTitle = '<%= classify(name) %>';
+    this.appService.pageTitle = '<%= classify(fileName) %>';
 
   }
 
@@ -23,7 +24,7 @@ export class <%= classify(name) %>Component implements OnInit, OnDestroy {
   }
 
   private loadData(){
-
+    this.loading = false;
   }
 
   ngOnDestroy(){

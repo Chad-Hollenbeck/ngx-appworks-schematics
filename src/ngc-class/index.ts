@@ -1,31 +1,28 @@
 import { Rule, SchematicContext, Tree, url, template, move, apply, mergeWith } from '@angular-devkit/schematics';
-import { parseName } from '@schematics/angular/utility/parse-name';
 import { strings } from '@angular-devkit/core';
 
 
 // You don't have to export the function as default. You can also have more than one rule factory
 // per file.
-export function ngcClass(_options: any): Rule {
+export function ngcClass(options: ModuleFileClass): Rule {
   return (tree: Tree, _context: SchematicContext) => {
     const defaultProjectPath = 'src/app';
 
-    const parsedPath = parseName(defaultProjectPath, _options.name);
+    // Module and Component names formatted with '+'
+    const moduleName = (options.moduleName.substr(0, 1) == "+") ? options.moduleName : '+' + options.moduleName;
 
-    const { name, path } = parsedPath;
+    // Module and Component paths
+    const modulePath = "/" + defaultProjectPath + "/" + moduleName;
 
+    const newPath = modulePath + '/models/';
+
+    // templates folder path
     const sourceTemplates = url('./templates');
-    const pathSplitChar = '/';
-    const modulePathParts = path.split(pathSplitChar);
-    const featurePath = pathSplitChar + modulePathParts[1] + // /src
-                    pathSplitChar + modulePathParts[2] + // /app
-                    pathSplitChar + "+" + modulePathParts[3];
-    const newPath = featurePath + '/models/';
 
     const sourceParametrized = apply(sourceTemplates, [
       template({
-        ..._options,
-        ...strings,
-        name
+        ...options,
+        ...strings
       }), move(newPath)
     ]);
 
