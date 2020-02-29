@@ -1,11 +1,19 @@
 {
   "name": "@schematics/ngc",
-  "version": "2.0.2",
-  "description": "A set of custom schematics",
+  "version": "3.0.0",
+  "description": "Custom angular schematics for Angular 8 development",
   "scripts": {
     "build": "rimraf schematics-ngc-* && tsc -p tsconfig.json && npm pack",
     "build:watch": "tsc -p tsconfig.json --watch",
-    "test": "npm run build && jasmine src/**/*_spec.js"
+    "test": "npm run build && jasmine src/**/*_spec.js",
+    "ngc:module": "schematics .:ngc-module",
+    "ngc:route": "schematics .:ngc-routes",
+    "ngc:component:table": "schematics .:ngc-component-table",
+    "ngc:component:form": "schematics .:ngc-component-form",
+    "ngc:component": "schematics .:ngc-component",
+    "ngc:class": "schematics .:ngc-class",
+    "ngc:service:http": "schematics .:ngc-service",
+    "ngc:service:firestore": "schematics .:ngc-service-firestore"
   },
   "keywords": [
     "schematics"

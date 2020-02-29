@@ -1,6 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AppService } from '@app/app.service';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-<%= dasherize(name) %>',
@@ -11,24 +10,24 @@ export class <%= classify(name) %>Component implements OnInit, OnDestroy {
 
   loading: boolean;
 
-  subs: Subscription;
+  constructor(private appService: AppService, private toastr: ToastrService) {
+    this.appService.pageTitle = '<%= classify(name) %>';
 
-  constructor(private appService: AppService) {
-    this.appService.pageTitle = 'Sample Page Title';
-
-    this.subs = new Subscription();
   }
 
   ngOnInit() {
     this.loading = true;
 
     // Load Data
+    this.loadData()
+  }
+
+  private loadData(){
+
   }
 
   ngOnDestroy(){
-    if(!this.subs.closed){
-      this.subs.unsubscribe();
-    }
+
   }
 
 }
