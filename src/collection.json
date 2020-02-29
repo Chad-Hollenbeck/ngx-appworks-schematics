@@ -4,42 +4,37 @@
     "ngc-component": {
       "description": "A default component.",
       "factory": "./ngc-component/index#ngcComponent",
-      "schema": "./_schemas/name-schema.json"
+      "schema": "./schema/module-file-model.json"
     },
     "ngc-component-form": {
       "description": "A form component.",
       "factory": "./ngc-component-form/index#ngcFormComponent",
-      "schema": "./_schemas/name-prompt-schema.json"
+      "schema": "./schema/module-file-model.json"
     },
     "ngc-component-table": {
       "description": "A table component.",
       "factory": "./ngc-component-table/index#ngcTableComponent",
-      "schema": "./_schemas/name-prompt-schema.json"
+      "schema": "./schema/module-file-model.json"
     },
     "ngc-module": {
       "description": "A default module.",
       "factory": "./ngc-module/index#ngcModule",
-      "schema": "./_schemas/name-schema.json"
+      "schema": "./schema/module-routing.json"
     },
     "ngc-class": {
       "description": "A default class.",
       "factory": "./ngc-class/index#ngcClass",
-      "schema": "./_schemas/scd-schema.json"
+      "schema": "./schema/module-file-model.json"
     },
     "ngc-service": {
       "description": "A Default service.",
       "factory": "./ngc-service/index#ngcService",
-      "schema": "./_schemas/name-prompt-schema.json"
+      "schema": "./schema/module-file-model.json"
     },
     "ngc-service-firestore": {
       "description": "A Firestore CRUD service.",
       "factory": "./ngc-service-firestore/index#ngcServiceFirestore",
-      "schema": "./_schemas/name-prompt-schema.json"
-    },
-    "ngc-routes": {
-      "description": "A blank schematic.",
-      "factory": "./ngc-routing/index#ngcRouting",
-      "schema": "./_schemas/name-schema.json"
+      "schema": "./schema/module-file-model.json"
     }
   }
 }

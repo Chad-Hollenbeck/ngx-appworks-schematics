@@ -6,14 +6,14 @@
     "build": "rimraf schematics-ngc-* && tsc -p tsconfig.json && npm pack",
     "build:watch": "tsc -p tsconfig.json --watch",
     "test": "npm run build && jasmine src/**/*_spec.js",
-    "ngc:module": "schematics .:ngc-module",
-    "ngc:route": "schematics .:ngc-routes",
-    "ngc:component:table": "schematics .:ngc-component-table",
-    "ngc:component:form": "schematics .:ngc-component-form",
-    "ngc:component": "schematics .:ngc-component",
-    "ngc:class": "schematics .:ngc-class",
-    "ngc:service:http": "schematics .:ngc-service",
-    "ngc:service:firestore": "schematics .:ngc-service-firestore"
+    "ngc:module": "schematics .:ngc-module --debug=false",
+    "ngc:route": "schematics .:ngc-routes --debug=false",
+    "ngc:component:table": "schematics .:ngc-component-table --debug=false",
+    "ngc:component:form": "schematics .:ngc-component-form --debug=false",
+    "ngc:component": "schematics .:ngc-component --debug=false",
+    "ngc:class": "schematics .:ngc-class --debug=false",
+    "ngc:service:http": "schematics .:ngc-service --debug=false",
+    "ngc:service:firestore": "schematics .:ngc-service-firestore --debug=false"
   },
   "keywords": [
     "schematics"
