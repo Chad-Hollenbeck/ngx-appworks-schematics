@@ -9,12 +9,12 @@
     "component-form": {
       "description": "A form component.",
       "factory": "./ngc-component-form/index#ngcFormComponent",
-      "schema": "./schema/module-file-model.json"
+      "schema": "./schema/component-form.json"
     },
     "component-table": {
       "description": "A table component.",
       "factory": "./ngc-component-table/index#ngcTableComponent",
-      "schema": "./schema/module-file-model.json"
+      "schema": "./schema/module-file-model-card.json"
     },
     "module": {
       "description": "A default module.",
