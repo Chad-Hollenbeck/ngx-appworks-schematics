@@ -12,4 +12,4 @@ import { SharedModule } from '@app/shared/shared.module';
   ],
   exports: []
 })
-export class <%= classify(name) %>Module { }
+export class <%= classify(moduleName) %>Module { }

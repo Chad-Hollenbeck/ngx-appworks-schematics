@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "id": "firestore-service-schema",
+  "title": "Firestore Service Schema",
+  "type": "object",
+  "properties": {
+    "moduleName": {
+      "type": "string",
+      "x-prompt": "Module Name"
+    },
+    "routing": {
+      "type": "boolean",
+      "x-prompt": "Create routing files?",
+      "default": true
+    }
+  },
+  "required": [
+    "moduleName",
+    "routing"
+  ]
+}

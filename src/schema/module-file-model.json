@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "id": "firestore-service-schema",
+  "title": "Firestore Service Schema",
+  "type": "object",
+  "properties": {
+    "moduleName": {
+      "type": "string",
+      "x-prompt": "Module Name"
+    },
+    "fileName": {
+      "type": "string",
+      "x-prompt": "File Name"
+    },
+    "modelName": {
+      "type": "string",
+      "x-prompt" : "Model Name"
+    }
+  },
+  "required": [
+    "moduleName",
+    "fileName"
+  ]
+}

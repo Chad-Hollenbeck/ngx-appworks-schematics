@@ -1,40 +1,45 @@
 {
   "$schema": "../node_modules/@angular-devkit/schematics/collection-schema.json",
   "schematics": {
-    "ngc-component": {
+    "component": {
       "description": "A default component.",
       "factory": "./ngc-component/index#ngcComponent",
       "schema": "./schema/module-file-model.json"
     },
-    "ngc-component-form": {
+    "component-form": {
       "description": "A form component.",
       "factory": "./ngc-component-form/index#ngcFormComponent",
       "schema": "./schema/module-file-model.json"
     },
-    "ngc-component-table": {
+    "component-table": {
       "description": "A table component.",
       "factory": "./ngc-component-table/index#ngcTableComponent",
       "schema": "./schema/module-file-model.json"
     },
-    "ngc-module": {
+    "module": {
       "description": "A default module.",
       "factory": "./ngc-module/index#ngcModule",
       "schema": "./schema/module-routing.json"
     },
-    "ngc-class": {
+    "class": {
       "description": "A default class.",
       "factory": "./ngc-class/index#ngcClass",
       "schema": "./schema/module-file-model.json"
     },
-    "ngc-service": {
+    "service": {
       "description": "A Default service.",
       "factory": "./ngc-service/index#ngcService",
       "schema": "./schema/module-file-model.json"
     },
-    "ngc-service-firestore": {
+    "service-firestore": {
       "description": "A Firestore CRUD service.",
       "factory": "./ngc-service-firestore/index#ngcServiceFirestore",
       "schema": "./schema/module-file-model.json"
+    },
+    "routing": {
+      "description": "Lazy Loaded Routing",
+      "factory": "./ngc-routing/index#ngcRouting",
+      "schema": "./schema/module-routing.json"
     }
   }
 }
