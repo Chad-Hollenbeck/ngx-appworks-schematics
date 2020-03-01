@@ -5,6 +5,7 @@ import { SharedModule } from '@app/shared/shared.module';
 
 // **************************************************
 // Components & Services
+//{COMPONENT_IMPORT}
 
 
 @NgModule({
@@ -12,7 +13,10 @@ import { SharedModule } from '@app/shared/shared.module';
   imports: [
     SharedModule,
     <% if(routing) { %> <%= classify(moduleName) %>RoutingModule,<% } %>
+    //{MODULE_IMPORT}
   ],
-  exports: []
+  exports: [
+    //{MODULE_EXPORT}
+  ]
 })
 export class <%= classify(moduleName) %>Module { }

@@ -29,6 +29,8 @@ export function ngcRouting(_options: ModuleOptions): Rule {
       }), move(routePath)
     ]);
 
+    // fixme: Replace logic w/ tags vs split chars
+
     // Register module with app routing module
     const routingBuffer = tree.read('/src/app/app.routes.module.ts');
     if (routingBuffer) {

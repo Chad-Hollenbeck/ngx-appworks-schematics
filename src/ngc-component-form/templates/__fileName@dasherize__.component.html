@@ -1,0 +1,67 @@
+<% if (useCard) { %>
+  <!-- Loading Spinner -->
+  <div class="card" *ngIf="loading">
+    <div class="card-body">
+      <div class="text-center">
+        <app-loading-spinner id="formLoad" [(show)]="loading" spinnerType="grow" textType="warning">
+        </app-loading-spinner>
+      </div>
+    </div>
+  </div>
+
+  <div class="card mb-3">
+    <% } %>
+      <form class="" [formGroup]="detailForm" (ngSubmit)="onDetailSubmit()" *ngIf="detailForm && !loading">
+        <% if (useCard) { %>
+
+          <div class="card-header clearfix">
+            <div class="float-left">
+              <div class="h3 mb-0">
+                {{selectedItem?.name || 'New'}}
+              </div>
+            </div>
+            <div class="float-right">
+              <!-- <span class="form-label">Active</span> -->
+              <label class="switcher switcher-xl switcher-success d-block mt-2 mr-0">
+                <input [value]="isActive" class="switcher-input" type="checkbox" formControlName="isActive">
+                <span class="switcher-indicator">
+                  <span class="switcher-yes">
+                    <span class="">Active</span>
+                  </span>
+                  <span class="switcher-no">
+                    <span class="">Disabled</span>
+                  </span>
+                </span>
+              </label>
+            </div>
+          </div>
+          <div class="card-body pb-2">
+            <% } %>
+
+
+              <div class="row">
+                <div class="col">
+                  <div class="form-group">
+                    <label class="form-label">ID</label>
+                    <input formControlName="id" type="text" class="form-control">
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col">
+                  <div class="form-group text-right">
+                    <button type="submit"
+                      [disabled]="detailForm.invalid || detailForm.pristine"
+                      data-style="slide-left"
+                      class="btn btn-primary"> {{isNew ? 'Create' : 'Save Details'}} </button>
+                  </div>
+                </div>
+              </div>
+              <% if (useCard) { %>
+              </div>
+              <% } %>
+              </form>
+              <% if (useCard) { %>
+              </div>
+              <% } %>

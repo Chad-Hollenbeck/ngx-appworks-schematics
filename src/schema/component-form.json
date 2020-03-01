@@ -10,17 +10,30 @@
     },
     "fileName": {
       "type": "string",
+      "x-prompt": "Component|Service Name"
+    },
+    "modelName": {
+      "type": "string",
       "x-prompt": "Model Name"
     },
-    "dateType": {
+    "useFirebase": {
+      "type": "boolean",
+      "x-prompt": "Use firebase service functions?"
+    },
+    "serviceName": {
       "type": "string",
-      "x-prompt": "Date Type",
-      "enum": ["crud", "scd", "none"]
+      "x-prompt": "Service Name"
+    },
+    "useCard": {
+      "type": "boolean",
+      "x-prompt": "Use card html format?"
     }
   },
   "required": [
     "moduleName",
     "fileName",
-    "dateType"
+    "serviceName",
+    "useCard",
+    "useFirebase"
   ]
 }

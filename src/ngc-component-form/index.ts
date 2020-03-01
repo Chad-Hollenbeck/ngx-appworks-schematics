@@ -1,31 +1,23 @@
 import { Rule, SchematicContext, Tree, chain, url, apply, template, move, mergeWith } from '@angular-devkit/schematics';
-import { parseName } from '@schematics/angular/utility/parse-name';
 import { strings } from '@angular-devkit/core';
 import { classify } from '@angular-devkit/core/src/utils/strings';
+import { TAGS } from '../schema/template-tags';
 
 // You don't have to export the function as default. You can also have more than one rule factory
 // per file.
-export function ngcFormComponent(_options: any): Rule {
+export function ngcFormComponent(options: any): Rule {
   return chain([
     (tree: Tree, _context: SchematicContext) => {
       // Default file path
       const defaultProjectPath = 'src/app';
 
-      // Parse name from path
-      const parsedPath = parseName(defaultProjectPath, _options.name);
+      // Module and Component names formatted with '+'
+      const moduleName = (options.moduleName.substr(0, 1) == "+") ? options.moduleName : '+' + options.moduleName;
+      const componentName = (options.fileName.substr(0, 1) == "+") ? options.fileName : '+' + options.fileName;
 
-      // Const params for use in template
-      const { name, path } = parsedPath;
-      const componentName = (name.substr(0, 1) == "+") ? name : '+' + name;
-      const pathSplitChar = '/';
-      const modulePathParts = path.split(pathSplitChar);
-      const featurePath = pathSplitChar + modulePathParts[1] + // /src
-                      pathSplitChar + modulePathParts[2] + // /app
-                      pathSplitChar + "+" + modulePathParts[3];
-                       // /+featureName
-      const newPath = featurePath + pathSplitChar + componentName;
-
-      // console.log(newPath);
+      // Module and Component paths
+      const modulePath = "/" + defaultProjectPath + "/" + moduleName;
+      const componentPath = modulePath + "/" + componentName;
 
       // templates folder path
       const sourceTemplates = url('./templates');
@@ -33,33 +25,33 @@ export function ngcFormComponent(_options: any): Rule {
       // create template files in newPath location
       const sourceParametrized = apply(sourceTemplates, [
         template({
-          ..._options,
-          ...strings,
-          name
-        }), move(newPath)
+          ...options,
+          ...strings
+        }), move(componentPath)
       ]);
 
-      // Register component with parent module
-      const pathParts = path.split("/");
-      const featureName = '+' + pathParts[pathParts.length -1];
-      const moduleName = featureName.substr(1) + '.module.ts';
 
-      const moduleBuffer = tree.read(featurePath + '/' + moduleName);
-      if(moduleBuffer != null){
+      // Register component with routing module
+      const moduleFileName = options.moduleName + '.module.ts';
+      const moduleBuffer = tree.read(modulePath + '/' + moduleFileName);
+
+      if (moduleBuffer != null) {
         const content = moduleBuffer.toString();
 
-        // Import split
-        const ngModuleStr = "\n@NgModule";
-        const contentParts = content.split(ngModuleStr);
+        // Create new content snippets
+        const componentClassImport = "import { " + classify(options.fileName) + "Component } from './+" + options.fileName + "/" + options.fileName + ".component';\n" + TAGS.componentImport;
 
-        // Declaration split
-        const declarationSplitStr = "]";
-        const declarationParts = contentParts[1].split(declarationSplitStr);
+        const moduleComponentImport = classify(options.fileName) + "Component,\n  " + TAGS.moduleImport;
+        const moduleComponentExport = classify(options.fileName) + "Component,\n  " + TAGS.moduleExport;
 
-        // Put it all together
-        let updatedContent = contentParts[0] + "import { "+classify(name)+"Component } from './+"+name+"/"+name+".component';\n" + ngModuleStr + declarationParts[0] + "  " + classify(name)+"Component,\n  " + declarationSplitStr + declarationParts.slice(1).join(declarationSplitStr);
+        // Replace overwrite tags
+        let newContent = content
+          .replace(TAGS.componentImport, componentClassImport)
+          .replace(TAGS.moduleImport, moduleComponentImport)
+          .replace(TAGS.moduleExport, moduleComponentExport);
 
-        tree.overwrite(featurePath + '/' + moduleName, updatedContent);
+
+        tree.overwrite(modulePath + '/' + moduleFileName, newContent);
       }
 
       return mergeWith(sourceParametrized)(tree, _context);

@@ -10,7 +10,7 @@
     },
     "fileName": {
       "type": "string",
-      "x-prompt": "File Name"
+      "x-prompt": "Component|Service|Model Name"
     },
     "modelName": {
       "type": "string",
