@@ -3,6 +3,5 @@ export class ModuleFileModelOptions {
   fileName: string;
   modelName: string;
   serviceName: string;
-  useCard: boolean;
   isFirebase: boolean;
 }
