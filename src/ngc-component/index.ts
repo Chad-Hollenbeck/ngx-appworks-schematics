@@ -41,7 +41,7 @@ export function ngcComponent(options: ModuleFileOptions): Rule {
         // Create new content snippets
         const componentClassImport = "import { " + classify(options.fileName) + "Component } from '../+" + options.fileName + "/" + options.fileName + ".component';\n" + TAGS.componentImport;
 
-        const componentRoute = "{ path: " + options.moduleName.toUpperCase() + "_ROUTE_NAMES." + options.fileName.toUpperCase() + ", component: " + classify(options.fileName) + "Component },\n  " + TAGS.componentRoute;
+        const componentRoute = "{ path: " + options.moduleName.toUpperCase() + "_ROUTE_NAMES." + camelize(options.fileName).toUpperCase() + ", component: " + classify(options.fileName) + "Component },\n  " + TAGS.componentRoute;
 
         const moduleComponentImport = classify(options.fileName) + "Component,\n  " + TAGS.moduleImport;
         const moduleComponentExport = classify(options.fileName) + "Component,\n  " + TAGS.moduleExport;
