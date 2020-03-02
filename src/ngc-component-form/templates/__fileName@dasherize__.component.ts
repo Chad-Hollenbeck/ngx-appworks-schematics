@@ -3,7 +3,7 @@ import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { AppService } from '@app/app.service';
 import { FormGroup, Validators } from '@angular/forms';
 import { <%= classify(modelName) %>VM } from '../models/<%= dasherize(modelName) %>.model';
-<% if (useFirebase) { %>import { <%= classify(serviceName) %>Service } from '../services/<%= dasherize(serviceName) %>.firebase.service';<% }else { %>import { <%= classify(serviceName) %>Service } from '../services/<%= dasherize(serviceName) %>.service'; <% } %>
+<% if (useFirebase) { %>import { <%= classify(serviceName) %>Service } from '../services/<%= dasherize(serviceName) %>.service';<% }else { %>import { <%= classify(serviceName) %>Service } from '../services/<%= dasherize(serviceName) %>.service'; <% } %>
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { first } from 'rxjs/operators';
