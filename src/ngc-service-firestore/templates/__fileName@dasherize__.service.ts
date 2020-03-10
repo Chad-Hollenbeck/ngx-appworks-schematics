@@ -63,8 +63,4 @@ export class <%= classify(fileName) %>Service {
   get(id: string): Observable<<%= classify(modelName) %>VM> {
     return this.<%= camelize(modelName) %>Collection.doc<<%= classify(modelName) %>VM>(id).valueChanges();
   }
-
-
-
-
 }

@@ -24,8 +24,6 @@ export function ngcModule(options: ModuleOptions): Rule {
       }), move(componentPath)
     ]);
 
-    console.log(options);
-
     if (options.routing) {
       schematic('routing', {moduleName: options.moduleName, routing: true});
     }

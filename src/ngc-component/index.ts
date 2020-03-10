@@ -43,14 +43,14 @@ export function ngcComponent(options: ModuleFileOptions): Rule {
 
         const componentRoute = "{ path: " + options.moduleName.toUpperCase() + "_ROUTE_NAMES." + camelize(options.fileName).toUpperCase() + ", component: " + classify(options.fileName) + "Component },\n  " + TAGS.componentRoute;
 
-        const moduleComponentImport = classify(options.fileName) + "Component,\n  " + TAGS.moduleImport;
+        const moduleComponentDeclaration = classify(options.fileName) + "Component,\n  " + TAGS.componentDeclaration;
         const moduleComponentExport = classify(options.fileName) + "Component,\n  " + TAGS.moduleExport;
 
         // Replace overwrite tags
         let newContent = content
           .replace(TAGS.componentImport, componentClassImport)
           .replace(TAGS.componentRoute, componentRoute)
-          .replace(TAGS.moduleImport, moduleComponentImport)
+          .replace(TAGS.componentDeclaration, moduleComponentDeclaration)
           .replace(TAGS.moduleExport, moduleComponentExport);
 
 

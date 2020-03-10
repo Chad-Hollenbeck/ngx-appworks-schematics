@@ -32,7 +32,7 @@ export function ngcRouting(_options: ModuleOptions): Rule {
     // fixme: Replace logic w/ tags vs split chars
 
     // Register module with app routing module
-    const routingBuffer = tree.read('/src/app/app.routes.module.ts');
+    const routingBuffer = tree.read('/src/app/app.routes.ts');
     if (routingBuffer) {
       // Parse Content
       const content = routingBuffer.toString();
@@ -54,7 +54,7 @@ export function ngcRouting(_options: ModuleOptions): Rule {
 
       newContent += contentParts[0] + appendedContent;
 
-      tree.overwrite('/src/app/app.routes.module.ts', newContent);
+      tree.overwrite('/src/app/app.routes.ts', newContent);
     }
 
     // Register module with app routing names
