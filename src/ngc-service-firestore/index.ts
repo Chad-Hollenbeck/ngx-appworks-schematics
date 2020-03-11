@@ -1,10 +1,11 @@
 import { Rule, SchematicContext, Tree, url, apply, template, move, mergeWith } from '@angular-devkit/schematics';
 import { strings } from '@angular-devkit/core';
+import { ServiceOptions } from '../shared/service.params';
 
 
 // You don't have to export the function as default. You can also have more than one rule factory
 // per file.
-export function ngcServiceFirestore(options: any): Rule {
+export function ngcServiceFirestore(options: ServiceOptions): Rule {
   return (tree: Tree, _context: SchematicContext) => {
     const defaultProjectPath = 'src/app';
 

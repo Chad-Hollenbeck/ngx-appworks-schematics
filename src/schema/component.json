@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/schema",
-  "id": "firestore-service-schema",
-  "title": "Firestore Service Schema",
+  "id": "firestore-component-schema",
+  "title": "Firestore Component Schema",
   "type": "object",
   "properties": {
     "moduleName": {
@@ -10,7 +10,7 @@
     },
     "fileName": {
       "type": "string",
-      "x-prompt": "Component|Service|Model Name"
+      "x-prompt": "Component Name"
     }
   },
   "required": [

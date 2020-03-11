@@ -1,9 +1,9 @@
 import { Rule, SchematicContext, Tree, url, template, move, apply, mergeWith } from '@angular-devkit/schematics';
 import { parseName } from '@schematics/angular/utility/parse-name';
 import { strings } from '@angular-devkit/core';
-import { ModuleOptions } from '../schema/module-routing.model';
 import { classify } from '@angular-devkit/core/src/utils/strings';
 import { TAGS } from '../schema/template-tags';
+import { ModuleOptions } from '../shared/module-routing.model';
 
 
 // You don't have to export the function as default. You can also have more than one rule factory

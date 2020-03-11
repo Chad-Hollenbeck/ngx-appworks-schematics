@@ -4,17 +4,12 @@
     "component": {
       "description": "A default component.",
       "factory": "./ngc-component/index#ngcComponent",
-      "schema": "./schema/module-file.json"
+      "schema": "./schema/component.json"
     },
     "component-form": {
       "description": "A form component.",
       "factory": "./ngc-component-form/index#ngcFormComponent",
-      "schema": "./schema/component-form.json"
-    },
-    "component-table": {
-      "description": "A table component.",
-      "factory": "./ngc-component-table/index#ngcTableComponent",
-      "schema": "./schema/module-file-model-card.json"
+      "schema": "./schema/component.json"
     },
     "module": {
       "description": "A default module.",
@@ -24,17 +19,17 @@
     "class": {
       "description": "A default class.",
       "factory": "./ngc-class/index#ngcClass",
-      "schema": "./schema/module-file-class.json"
+      "schema": "./schema/class.json"
     },
     "service": {
       "description": "A Default service.",
       "factory": "./ngc-service/index#ngcService",
-      "schema": "./schema/module-file-model.json"
+      "schema": "./schema/service.json"
     },
     "service-firestore": {
       "description": "A Firestore CRUD service.",
       "factory": "./ngc-service-firestore/index#ngcServiceFirestore",
-      "schema": "./schema/module-file-model.json"
+      "schema": "./schema/service.json"
     },
     "routing": {
       "description": "Lazy Loaded Routing",

@@ -2,11 +2,11 @@ import { Rule, SchematicContext, Tree, chain, url, apply, template, move, mergeW
 import { strings } from '@angular-devkit/core';
 import { classify, camelize } from '@angular-devkit/core/src/utils/strings';
 import { TAGS } from '../schema/template-tags';
-import { ModuleFileOptions } from '../schema/module-file';
+import { ComponentOptions } from '../shared/component.params';
 
 // You don't have to export the function as default. You can also have more than one rule factory
 // per file.
-export function ngcComponent(options: ModuleFileOptions): Rule {
+export function ngcComponent(options: ComponentOptions): Rule {
   return chain([
     (tree: Tree, _context: SchematicContext) => {
       // Default file path

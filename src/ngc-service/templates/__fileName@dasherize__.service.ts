@@ -1,11 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '@environments/environment';
 
-import { <%= classify(modelName) %>VM } from '../models/<%= dasherize(modelName) %>.model';
-
-
+import { T } from '../models/T.model';
 
 @Injectable({
   providedIn: 'root',
@@ -18,49 +16,49 @@ export class <%= classify(fileName) %>Service {
     this.baseUrl = environment.baseUrl;
   }
 
-  getById(id: number): Observable<HttpResponse<<%= classify(modelName) %>VM>> {
+  getById(id: number): Observable<T> {
     const url = this.baseUrl + '/' + id;
-    return this.http.get<<%= classify(modelName) %>VM>(url, {observe: 'response'});
+    return this.http.get<T>(url);
   }
 
-  getAll(): Observable<HttpResponse<Array<<%= classify(modelName) %>VM>>> {
+  getAll(): Observable<Array<T>> {
     const url = this.baseUrl + '/all'
-    return this.http.get<<%= classify(modelName) %>VM[]>(url, {observe: 'response'});
+    return this.http.get<T[]>(url);
   }
 
-  getAllActive(): Observable<HttpResponse<Array<<%= classify(modelName) %>VM>>> {
+  getAllActive(): Observable<Array<T>> {
     const url = this.baseUrl + '/all-active'
-    return this.http.get<<%= classify(modelName) %>VM[]>(url, {observe: 'response'});
+    return this.http.get<T[]>(url);
   }
 
-  getAllByProperty(prop: string, val: string): Observable<HttpResponse<Array<<%= classify(modelName) %>VM>>> {
+  getAllByProperty(prop: string, val: string): Observable<Array<T>> {
     const url = this.baseUrl + '/query?prop='+prop+'&val='+val;
-    return this.http.get<<%= classify(modelName) %>VM[]>(url, {observe: 'response'});
+    return this.http.get<T[]>(url);
   }
 
-  add(data: <%= classify(modelName) %>VM): Observable<<%= classify(modelName) %>VM> {
+  add(data: T): Observable<T> {
     const url = this.baseUrl + '/add';
-    return this.http.post<<%= classify(modelName) %>VM>(url, data, {observe: 'response'});
+    return this.http.post<T>(url, data);
   }
 
-  update(data: <%= classify(modelName) %>VM): Observable<<%= classify(modelName) %>VM> {
+  update(data: T): Observable<T> {
     const url = this.baseUrl + '/update';
-    return this.http.post<<%= classify(modelName) %>VM>(url, data, {observe: 'response'});
+    return this.http.post<T>(url, data);
   }
 
-  disable(id: number): Observable<HttpResponse<boolean>> {
+  disable(id: number): Observable<boolean> {
     const url = this.baseUrl + '/disable/' + id;
-    return this.http.get<boolean>(url, {observe: 'response'});
+    return this.http.get<boolean>(url);
   }
 
-  enable(id: number): Observable<HttpResponse<boolean>> {
+  enable(id: number): Observable<boolean> {
     const url = this.baseUrl + '/enable/' + id;
-    return this.http.get<boolean>(url, {observe: 'response'});
+    return this.http.get<boolean>(url);
   }
 
-  delete(id: number): Observable<HttpResponse<boolean>> {
+  delete(id: number): Observable<boolean> {
     const url = this.baseUrl + '/delete/' + id;
-    return this.http.get<boolean>(url, {observe: 'response'});
+    return this.http.get<boolean>(url);
   }
 
 

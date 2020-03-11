@@ -1,11 +1,11 @@
 import { Rule, SchematicContext, Tree, url, template, move, apply, mergeWith } from '@angular-devkit/schematics';
 import { strings } from '@angular-devkit/core';
-import { ModuleFileClassOptions } from '../schema/module-file-class';
+import { ClassOptions } from '../shared/class.params';
 
 
 // You don't have to export the function as default. You can also have more than one rule factory
 // per file.
-export function ngcClass(options: ModuleFileClassOptions): Rule {
+export function ngcClass(options: ClassOptions): Rule {
   return (tree: Tree, _context: SchematicContext) => {
     const defaultProjectPath = 'src/app';
 

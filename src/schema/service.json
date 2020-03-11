@@ -10,17 +10,11 @@
     },
     "fileName": {
       "type": "string",
-      "x-prompt": "Model Name"
-    },
-    "dateType": {
-      "type": "string",
-      "x-prompt": "Date Type",
-      "enum": ["crud", "scd", "none"]
+      "x-prompt": "Service Name"
     }
   },
   "required": [
     "moduleName",
-    "fileName",
-    "dateType"
+    "fileName"
   ]
 }
