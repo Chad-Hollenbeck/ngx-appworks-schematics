@@ -3,6 +3,7 @@ import { parseName } from '@schematics/angular/utility/parse-name';
 import { strings } from '@angular-devkit/core';
 import { ModuleOptions } from '../schema/module-routing.model';
 import { classify } from '@angular-devkit/core/src/utils/strings';
+import { TAGS } from '../schema/template-tags';
 
 
 // You don't have to export the function as default. You can also have more than one rule factory
@@ -36,23 +37,15 @@ export function ngcRouting(_options: ModuleOptions): Rule {
     if (routingBuffer) {
       // Parse Content
       const content = routingBuffer.toString();
-
-      // Define split character
-      const routePathSplitStr = "];";
-
       // Define appended content
       const appendedContent =
         "  {\n" +
         "    path: APP_ROUTE_NAMES." + _options.moduleName.toUpperCase() + ",\n" +
         "    component: Layout2Component,\n" +
         "    children: [\n" +
-        "      { path: '', loadChildren: () => import('./+" + _options.moduleName + "/" + _options.moduleName + ".module').then(m => m." + classify(_options.moduleName) + "Module) },\n" + "    ]\n  },\n" + routePathSplitStr
+        "      { path: '', loadChildren: () => import('./+" + _options.moduleName + "/" + _options.moduleName + ".module').then(m => m." + classify(_options.moduleName) + "Module) },\n" + "    ]\n  },\n" + TAGS.appRoute
 
-      let newContent = '';
-      // Register component with route with default name
-      const contentParts = content.split(routePathSplitStr);
-
-      newContent += contentParts[0] + appendedContent;
+      let newContent = content.replace(TAGS.appRoute, appendedContent);
 
       tree.overwrite('/src/app/app.routes.module.ts', newContent);
     }

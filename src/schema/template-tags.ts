@@ -4,5 +4,6 @@ export const TAGS = {
   componentDeclaration: "//{COMPONENT_DECLARATION}",
   moduleImport: "//{MODULE_IMPORT}",
   moduleExport: "//{MODULE_EXPORT}",
-  routeName: "//{ROUTE_NAME}"
+  routeName: "//{ROUTE_NAME}",
+  appRoute: "//{APP_ROUTE}"
 }
