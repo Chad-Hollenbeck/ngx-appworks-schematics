@@ -6,11 +6,21 @@
   "properties": {
     "moduleName": {
       "type": "string",
-      "x-prompt": "Module Name"
+      "x-prompt": "Module Name",
+      "description": "The name of the new module to be created prefixed with '+'",
+      "$default": {
+        "$source": "argv",
+        "index": 0
+      }
     },
     "fileName": {
       "type": "string",
-      "x-prompt": "Model Name"
+      "x-prompt": "Model Name",
+      "description": "The name of the new class model to be created",
+      "$default": {
+        "$source": "argv",
+        "index": 1
+      }
     }
   },
   "required": [

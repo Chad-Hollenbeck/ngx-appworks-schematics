@@ -26,11 +26,6 @@
       "factory": "./ngc-service/index#ngcService",
       "schema": "./schema/service.json"
     },
-    "service-firestore": {
-      "description": "A Firestore CRUD service.",
-      "factory": "./ngc-service-firestore/index#ngcServiceFirestore",
-      "schema": "./schema/service.json"
-    },
     "routing": {
       "description": "Lazy Loaded Routing",
       "factory": "./ngc-routing/index#ngcRouting",

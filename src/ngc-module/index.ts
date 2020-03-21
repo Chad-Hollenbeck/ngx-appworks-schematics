@@ -1,4 +1,4 @@
-import { Rule, SchematicContext, Tree, url, template, move, apply, mergeWith, schematic, chain, noop, MergeStrategy } from '@angular-devkit/schematics';
+import { Rule, SchematicContext, Tree, url, template, move, apply, mergeWith, schematic, chain, MergeStrategy } from '@angular-devkit/schematics';
 import { parseName } from '@schematics/angular/utility/parse-name';
 import { strings } from '@angular-devkit/core';
 import { ModuleOptions } from '../shared/module-routing.model';
@@ -12,7 +12,7 @@ export function ngcModule(options: ModuleOptions): Rule {
 
     const parsedPath = parseName(defaultProjectPath, options.moduleName);
 
-    const {name, path } = parsedPath;
+    const { name, path } = parsedPath;
     const componentPath = path + '/+' + name;
 
     const sourceTemplates = url('./templates');
@@ -20,19 +20,22 @@ export function ngcModule(options: ModuleOptions): Rule {
     const sourceParametrized = apply(sourceTemplates, [
       template({
         ...options,
-        ...strings
+        ...strings,
+        uppercase
       }), move(componentPath)
     ]);
 
-    if (options.routing) {
-      schematic('routing', {moduleName: options.moduleName, routing: true});
-    }
+    schematic('routing', { moduleName: options.moduleName, routing: true });
+
 
     const rule = chain([
-      options.routing ? schematic('routing', { moduleName: options.moduleName, routing: true }) : noop(),
+      schematic('routing', { moduleName: options.moduleName, routing: true }),
       mergeWith(sourceParametrized, MergeStrategy.Default)
     ]);
 
     return rule(tree, _context);
   };
+}
+function uppercase(str: string) {
+  return str.toUpperCase();
 }
