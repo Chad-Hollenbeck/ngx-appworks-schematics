@@ -32,8 +32,8 @@ export function ngcComponent(options: ComponentOptions): Rule {
       ]);
 
       // Register component with routing module
-      const moduleFileName = options.moduleName + '.routes.module.ts';
-      const moduleBuffer = tree.read(modulePath + '/routes/' + moduleFileName);
+      const moduleFileName = options.moduleName + '.module.ts';
+      const moduleBuffer = tree.read(modulePath + '/' + moduleFileName);
 
       if (moduleBuffer != null) {
         const content = moduleBuffer.toString();
@@ -54,7 +54,7 @@ export function ngcComponent(options: ComponentOptions): Rule {
           .replace(TAGS.moduleExport, moduleComponentExport);
 
 
-        tree.overwrite(modulePath + '/routes/' + moduleFileName, newContent);
+        tree.overwrite(modulePath + '/' + moduleFileName, newContent);
       }
 
       // Register component with routing names file
