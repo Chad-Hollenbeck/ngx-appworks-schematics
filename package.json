@@ -1,6 +1,6 @@
 {
   "name": "@chollenbeck/ngc",
-  "version": "3.1.0",
+  "version": "3.2.1",
   "description": "Custom angular schematics for Angular 8 development",
   "scripts": {
     "build": "rimraf schematics-ngc-* && tsc -p tsconfig.json",

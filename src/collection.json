@@ -17,8 +17,8 @@
       "schema": "./schema/module-routing.json"
     },
     "class": {
-      "description": "A default class.",
-      "factory": "./ngc-class/index#ngcClass",
+      "description": "A default model using an interface.",
+      "factory": "./ngc-class/index#ngcModel",
       "schema": "./schema/class.json"
     },
     "service": {
