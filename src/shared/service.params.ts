@@ -1,4 +1,4 @@
-export class ServiceOptions {
+export interface ServiceOptions {
   moduleName: string;
   fileName: string;
 }

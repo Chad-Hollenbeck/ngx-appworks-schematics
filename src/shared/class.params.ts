@@ -1,4 +1,4 @@
-export class ClassOptions {
+export interface ClassOptions {
   moduleName: string;
   fileName: string;
 }

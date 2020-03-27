@@ -2,7 +2,7 @@ import { Rule, SchematicContext, Tree, url, template, move, apply, mergeWith } f
 import { parseName } from '@schematics/angular/utility/parse-name';
 import { strings } from '@angular-devkit/core';
 import { classify } from '@angular-devkit/core/src/utils/strings';
-import { TAGS } from '../schema/template-tags';
+import { TAGS } from '../shared/template-tags';
 import { ModuleOptions } from '../shared/module-routing.model';
 
 

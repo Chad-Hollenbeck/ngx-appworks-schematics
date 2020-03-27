@@ -1,16 +1,16 @@
 {
   "name": "@chollenbeck/ngc",
-  "version": "3.2.1",
+  "version": "3.3.0",
   "description": "Custom angular schematics for Angular 8 development",
   "scripts": {
-    "build": "rimraf schematics-ngc-* && tsc -p tsconfig.json",
+    "build": "rimraf chollenbeck-ngc-* && tsc -p tsconfig.json",
     "build:watch": "tsc -p tsconfig.json --watch",
     "test": "npm run build && jasmine src/**/*_spec.js",
     "ngc:module": "schematics .:module --debug=false --",
     "ngc:route": "schematics .:routing --debug=false --",
     "ngc:component:table": "schematics .:component-table --debug=false --",
     "ngc:component:form": "schematics .:component-form --debug=false --",
-    "ngc:component": "schematics .:component --",
+    "ngc:component": "schematics .:component --debug=false --",
     "ngc:class": "schematics .:class --debug=false --",
     "ngc:service": "schematics .:service --debug=false --",
     "ngc:service:firestore": "schematics .:service-firestore --debug=false --"
