@@ -1,30 +1,25 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from '@app/shared/shared.module';
-import { Routes, RouterModule } from '@angular/router';
 
-import { <%= uppercase(moduleName) %>_ROUTE_NAMES } from './routes/<%= (moduleName) %>.routes.names';
+import { <%= classify(moduleName) %>RoutingModule } from './routes/<%= (moduleName) %>.routes.module';
 
 
 // *: Components
-//{COMPONENT_IMPORT}
+/*COMPONENT_IMPORT*/
 
-// *: Routes
-export const routes: Routes = [
-  //{COMPONENT_ROUTE}
-];
 
 
 @NgModule({
   declarations: [
-    //{COMPONENT_DECLARATION}
+    /*COMPONENT_DECLARATION*/
   ],
   imports: [
     SharedModule,
-    RouterModule.forChild(routes),
-    //{MODULE_IMPORT}
+    <%= classify(moduleName) %>RoutingModule
+    /*MODULE_IMPORT*/
   ],
   exports: [
-    //{MODULE_EXPORT}
+    /*MODULE_EXPORT*/
   ]
 })
 export class <%= classify(moduleName) %>Module { }

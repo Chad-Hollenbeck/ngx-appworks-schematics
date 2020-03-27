@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/schema",
   "id": "firestore-component-schema",
-  "title": "Firestore Component Schema",
+  "title": "Component Schema",
   "type": "object",
   "properties": {
     "moduleName": {
@@ -21,6 +21,12 @@
         "$source": "argv",
         "index": 1
       }
+    },
+    "export": {
+      "type": "boolean",
+      "default": false,
+      "description": "Flag to indicate whether an menu service should be generated.",
+      "alias": "ms"
     }
   },
   "required": [

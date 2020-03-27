@@ -12,9 +12,11 @@ export function ngcComponent(options: ComponentOptions): Rule {
       // Default file path
       const defaultProjectPath = 'src/app';
 
-      // Module and Component names formatted with '+'
+      // Module and Component names formatted with proper prefix
       const moduleName = (options.moduleName.substr(0, 1) == "+") ? options.moduleName : '+' + options.moduleName;
-      const componentName = (options.fileName.substr(0, 1) == "+") ? options.fileName : '+' + options.fileName;
+      const prefix = (options.export) ? '_' : '+';
+
+      const componentName = prefix + options.fileName;
 
       // Module and Component paths
       const modulePath = "/" + defaultProjectPath + "/" + moduleName;
@@ -31,7 +33,31 @@ export function ngcComponent(options: ComponentOptions): Rule {
         }), move(componentPath)
       ]);
 
-      // Register component with routing module
+      //* Add route to feature routing module
+      const routeModuleFileName = options.moduleName + '.routes.module.ts';
+      const routeModuleBuffer = tree.read(modulePath + '/routes/' + routeModuleFileName);
+
+      console.log(TAGS);
+
+      if (routeModuleBuffer != null) {
+        const content = routeModuleBuffer.toString();
+
+        // Create new content snippets
+        const componentClassImport = "import { " + classify(options.fileName) + "Component } from '../+" + options.fileName + "/" + options.fileName + ".component';\n  " + TAGS.componentImport;
+
+        const componentRoute = "{ path: " + options.moduleName.toUpperCase() + "_ROUTE_NAMES." + camelize(options.fileName).toUpperCase() + ", component: " + classify(options.fileName) + "Component },\n  " + TAGS.componentRoute;
+
+
+        // Replace overwrite tags
+        let newContent = content
+          .replace(TAGS.componentImport, componentClassImport)
+          .replace(TAGS.componentRoute, componentRoute);
+
+
+        tree.overwrite(modulePath + '/routes/' + routeModuleFileName, newContent);
+      }
+
+      //* Register component with feature module
       const moduleFileName = options.moduleName + '.module.ts';
       const moduleBuffer = tree.read(modulePath + '/' + moduleFileName);
 
@@ -39,32 +65,34 @@ export function ngcComponent(options: ComponentOptions): Rule {
         const content = moduleBuffer.toString();
 
         // Create new content snippets
-        const componentClassImport = "import { " + classify(options.fileName) + "Component } from './+" + options.fileName + "/" + options.fileName + ".component';\n" + TAGS.componentImport;
+        const componentClassImport = "import { " + classify(options.fileName) + "Component } from './" + prefix + options.fileName + "/" + options.fileName + ".component';\n  " + TAGS.componentImport;
 
         const componentRoute = "{ path: " + options.moduleName.toUpperCase() + "_ROUTE_NAMES." + camelize(options.fileName).toUpperCase() + ", component: " + classify(options.fileName) + "Component },\n  " + TAGS.componentRoute;
 
         const moduleComponentDeclaration = classify(options.fileName) + "Component,\n  " + TAGS.componentDeclaration;
-        const moduleComponentExport = classify(options.fileName) + "Component,\n  " + TAGS.moduleExport;
 
         // Replace overwrite tags
         let newContent = content
           .replace(TAGS.componentImport, componentClassImport)
           .replace(TAGS.componentRoute, componentRoute)
-          .replace(TAGS.componentDeclaration, moduleComponentDeclaration)
-          .replace(TAGS.moduleExport, moduleComponentExport);
+          .replace(TAGS.componentDeclaration, moduleComponentDeclaration);
 
+        if (options.export) {
+          const moduleComponentExport = classify(options.fileName) + "Component,\n  " + TAGS.moduleExport;
+          newContent = newContent.replace(TAGS.moduleExport, moduleComponentExport);
+        }
 
         tree.overwrite(modulePath + '/' + moduleFileName, newContent);
       }
 
-      // Register component with routing names file
+      //* Register component with routing names file
       const routeNameFileName = options.moduleName + '.routes.names.ts';
       const routeNameBuffer = tree.read(modulePath + '/routes/' + routeNameFileName);
 
       if (routeNameBuffer) {
         const content = routeNameBuffer.toString();
 
-        const importSnippet = camelize(options.fileName).toUpperCase() + " : '"+options.fileName+"',\n" + TAGS.routeName;
+        const importSnippet = camelize(options.fileName).toUpperCase() + " : '" + options.fileName + "',\n" + TAGS.routeName;
 
         let newContent = content.replace(TAGS.routeName, importSnippet);
 
