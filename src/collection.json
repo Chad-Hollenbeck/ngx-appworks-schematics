@@ -18,8 +18,8 @@
     },
     "class": {
       "description": "A default model using an interface.",
-      "factory": "./ngc-class/index#ngcModel",
-      "schema": "./schema/class.json"
+      "factory": "./ngc-model/index#ngcModel",
+      "schema": "./schema/model.json"
     },
     "service": {
       "description": "A Default service.",
