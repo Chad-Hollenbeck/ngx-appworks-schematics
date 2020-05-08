@@ -1,5 +1,9 @@
 ## Version Log
 
+### 3.3.0 -> 3.4.0
+- Added table component for simple list view generation
+- Edited name of component form to include `.form.component` extension.
+
 ### 3.1.0 -> 3.3.0
 - Changed replace tags to fit eslint & tslint commenting rules.
 - Reverted merging the routes and feature modules together due to a conflict with import/export shared components.

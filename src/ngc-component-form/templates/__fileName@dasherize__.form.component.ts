@@ -10,11 +10,11 @@ import { APP_ROUTE_NAMES } from '@app/app.routes.names';
 
 
 @Component({
-  selector: 'app-<%= dasherize(fileName) %>',
+  selector: 'app-<%= dasherize(fileName) %>-form',
   templateUrl: './<%= dasherize(fileName) %>.component.html',
   styleUrls: []
 })
-export class <%= classify(fileName) %>Component implements OnInit {
+export class <%= classify(fileName) %>FormComponent implements OnInit {
 
   loading: boolean;
   submitting: boolean;
@@ -26,7 +26,7 @@ export class <%= classify(fileName) %>Component implements OnInit {
 
   constructor(private appService: AppService, private <%= camelize(serviceName) %>Service: <%= classify(serviceName) %>Service, private router: Router, private toastr: ToastrService) {
 
-    this.detailForm = this.appService.buildFormGroup(new T());
+    this.detailForm = this.appService.buildFormGroup({});
     this.selectedItem = null;
 
     // Form Validators
@@ -38,7 +38,7 @@ export class <%= classify(fileName) %>Component implements OnInit {
 
     // Load Data
     if (this.isNew) {
-      this.selectedItem = new T();
+      this.selectedItem = {};
       this.loading = false;
     }
   }
