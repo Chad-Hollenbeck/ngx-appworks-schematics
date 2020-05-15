@@ -41,13 +41,13 @@ export function ngcTableComponent(options: ComponentOptions): Rule {
         // Create new content snippets
         const componentClassImport = "import { " + classify(options.fileName) + "Component } from './_" + options.fileName + "/" + options.fileName + ".table.component';\n" + TAGS.componentImport;
 
-        const moduleComponentImport = classify(options.fileName) + "Component,\n  " + TAGS.moduleImport;
+        const componentDeclaration = classify(options.fileName) + "Component,\n  " + TAGS.componentDeclaration;
         const moduleComponentExport = classify(options.fileName) + "Component,\n  " + TAGS.moduleExport;
 
         // Replace overwrite tags
         let newContent = content
           .replace(TAGS.componentImport, componentClassImport)
-          .replace(TAGS.moduleImport, moduleComponentImport)
+          .replace(TAGS.componentDeclaration, componentDeclaration)
           .replace(TAGS.moduleExport, moduleComponentExport);
 
 

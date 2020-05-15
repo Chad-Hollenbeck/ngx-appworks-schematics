@@ -2,8 +2,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { AppService } from '@app/app.service';
 import { FormGroup, Validators } from '@angular/forms';
-import { T } from '../models/<%= dasherize(modelName) %>.model';
-import { <%= classify(serviceName) %>Service } from '../services/<%= dasherize(serviceName) %>.service';
+import { <%= classify(moduleName) %>Service } from '../services/<%= dasherize(moduleName) %>.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { APP_ROUTE_NAMES } from '@app/app.routes.names';
@@ -24,7 +23,7 @@ export class <%= classify(fileName) %>FormComponent implements OnInit {
   @Input() selectedItem: T;
   @Input() isNew: boolean;
 
-  constructor(private appService: AppService, private <%= camelize(serviceName) %>Service: <%= classify(serviceName) %>Service, private router: Router, private toastr: ToastrService) {
+  constructor(private appService: AppService, private <%= camelize(moduleName) %>Service: <%= classify(moduleName) %>Service, private router: Router, private toastr: ToastrService) {
 
     this.detailForm = this.appService.buildFormGroup({});
     this.selectedItem = null;
@@ -57,7 +56,7 @@ export class <%= classify(fileName) %>FormComponent implements OnInit {
   }
 
   add(data: T) {
-    this.<%= camelize(serviceName) %>Service.add(data).then(
+    this.<%= camelize(moduleName) %>Service.add(data).then(
       (item) => {
         this.router.navigate([APP_ROUTE_NAMES.T]);
         this.toastr.success("T saved");
@@ -67,7 +66,7 @@ export class <%= classify(fileName) %>FormComponent implements OnInit {
 
   update(data: T) {
     // Update
-    this.<%= camelize(serviceName) %>Service.update(data).then(
+    this.<%= camelize(moduleName) %>Service.update(data).then(
       (resp) => {
         this.router.navigate([APP_ROUTE_NAMES.T]);
         this.toastr.success("T updated");

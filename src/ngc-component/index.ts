@@ -14,7 +14,7 @@ export function ngcComponent(options: ComponentOptions): Rule {
 
       // Module and Component names formatted with proper prefix
       const moduleName = (options.moduleName.substr(0, 1) == "+") ? options.moduleName : '+' + options.moduleName;
-      const prefix = (options.export) ? '_' : '+';
+      const prefix = '+';
 
       const componentName = prefix + options.fileName;
 
@@ -77,10 +77,10 @@ export function ngcComponent(options: ComponentOptions): Rule {
           .replace(TAGS.componentRoute, componentRoute)
           .replace(TAGS.componentDeclaration, moduleComponentDeclaration);
 
-        if (options.export) {
-          const moduleComponentExport = classify(options.fileName) + "Component,\n  " + TAGS.moduleExport;
-          newContent = newContent.replace(TAGS.moduleExport, moduleComponentExport);
-        }
+        // if (options.export) {
+        //   const moduleComponentExport = classify(options.fileName) + "Component,\n  " + TAGS.moduleExport;
+        //   newContent = newContent.replace(TAGS.moduleExport, moduleComponentExport);
+        // }
 
         tree.overwrite(modulePath + '/' + moduleFileName, newContent);
       }

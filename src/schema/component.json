@@ -21,12 +21,6 @@
         "$source": "argv",
         "index": 1
       }
-    },
-    "export": {
-      "type": "boolean",
-      "default": false,
-      "description": "Flag to indicate whether an menu service should be generated.",
-      "alias": "ms"
     }
   },
   "required": [

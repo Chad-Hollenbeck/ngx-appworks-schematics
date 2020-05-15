@@ -1,6 +1,5 @@
 
 import { Component} from '@angular/core';
-import { T } from '../models/<%= dasherize(modelName) %>.model';
 
 @Component({
   selector: 'app-<%= dasherize(fileName) %>-table',
