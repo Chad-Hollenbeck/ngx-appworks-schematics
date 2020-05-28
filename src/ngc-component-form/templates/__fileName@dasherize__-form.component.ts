@@ -2,7 +2,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { AppService } from '@app/app.service';
 import { FormGroup, Validators } from '@angular/forms';
-import { <%= classify(moduleName) %>Service } from '../services/<%= dasherize(moduleName) %>.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { APP_ROUTE_NAMES } from '@app/app.routes.names';
@@ -10,7 +9,7 @@ import { APP_ROUTE_NAMES } from '@app/app.routes.names';
 
 @Component({
   selector: 'app-<%= dasherize(fileName) %>-form',
-  templateUrl: './<%= dasherize(fileName) %>.component.html',
+  templateUrl: './<%= dasherize(fileName) %>-form.component.html',
   styleUrls: []
 })
 export class <%= classify(fileName) %>FormComponent implements OnInit {
@@ -20,10 +19,10 @@ export class <%= classify(fileName) %>FormComponent implements OnInit {
 
   detailForm: FormGroup;
 
-  @Input() selectedItem: T;
+  @Input() selectedItem: I<%= classify(fileName) %>;
   @Input() isNew: boolean;
 
-  constructor(private appService: AppService, private <%= camelize(moduleName) %>Service: <%= classify(moduleName) %>Service, private router: Router, private toastr: ToastrService) {
+  constructor(private appService: AppService, private <%= camelize(fileName) %> Service: <%= classify(fileName) %>Service, private router: Router, private toastr: ToastrService) {
 
     this.detailForm = this.appService.buildFormGroup({});
     this.selectedItem = null;
@@ -46,7 +45,7 @@ export class <%= classify(fileName) %>FormComponent implements OnInit {
   onDetailSubmit() {
     this.submitting = true;
 
-    const d = this.detailForm.getRawValue() as T;
+    const d = this.detailForm.getRawValue() as I<%= classify(fileName) %>;
 
     if (this.isNew) {
       this.add(d);
@@ -55,21 +54,21 @@ export class <%= classify(fileName) %>FormComponent implements OnInit {
     }
   }
 
-  add(data: T) {
-    this.<%= camelize(moduleName) %>Service.add(data).then(
+  add(data: I<%= classify(fileName) %>) {
+    this.<%= camelize(fileName) %>Service.add(data).then(
       (item) => {
-        this.router.navigate([APP_ROUTE_NAMES.T]);
-        this.toastr.success("T saved");
+        this.router.navigate([APP_ROUTE_NAMES.<%= classify(fileName) %>S]);
+        this.toastr.success("<%= classify(fileName) %> saved");
       }
     )
   }
 
-  update(data: T) {
+  update(data: I<%= classify(fileName) %>) {
     // Update
-    this.<%= camelize(moduleName) %>Service.update(data).then(
+    this.<%= camelize(fileName) %>Service.update(data).then(
       (resp) => {
-        this.router.navigate([APP_ROUTE_NAMES.T]);
-        this.toastr.success("T updated");
+        this.router.navigate([APP_ROUTE_NAMES.<%= classify(fileName) %>S]);
+        this.toastr.success("<%= classify(fileName) %> updated");
       }
     )
   }

@@ -5,7 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-<%= dasherize(fileName) %>',
   templateUrl: './<%= dasherize(fileName) %>.component.html',
-  styleUrls: []
+  styleUrls: ['./<%= dasherize(fileName) %>.component.scss']
 })
 export class <%= classify(fileName) %>Component implements OnInit, OnDestroy {
 
