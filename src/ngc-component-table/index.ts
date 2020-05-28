@@ -39,7 +39,7 @@ export function ngcTableComponent(options: ComponentOptions): Rule {
         const content = moduleBuffer.toString();
 
         // Create new content snippets
-        const componentClassImport = "import { " + classify(options.fileName) + "Component } from './_" + options.fileName + "/" + options.fileName + ".table.component';\n" + TAGS.componentImport;
+        const componentClassImport = "import { " + classify(options.fileName) + "Component } from './_" + options.fileName + "/" + options.fileName + "-table.component';\n" + TAGS.componentImport;
 
         const componentDeclaration = classify(options.fileName) + "Component,\n  " + TAGS.componentDeclaration;
         const moduleComponentExport = classify(options.fileName) + "Component,\n  " + TAGS.moduleExport;

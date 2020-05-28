@@ -40,7 +40,7 @@ export function ngcFormComponent(options: ComponentOptions): Rule {
         const content = moduleBuffer.toString();
 
         // Create new content snippets
-        const componentClassImport = "import { " + classify(options.fileName) + "Component } from './_" + options.fileName + "/" + options.fileName + ".form.component';\n" + TAGS.componentImport;
+        const componentClassImport = "import { " + classify(options.fileName) + "Component } from './_" + options.fileName + "/" + options.fileName + "-form.component';\n" + TAGS.componentImport;
 
         const componentDeclaration = classify(options.fileName) + "Component,\n  " + TAGS.componentDeclaration;
         const moduleComponentExport = classify(options.fileName) + "Component,\n  " + TAGS.moduleExport;
@@ -48,7 +48,7 @@ export function ngcFormComponent(options: ComponentOptions): Rule {
         // Replace overwrite tags
         let newContent = content
           .replace(TAGS.componentImport, componentClassImport)
-          .replace(TAGS.moduleImport, componentDeclaration)
+          .replace(TAGS.componentDeclaration, componentDeclaration)
           .replace(TAGS.moduleExport, moduleComponentExport);
 
 

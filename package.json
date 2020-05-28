@@ -1,10 +1,11 @@
 {
   "name": "@chollenbeck/ngc",
-  "version": "3.4.4",
+  "version": "3.4.5",
   "description": "Custom angular schematics for Angular 8 development",
   "scripts": {
     "build": "rimraf chollenbeck-ngc-* && tsc -p tsconfig.json",
     "build:watch": "tsc -p tsconfig.json --watch",
+    "pub": "npm run build && npm publish",
     "test": "npm run build && jasmine src/**/*_spec.js",
     "ngc:module": "schematics .:module --debug=false --",
     "ngc:route": "schematics .:routing --debug=false --",

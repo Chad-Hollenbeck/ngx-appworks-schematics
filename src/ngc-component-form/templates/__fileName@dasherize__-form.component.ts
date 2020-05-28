@@ -22,7 +22,7 @@ export class <%= classify(fileName) %>FormComponent implements OnInit {
   @Input() selectedItem: I<%= classify(fileName) %>;
   @Input() isNew: boolean;
 
-  constructor(private appService: AppService, private <%= camelize(fileName) %> Service: <%= classify(fileName) %>Service, private router: Router, private toastr: ToastrService) {
+  constructor(private appService: AppService, private <%= camelize(fileName) %>Service: <%= classify(fileName) %>Service, private router: Router, private toastr: ToastrService) {
 
     this.detailForm = this.appService.buildFormGroup({});
     this.selectedItem = null;
