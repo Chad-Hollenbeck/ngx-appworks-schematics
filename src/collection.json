@@ -11,6 +11,11 @@
       "factory": "./ngc-component-form/index#ngcFormComponent",
       "schema": "./schema/component.json"
     },
+    "component-table": {
+      "description": "A table component.",
+      "factory": "./ngc-component-table/index#ngcTableComponent",
+      "schema": "./schema/component.json"
+    },
     "module": {
       "description": "A default module.",
       "factory": "./ngc-module/index#ngcModule",

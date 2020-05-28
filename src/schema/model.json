@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/schema",
-  "id": "firestore-component-schema",
-  "title": "Component Schema",
+  "id": "firestore-class-schema",
+  "title": "Firestore Class Schema",
   "type": "object",
   "properties": {
     "moduleName": {
@@ -15,12 +15,17 @@
     },
     "fileName": {
       "type": "string",
-      "x-prompt": "Component Name",
-      "description": "The name of the new component to be created prefixed with '+'",
+      "x-prompt": "Model Name",
+      "description": "The name of the new class model to be created",
       "$default": {
         "$source": "argv",
         "index": 1
       }
+    },
+    "useClass": {
+      "type": "boolean",
+      "description": "Use the class file type vs the default interface. Only use when your code will rely on constructors as classes add bulk to compiled app sizes.",
+      "default": false
     }
   },
   "required": [

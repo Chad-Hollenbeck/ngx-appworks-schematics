@@ -1,11 +1,11 @@
-import { Rule, SchematicContext, Tree, url, apply, template, move, mergeWith } from '@angular-devkit/schematics';
+import { Rule, SchematicContext, Tree, url, template, move, apply, mergeWith } from '@angular-devkit/schematics';
 import { strings } from '@angular-devkit/core';
-import { ServiceOptions } from '../shared/service.params';
+import { ModelOptions } from '../shared/model.params';
 
 
 // You don't have to export the function as default. You can also have more than one rule factory
 // per file.
-export function ngcServiceFirestore(options: ServiceOptions): Rule {
+export function ngcModel(options: ModelOptions): Rule {
   return (tree: Tree, _context: SchematicContext) => {
     const defaultProjectPath = 'src/app';
 
@@ -15,8 +15,10 @@ export function ngcServiceFirestore(options: ServiceOptions): Rule {
     // Module and Component paths
     const modulePath = "/" + defaultProjectPath + "/" + moduleName;
 
+    const newPath = modulePath + '/models/';
+
+    // templates folder path
     const sourceTemplates = url('./templates');
-    const newPath = modulePath + '/services/';
 
     const sourceParametrized = apply(sourceTemplates, [
       template({
@@ -24,7 +26,6 @@ export function ngcServiceFirestore(options: ServiceOptions): Rule {
         ...strings
       }), move(newPath)
     ]);
-
 
     return mergeWith(sourceParametrized)(tree, _context);
   };

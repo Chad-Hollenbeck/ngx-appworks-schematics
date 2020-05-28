@@ -1,13 +1,13 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AppService } from '@app/app.service';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-<%= dasherize(fileName) %>',
   templateUrl: './<%= dasherize(fileName) %>.component.html',
-  styleUrls: []
+  styleUrls: ['./<%= dasherize(fileName) %>.component.scss']
 })
-export class <%= classify(fileName) %>Component implements OnInit, OnDestroy {
+export class <%= classify(fileName) %>Component implements OnInit {
 
   loading: boolean;
 
@@ -18,17 +18,7 @@ export class <%= classify(fileName) %>Component implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.loading = true;
-
-    // Load Data
-    this.loadData()
   }
 
-  private loadData(){
-    this.loading = false;
-  }
-
-  ngOnDestroy(){
-
-  }
 
 }
