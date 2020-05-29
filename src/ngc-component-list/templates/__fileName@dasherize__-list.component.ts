@@ -3,11 +3,11 @@ import { AppService } from '@app/app.service';
 import { ToastrService } from 'ngx-toastr';
 import { I<%= classify(fileName) %> } from '../models/<%= dasherize(fileName) %>.model';
 import { TableUtilityService } from '@app/shared/services/table-utility.service';
-import { ProjectService } from '../services/<%= dasherize(fileName) %>.service';
+import { <%= classify(fileName) %>Service } from '../services/<%= dasherize(fileName) %>.service';
 import { first } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-<%= dasherize(fileName)-list %>',
+  selector: 'app-<%= dasherize(fileName) %>-list',
   templateUrl: './<%= dasherize(fileName) %>-list.component.html',
   styleUrls: ['./<%= dasherize(fileName) %>-list.component.scss']
 })
@@ -26,7 +26,7 @@ export class <%= classify(fileName) %>ListComponent implements OnInit {
   totalItems: number;
   totalPages: number;
 
-  constructor(private appService: AppService, private tableUtilityService: TableUtilityService, private <%= camelize(fileName) %> Service: <%= classify(fileName) %>Service) {
+  constructor(private appService: AppService, private tableUtilityService: TableUtilityService, private <%= camelize(fileName) %>Service: <%= classify(fileName) %>Service) {
     this.appService.pageTitle = '<%= classify(fileName) %> List';
   }
 
