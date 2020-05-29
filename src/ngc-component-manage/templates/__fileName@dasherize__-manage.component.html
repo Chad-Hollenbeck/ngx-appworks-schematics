@@ -1,6 +1,6 @@
 <h4 class="py-3 mb-4">
   <ol class="breadcrumb font-weight-bold m-0">
-    <li class="breadcrumb-item"><a [routerLink]="['/', '<%= dasherize(fileName) %>s']"><%= classify(fileName) %></a></li>
+    <li class="breadcrumb-item"><a [routerLink]="['/', '<%= dasherize(fileName) %>']"><%= classify(fileName) %></a></li>
     <li class="breadcrumb-item active">{{selectedItem ? selectedItem.name : 'New Item'}}</li>
   </ol>
 </h4>

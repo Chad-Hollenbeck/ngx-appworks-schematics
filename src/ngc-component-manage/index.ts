@@ -41,9 +41,9 @@ export function ngcComponentManage(options: ComponentOptions): Rule {
         const content = routeModuleBuffer.toString();
 
         // Create new content snippets
-        const componentClassImport = "import { " + classify(options.fileName) + "Component } from '../+" + options.fileName + "-manage/" + options.fileName + "-manage.component';\n  " + TAGS.componentImport;
+        const componentClassImport = "import { " + classify(options.fileName) + "ManageComponent } from '../+" + options.fileName + "-manage/" + options.fileName + "-manage.component';\n  " + TAGS.componentImport;
 
-        const componentRoute = "{ path: " + options.moduleName.toUpperCase() + "_ROUTE_NAMES." + camelize(options.fileName).toUpperCase() + ", component: " + classify(options.fileName) + "ManageComponent },\n  " + TAGS.componentRoute;
+        const componentRoute = "{ path: " + options.moduleName.toUpperCase() + "_ROUTE_NAMES." + camelize(options.fileName).toUpperCase() + "MANAGE, component: " + classify(options.fileName) + "ManageComponent },\n  " + TAGS.componentRoute;
 
 
         // Replace overwrite tags
@@ -90,7 +90,7 @@ export function ngcComponentManage(options: ComponentOptions): Rule {
       if (routeNameBuffer) {
         const content = routeNameBuffer.toString();
 
-        const importSnippet = camelize(options.fileName).toUpperCase() + " : '" + options.fileName + "',\n" + TAGS.routeName;
+        const importSnippet = camelize(options.fileName).toUpperCase() + "MANAGE : ':id',\n" + TAGS.routeName;
 
         let newContent = content.replace(TAGS.routeName, importSnippet);
 
