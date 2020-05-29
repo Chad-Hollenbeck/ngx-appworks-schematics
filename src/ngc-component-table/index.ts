@@ -18,7 +18,7 @@ export function ngcTableComponent(options: ComponentOptions): Rule {
 
       // Module and Component paths
       const modulePath = "/" + defaultProjectPath + "/" + moduleName;
-      const componentPath = modulePath + "/" + componentName;
+      const componentPath = modulePath + "/" + componentName + '-table';
 
       // templates folder path
       const sourceTemplates = url('./templates');
@@ -39,10 +39,10 @@ export function ngcTableComponent(options: ComponentOptions): Rule {
         const content = moduleBuffer.toString();
 
         // Create new content snippets
-        const componentClassImport = "import { " + classify(options.fileName) + "Component } from './_" + options.fileName + "/" + options.fileName + "-table.component';\n" + TAGS.componentImport;
+        const componentClassImport = "import { " + classify(options.fileName) + "TableComponent } from './_" + options.fileName + "-table/" + options.fileName + "-table.component';\n" + TAGS.componentImport;
 
-        const componentDeclaration = classify(options.fileName) + "Component,\n  " + TAGS.componentDeclaration;
-        const moduleComponentExport = classify(options.fileName) + "Component,\n  " + TAGS.moduleExport;
+        const componentDeclaration = classify(options.fileName) + "TableComponent,\n  " + TAGS.componentDeclaration;
+        const moduleComponentExport = classify(options.fileName) + "TableComponent,\n  " + TAGS.moduleExport;
 
         // Replace overwrite tags
         let newContent = content

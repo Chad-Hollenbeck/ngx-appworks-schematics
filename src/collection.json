@@ -1,9 +1,24 @@
 {
   "$schema": "../node_modules/@angular-devkit/schematics/collection-schema.json",
   "schematics": {
+    "feature-crud": {
+      "description": "A full CRUD feature with new module, routing, list, and manage components.",
+      "factory": "./ngc-feature-crud/index#ngcFeatureCrud",
+      "schema": "./schema/component.json"
+    },
     "component": {
       "description": "A default component.",
       "factory": "./ngc-component/index#ngcComponent",
+      "schema": "./schema/component.json"
+    },
+    "component-list": {
+      "description": "A list component w/ table subcomponent.",
+      "factory": "./ngc-component-list/index#ngcComponentList",
+      "schema": "./schema/component.json"
+    },
+    "component-manage": {
+      "description": "A detail component w/ form subcomponent.",
+      "factory": "./ngc-component-manage/index#ngcComponentManage",
       "schema": "./schema/component.json"
     },
     "component-form": {
@@ -32,6 +47,7 @@
       "schema": "./schema/service.json"
     },
     "routing": {
+      "private": true,
       "description": "Lazy Loaded Routing",
       "factory": "./ngc-routing/index#ngcRouting",
       "schema": "./schema/module-routing.json"
