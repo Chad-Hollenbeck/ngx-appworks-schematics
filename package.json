@@ -12,6 +12,8 @@
     "ngc:component:table": "schematics .:component-table --debug=false --",
     "ngc:component:form": "schematics .:component-form --debug=false --",
     "ngc:component": "schematics .:component --debug=false --",
+    "ngc:list": "schematics .:component-list --debug=false --",
+    "ngc:manage": "schematics .:component-manage --debug=false --",
     "ngc:class": "schematics .:class --debug=false --",
     "ngc:service": "schematics .:service --debug=false --",
     "ngc:service:firestore": "schematics .:service-firestore --debug=false --"

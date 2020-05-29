@@ -6,6 +6,16 @@
       "factory": "./ngc-component/index#ngcComponent",
       "schema": "./schema/component.json"
     },
+    "component-list": {
+      "description": "A list component w/ table subcomponent.",
+      "factory": "./ngc-component-list/index#ngcComponentList",
+      "schema": "./schema/component.json"
+    },
+    "component-manage": {
+      "description": "A detail component w/ form subcomponent.",
+      "factory": "./ngc-component-manage/index#ngcComponentManage",
+      "schema": "./schema/component.json"
+    },
     "component-form": {
       "description": "A form component.",
       "factory": "./ngc-component-form/index#ngcFormComponent",
