@@ -25,7 +25,7 @@ export function ngcModule(options: ModuleOptions): Rule {
       }), move(componentPath)
     ]);
 
-    schematic('routing', { moduleName: options.moduleName, routing: true });
+    //schematic('routing', { moduleName: options.moduleName, routing: true });
 
 
     const rule = chain([

@@ -18,7 +18,7 @@ export function ngcFormComponent(options: ComponentOptions): Rule {
 
       // Module and Component paths
       const modulePath = "/" + defaultProjectPath + "/" + moduleName;
-      const componentPath = modulePath + "/" + componentName;
+      const componentPath = modulePath + "/" + componentName + '-form';
 
       // templates folder path
       const sourceTemplates = url('./templates');
@@ -40,10 +40,10 @@ export function ngcFormComponent(options: ComponentOptions): Rule {
         const content = moduleBuffer.toString();
 
         // Create new content snippets
-        const componentClassImport = "import { " + classify(options.fileName) + "Component } from './_" + options.fileName + "/" + options.fileName + "-form.component';\n" + TAGS.componentImport;
+        const componentClassImport = "import { " + classify(options.fileName) + "FormComponent } from './_" + options.fileName + "-form/" + options.fileName + "-form.component';\n" + TAGS.componentImport;
 
-        const componentDeclaration = classify(options.fileName) + "Component,\n  " + TAGS.componentDeclaration;
-        const moduleComponentExport = classify(options.fileName) + "Component,\n  " + TAGS.moduleExport;
+        const componentDeclaration = classify(options.fileName) + "FormComponent,\n  " + TAGS.componentDeclaration;
+        const moduleComponentExport = classify(options.fileName) + "FormComponent,\n  " + TAGS.moduleExport;
 
         // Replace overwrite tags
         let newContent = content

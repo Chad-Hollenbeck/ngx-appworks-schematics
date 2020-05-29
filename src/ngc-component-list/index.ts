@@ -1,4 +1,4 @@
-import { Rule, SchematicContext, Tree, chain, url, apply, template, move, mergeWith } from '@angular-devkit/schematics';
+import { Rule, SchematicContext, Tree, chain, url, apply, template, move, mergeWith, MergeStrategy, schematic } from '@angular-devkit/schematics';
 import { strings } from '@angular-devkit/core';
 import { classify, camelize } from '@angular-devkit/core/src/utils/strings';
 import { TAGS } from '../shared/template-tags';
@@ -6,7 +6,7 @@ import { ComponentOptions } from '../shared/component.params';
 
 // You don't have to export the function as default. You can also have more than one rule factory
 // per file.
-export function ngcComponent(options: ComponentOptions): Rule {
+export function ngcComponentList(options: ComponentOptions): Rule {
   return chain([
     (tree: Tree, _context: SchematicContext) => {
       // Default file path
@@ -20,7 +20,7 @@ export function ngcComponent(options: ComponentOptions): Rule {
 
       // Module and Component paths
       const modulePath = "/" + defaultProjectPath + "/" + moduleName;
-      const componentPath = modulePath + "/" + componentName;
+      const componentPath = modulePath + "/" + componentName + '-list';
 
       // templates folder path
       const sourceTemplates = url('./templates');
@@ -41,9 +41,9 @@ export function ngcComponent(options: ComponentOptions): Rule {
         const content = routeModuleBuffer.toString();
 
         // Create new content snippets
-        const componentClassImport = "import { " + classify(options.fileName) + "Component } from '../+" + options.fileName + "/" + options.fileName + ".component';\n  " + TAGS.componentImport;
+        const componentClassImport = "import { " + classify(options.fileName) + "ListComponent } from '../+" + options.fileName + "-list/" + options.fileName + "-list.component';\n  " + TAGS.componentImport;
 
-        const componentRoute = "{ path: " + options.moduleName.toUpperCase() + "_ROUTE_NAMES." + camelize(options.fileName).toUpperCase() + ", component: " + classify(options.fileName) + "Component },\n  " + TAGS.componentRoute;
+        const componentRoute = "{ path: " + options.moduleName.toUpperCase() + "_ROUTE_NAMES." + camelize(options.fileName).toUpperCase() + "LIST, component: " + classify(options.fileName) + "ListComponent },\n  " + TAGS.componentRoute;
 
 
         // Replace overwrite tags
@@ -63,11 +63,11 @@ export function ngcComponent(options: ComponentOptions): Rule {
         const content = moduleBuffer.toString();
 
         // Create new content snippets
-        const componentClassImport = "import { " + classify(options.fileName) + "Component } from './" + prefix + options.fileName + "/" + options.fileName + ".component';\n  " + TAGS.componentImport;
+        const componentClassImport = "import { " + classify(options.fileName) + "ListComponent } from './" + prefix + options.fileName + "-list/" + options.fileName + "-list.component';\n  " + TAGS.componentImport;
 
-        const componentRoute = "{ path: " + options.moduleName.toUpperCase() + "_ROUTE_NAMES." + camelize(options.fileName).toUpperCase() + ", component: " + classify(options.fileName) + "Component },\n  " + TAGS.componentRoute;
+        const componentRoute = "{ path: " + options.moduleName.toUpperCase() + "_ROUTE_NAMES." + camelize(options.fileName).toUpperCase() + ", component: " + classify(options.fileName) + "ListComponent },\n  " + TAGS.componentRoute;
 
-        const moduleComponentDeclaration = classify(options.fileName) + "Component,\n  " + TAGS.componentDeclaration;
+        const moduleComponentDeclaration = classify(options.fileName) + "ListComponent,\n  " + TAGS.componentDeclaration;
 
         // Replace overwrite tags
         let newContent = content
@@ -90,14 +90,18 @@ export function ngcComponent(options: ComponentOptions): Rule {
       if (routeNameBuffer) {
         const content = routeNameBuffer.toString();
 
-        const importSnippet = camelize(options.fileName).toUpperCase() + " : '" + options.fileName + "',\n" + TAGS.routeName;
+        const importSnippet = camelize(options.fileName).toUpperCase() + "LIST : '',\n" + TAGS.routeName;
 
         let newContent = content.replace(TAGS.routeName, importSnippet);
 
         tree.overwrite(modulePath + '/routes/' + routeNameFileName, newContent);
       }
 
+      const rule = chain([
+        schematic('component-table', { moduleName: options.moduleName, fileName: options.fileName }),
+        mergeWith(sourceParametrized, MergeStrategy.Default)
+      ]);
 
-      return mergeWith(sourceParametrized)(tree, _context);
+      return rule(tree, _context);
     }]);
 }
