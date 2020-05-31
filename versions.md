@@ -1,12 +1,26 @@
 ## Version Log
 
+### 3.4.5 -> 3.5.0
+- Hotfixes to missing wildcard options across various schematics
+- Added Manage schematic to wrap form in default html w/ angular component logic
+- Added List schematic to wrap table in default html w/ angular component logic
+- Added missing imports to Service schematic for BaseCrudService and model type
+- Added Feature schematic to auto generate module, model, service, list, and manage components.
+  - Feature schematic can also be used to add full CRUD operations to an existing feature module.
+
+---
+
 ### 3.4.0 -> 3.4.5
 - Added style scss file back to component
 - Bugfixes to logged issues
 
+---
+
 ### 3.3.0 -> 3.4.0
 - Added table component for simple list view generation
 - Edited name of component form to include `.form.component` extension.
+
+---
 
 ### 3.1.0 -> 3.3.0
 - Changed replace tags to fit eslint & tslint commenting rules.
@@ -15,6 +29,8 @@
 
 ### Upgrade
 Generate a new set of files to see the new replace tag format. Find/Replace these app-wide as needed. The module routing files have been re-instated, but splitting those files manually should be very straightforward.
+
+---
 
 ### 3.0.5 -> 3.1.0
 - New components for base class and base firestore service
