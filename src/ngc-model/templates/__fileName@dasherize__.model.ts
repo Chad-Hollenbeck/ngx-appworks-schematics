@@ -9,4 +9,8 @@ export class <%= classify(fileName) %>VM extends IBaseModelVM {
 export interface I<%= classify(fileName) %> extends IBaseModelVM {
 
 }
+
+  export const <%= classify(fileName) %> : I<%= classify(fileName) %> {
+
+  }
 <% } %>
