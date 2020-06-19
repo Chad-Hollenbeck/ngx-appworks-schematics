@@ -9,7 +9,6 @@ import { I<%= classify(fileName) %> } from '../models/<%= dasherize(fileName) %>
 export class <%= classify(fileName) %>Service extends BaseCrudService<I<%= classify(fileName) %>> {
 
   constructor(afs: AngularFirestore) {
-    const path = '<%= camelize(fileName) %>';
-    super(path, afs);
+    super('<%= camelize(fileName) %>', afs);
   }
 }
