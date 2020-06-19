@@ -1,4 +1,3 @@
-import { IBaseModelVM } from '@app/shared/+firebase-crud/models/base.model';
 
 
 <% if (useClass) {%>

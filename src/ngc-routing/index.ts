@@ -41,7 +41,7 @@ export function ngcRouting(_options: ModuleOptions): Rule {
       const appendedContent =
         "  {\n" +
         "    path: APP_ROUTE_NAMES." + _options.moduleName.toUpperCase() + ",\n" +
-        "    component: Layout2Component,\n" +
+        "    component: Layout2AdminComponent,\n" +
         "    children: [\n" +
         "      { path: '', loadChildren: () => import('./+" + _options.moduleName + "/" + _options.moduleName + ".module').then(m => m." + classify(_options.moduleName) + "Module) },\n" + "    ]\n  },\n" + TAGS.appRoute
 
