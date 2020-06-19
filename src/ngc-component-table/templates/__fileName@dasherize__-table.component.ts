@@ -1,6 +1,6 @@
 
 import { Component} from '@angular/core';
-
+import { I<%= classify(fileName) %> } from '../models/<%= dasherize(fileName) %>.model'
 @Component({
   selector: 'app-<%= dasherize(fileName) %>-table',
   templateUrl: './<%= dasherize(fileName) %>-table.component.html',

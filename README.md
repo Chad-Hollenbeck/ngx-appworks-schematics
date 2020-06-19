@@ -1,5 +1,5 @@
 # NGC Schematics
-![Package Version](https://img.shields.io/badge/version-v3.3.0-inactive)
+![Package Version](https://img.shields.io/badge/version-v3.5.0-inactive)
 
 ![Schematics Version](https://img.shields.io/badge/Schematics-v8.3.17-informational)
 ![Angular Version](https://img.shields.io/badge/Angular-v8.2.8-informational)
@@ -22,6 +22,13 @@ The double hash on the end of the script allows arguments to apply to the `ng g`
   "ngc:component": "ng g @chollenbeck/ngc:component -- ",
   "ngc:model": "ng g @chollenbeck/ngc:model -- ",
   "ngc:service": "ng g @chollenbeck/ngc:service -- ",
+  "ngc:component:table": "schematics .:component-table --",
+  "ngc:component:form": "schematics .:component-form --",
+  "ngc:component": "schematics .:component --",
+  "ngc:component:list": "schematics .:component-list --",
+  "ngc:component:manage": "schematics .:component-manage --",
+  "ngc:feature:crud": "schematics .:feature-crud --",
+
 }
 ```
 
@@ -35,9 +42,14 @@ This package is versioned in the following manner: `major`.`minor`.`patch`. Majo
 ## Schematics List
 Each schematic is run with space separated arguments. Any arguments not provided will be prompted for if required.
 
-- Module w/ Routing
-- Interface
+- Module
+- Class
 - Component
+- Component-Table
+- Component-Form
+- Component-List
+- Component-Manage
+- Feature-Crud
 - Service
 
 ### Module & Routing

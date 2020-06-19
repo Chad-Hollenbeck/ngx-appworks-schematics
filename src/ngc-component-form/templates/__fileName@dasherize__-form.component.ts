@@ -5,7 +5,9 @@ import { FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { APP_ROUTE_NAMES } from '@app/app.routes.names';
-import { FormUtilityService } from '@app/shared/services/form-utility.service.ts';
+import { FormUtilityService } from '@app/shared/+utilities/services/form-utility.service';
+import { <%= classify(fileName) %> Service } from '../services/<%= dasherize(fileName) %>.service';
+import { I<%= classify(fileName) %> } from '../models/<%= dasherize(fileName) %>.model';
 
 @Component({
   selector: 'app-<%= dasherize(fileName) %>-form',
@@ -24,8 +26,8 @@ export class <%= classify(fileName) %>FormComponent implements OnInit {
 
   constructor(private appService: AppService, private formUtilityService: FormUtilityService, private <%= camelize(fileName) %>Service: <%= classify(fileName) %>Service, private router: Router, private toastr: ToastrService) {
 
-    this.detailForm = this.formUtilityService.buildFormGroup({});
-    this.selectedItem = null;
+    this.selectedItem = { isActive: true };
+    this.detailForm = this.formUtilityService.buildFormGroup(this.selectedItem);
 
     // Form Validators
     this.detailForm.get('id').setValidators(Validators.required);
@@ -35,10 +37,12 @@ export class <%= classify(fileName) %>FormComponent implements OnInit {
     this.loading = true;
 
     // Load Data
-    if (this.isNew) {
-      this.selectedItem = {};
-      this.loading = false;
+    if (!this.isNew) {
+      this.detailForm.patchValue(this.selectedItem);
     }
+
+    this.loading = false;
+
   }
 
 

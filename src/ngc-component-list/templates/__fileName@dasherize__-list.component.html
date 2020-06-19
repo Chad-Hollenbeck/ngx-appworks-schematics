@@ -1,8 +1,8 @@
 <h4 class="d-flex justify-content-between align-items-center w-100 font-weight-bold py-3 mb-4">
-  <div><%= classify(fileName) %>s</div>
-  <a [routerLink]="['/', '<%= dasherize(fileName) %>s', 'new']"
+  <div><%= classify(fileName) %></div>
+  <a [routerLink]="['/', '<%= dasherize(fileName) %>', 'new']"
      class="btn btn-primary rounded-pill d-block"><span class="ion ion-md-add"></span>&nbsp; Create
-    project</a>
+    <%= classify(fileName) %></a>
 </h4>
 
 <!-- Filters -->
@@ -10,7 +10,7 @@
   <div class="form-row align-items-center">
     <div class="col-md mb-4">
       <label class="form-label">Verified</label>
-      <select class="custom-select"
+      <select class="custom-select" name="filterVerified"
               [(ngModel)]="filterVerified">
         <option *ngFor="let item of ['Any', 'Yes', 'No']"
                 [value]="item">{{item}}</option>
@@ -18,7 +18,7 @@
     </div>
     <div class="col-md mb-4">
       <label class="form-label">Role</label>
-      <select class="custom-select"
+      <select class="custom-select"name="filterRole"
               [(ngModel)]="filterRole">
         <option *ngFor="let item of ['Any', 'User', 'Author', 'Staff', 'Admin']"
                 [value]="item">{{item}}</option>
@@ -26,7 +26,7 @@
     </div>
     <div class="col-md mb-4">
       <label class="form-label">Status</label>
-      <select class="custom-select"
+      <select class="custom-select"name="filterStatus"
               [(ngModel)]="filterStatus">
         <option *ngFor="let item of ['Any', 'Active', 'Banned', 'Deleted']"
                 [value]="item">{{item}}</option>
@@ -68,14 +68,23 @@
   <!-- / Table controls -->
 
   <!-- Table -->
-  <div class="card-body py-0">
+  <div class="card-body py-0" *ngIf="!loading">
     <hr class="border-light m-0">
     <div class="table-responsive">
       <app-<%= dasherize(fileName) %>-table [items]="displayedItems"
-                         classNames="table-striped table-bordered card-table"></app-<%= dasherize(fileName) %>-table>
+                                            classNames="table-striped table-bordered card-table">
+      </app-<%= dasherize(fileName) %>-table>
     </div>
   </div>
   <!-- /Table -->
+
+  <!-- Loading -->
+  <div class="card-body py-0 text-center"
+       *ngIf="loading">
+    <app-spinner [show]="loading"
+                 id="user-loading"></app-spinner>
+  </div>
+  <!-- /Loading -->
 
   <!-- Pagination -->
   <div class="card-body py-0">
