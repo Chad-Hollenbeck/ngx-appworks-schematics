@@ -5,7 +5,6 @@ import { FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { APP_ROUTE_NAMES } from '@app/app.routes.names';
-import { FormUtilityService } from '@app/shared/+utilities/services/form-utility.service';
 import { <%= classify(fileName) %> Service } from '../services/<%= dasherize(fileName) %>.service';
 import { I<%= classify(fileName) %> } from '../models/<%= dasherize(fileName) %>.model';
 

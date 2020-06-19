@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from '@app/app.service';
 import { I<%= classify(fileName) %> } from '../models/<%= dasherize(fileName) %>.model';
-import { TableUtilityService } from '@app/shared/+utilities/services/table-utility.service';
 import { <%= classify(fileName) %>Service } from '../services/<%= dasherize(fileName) %>.service';
 import { first } from 'rxjs/operators';
 
