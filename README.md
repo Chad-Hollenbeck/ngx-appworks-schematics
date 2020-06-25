@@ -3,7 +3,7 @@
 ![Angular Version](https://img.shields.io/badge/Angular-v9.0.1-informational)
 
 ## Summary
-Angular schematics designed to work with a homebrewed Angular seed project. Most operations adhere to the standard /src/app directory flow, but some files such as services make use of shared resources not included in this package. If requested, I'll add gist links here to those files.
+Angular schematics designed to work with a homebrewed Angular seed project. Most operations adhere to the standard /src/app directory flow, but some files such as services make use of shared resources not included in this package. **If requested, I'll add gist links here to those files.**
 
 ## Issues
 Please submit any and all issues/enhancements to Github. I monitor the repo multiple times a week and usually respond to requests within a few days.
