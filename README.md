@@ -1,17 +1,17 @@
 # NGC Schematics
-![Package Version](https://img.shields.io/badge/version-v3.5.0-inactive)
 
-![Schematics Version](https://img.shields.io/badge/Schematics-v8.3.17-informational)
-![Angular Version](https://img.shields.io/badge/Angular-v8.2.8-informational)
-![AngularFire Version](https://img.shields.io/badge/AngularFire-v5.2.1-informational)
+![Angular Version](https://img.shields.io/badge/Angular-v9.0.1-informational)
 
 ## Summary
-Angular schematics designed to work with a homebrewed Angular seed project. Most operations adhere to the standard /src/app directory flow, but some files such as services make use of shared resources not included in this package.
+Angular schematics designed to work with a homebrewed Angular seed project. Most operations adhere to the standard /src/app directory flow, but some files such as services make use of shared resources not included in this package. If requested, I'll add gist links here to those files. 
+
+## Issues
+Please submit any and all issues/enhancements to Github. I monitor the repo multiple times a week and usually respond to requests within a few days. 
 
 
 ## Installation
 This package is best used a dev dependency and can be installed via NPM with the following command:
-`npm install @chollenbeck/ngc`
+`npm install --save-dev @chollenbeck/ngc`
 
 **Recommended package.json scripts**
 The double hash on the end of the script allows arguments to apply to the `ng g` action vs the `npm run` action.
@@ -22,12 +22,12 @@ The double hash on the end of the script allows arguments to apply to the `ng g`
   "ngc:component": "ng g @chollenbeck/ngc:component -- ",
   "ngc:model": "ng g @chollenbeck/ngc:model -- ",
   "ngc:service": "ng g @chollenbeck/ngc:service -- ",
-  "ngc:component:table": "schematics .:component-table --",
-  "ngc:component:form": "schematics .:component-form --",
-  "ngc:component": "schematics .:component --",
-  "ngc:component:list": "schematics .:component-list --",
-  "ngc:component:manage": "schematics .:component-manage --",
-  "ngc:feature:crud": "schematics .:feature-crud --",
+  "ngc:component:table": "ng g @chollenbeck/ngc:component-table --",
+  "ngc:component:form": "ng g @chollenbeck/ngc:component-form --",
+  "ngc:component": "ng g @chollenbeck/ngc:component --",
+  "ngc:component:list": "ng g @chollenbeck/ngc:component-list --",
+  "ngc:component:manage": "ng g @chollenbeck/ngc:component-manage --",
+  "ngc:feature:crud": "ng g @chollenbeck/ngc:feature-crud --",
 
 }
 ```
