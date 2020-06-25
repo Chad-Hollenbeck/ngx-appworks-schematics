@@ -3,9 +3,9 @@
   "version": "3.6.3",
   "description": "Custom angular schematics for Angular 8 development",
   "scripts": {
-    "build": "rimraf chollenbeck-ngc-* && tsc -p tsconfig.json",
+    "build": "rimraf ./src/app && tsc -p tsconfig.json",
     "build:watch": "tsc -p tsconfig.json --watch",
-    "pub": "npm run build && npm publish",
+    "pub": "rimraf ./src/app && npm run build && npm publish",
     "test": "npm run build && jasmine src/**/*_spec.js",
     "ngc:module": "schematics .:module --debug=false --",
     "ngc:route": "schematics .:routing --debug=false --",
@@ -30,12 +30,9 @@
     "@angular-devkit/schematics": "^8.3.17"
   },
   "devDependencies": {
-    "@angular/cli": "^8.3.17",
     "@nativescript/schematics": "^0.7.2",
     "@schematics/angular": "^8.3.20",
-    "@types/jasmine": "^3.3.9",
     "@types/node": "^8.0.31",
-    "jasmine": "^3.3.1",
     "typescript": "~3.5.3"
   },
   "main": "index.js",

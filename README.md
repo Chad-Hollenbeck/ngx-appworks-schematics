@@ -3,10 +3,10 @@
 ![Angular Version](https://img.shields.io/badge/Angular-v9.0.1-informational)
 
 ## Summary
-Angular schematics designed to work with a homebrewed Angular seed project. Most operations adhere to the standard /src/app directory flow, but some files such as services make use of shared resources not included in this package. If requested, I'll add gist links here to those files. 
+Angular schematics designed to work with a homebrewed Angular seed project. Most operations adhere to the standard /src/app directory flow, but some files such as services make use of shared resources not included in this package. If requested, I'll add gist links here to those files.
 
 ## Issues
-Please submit any and all issues/enhancements to Github. I monitor the repo multiple times a week and usually respond to requests within a few days. 
+Please submit any and all issues/enhancements to Github. I monitor the repo multiple times a week and usually respond to requests within a few days.
 
 
 ## Installation
@@ -33,11 +33,8 @@ The double hash on the end of the script allows arguments to apply to the `ng g`
 ```
 
 ## Versioning
-This package is versioned in the following manner: `major`.`minor`.`patch`. Major and minor version updates MAY NOT be backwards compatible, but patch updates can be applied without breaking changes. Check the versions.md file in the root directory for any manual changes needed to use an upgraded version of the schematics.
+This package uses symantic versioning. All minor and patch updates will be backwards compatible within the same major version.
 
-- Major versions will include new/depreciated features.
-- Minor versions will contain feature rework including changes to generated file templates.
-- Patch versions are used for bugfixes and issues.
 
 ## Schematics List
 Each schematic is run with space separated arguments. Any arguments not provided will be prompted for if required.
