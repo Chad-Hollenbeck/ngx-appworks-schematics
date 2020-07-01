@@ -5,7 +5,7 @@ import { FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { APP_ROUTE_NAMES } from '@app/app.routes.names';
-import { <%= classify(fileName) %> Service } from '../services/<%= dasherize(fileName) %>.service';
+import { <%= classify(fileName) %>Service } from '../services/<%= dasherize(fileName) %>.service';
 import { I<%= classify(fileName) %> } from '../models/<%= dasherize(fileName) %>.model';
 
 @Component({
@@ -23,7 +23,7 @@ export class <%= classify(fileName) %>FormComponent implements OnInit {
   @Input() selectedItem: I<%= classify(fileName) %>;
   @Input() isNew: boolean;
 
-  constructor(private appService: AppService, private formUtilityService: FormUtilityService, private <%= camelize(fileName) %>Service: <%= classify(fileName) %>Service, private router: Router, private toastr: ToastrService) {
+  constructor(private formUtilityService: FormUtilityService, private <%= camelize(fileName) %>Service: <%= classify(fileName) %>Service, private router: Router, private toastr: ToastrService) {
 
     this.selectedItem = { isActive: true };
     this.detailForm = this.formUtilityService.buildFormGroup(this.selectedItem);

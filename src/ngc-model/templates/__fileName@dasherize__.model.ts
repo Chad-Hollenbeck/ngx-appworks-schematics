@@ -8,7 +8,7 @@ export class <%= classify(fileName) %>VM extends IBaseModelVM {
 export interface I<%= classify(fileName) %> extends IBaseModelVM {
 
 }
-export const <%= classify(fileName).toUpperCase() %>_DEFAULTS : I<%= classify(fileName) %> = {
+export const I<%= classify(fileName).toUpperCase() %>_DEFAULTS : I<%= classify(fileName) %> = {
   id: null,
   isActive: true
 }
