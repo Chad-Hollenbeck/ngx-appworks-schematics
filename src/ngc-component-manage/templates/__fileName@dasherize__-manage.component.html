@@ -23,7 +23,9 @@
       <div class="card-body"
            *ngIf="selectedItem || isNew">
         <app-<%= dasherize(fileName) %>-form [selectedItem]="selectedItem"
-                          [isNew]="isNew"></app-<%= dasherize(fileName) %>-form>
+                (onAdd)="onSave($event)"
+                (onUpdate)="onSave($event)"
+                [isNew]="isNew"></app-<%= dasherize(fileName) %>-form>
       </div>
     </div>
 

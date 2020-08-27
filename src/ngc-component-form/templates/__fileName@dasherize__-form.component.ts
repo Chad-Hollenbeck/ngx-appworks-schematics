@@ -1,5 +1,5 @@
 
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter } from '@angular/core';
 import { AppService } from '@app/app.service';
 import { FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -22,6 +22,10 @@ export class <%= classify(fileName) %>FormComponent implements OnInit {
 
   @Input() selectedItem: I<%= classify(fileName) %>;
   @Input() isNew: boolean;
+
+  @Output() onAdd: EventEmitter <number> = new EventEmitter();
+  @Output() onUpdate: EventEmitter <number> = new EventEmitter();
+
 
   constructor(private formUtilityService: FormUtilityService, private <%= camelize(fileName) %>Service: <%= classify(fileName) %>Service, private router: Router, private toastr: ToastrService) {
 
@@ -60,8 +64,8 @@ export class <%= classify(fileName) %>FormComponent implements OnInit {
   add(data: I<%= classify(fileName) %>) {
     this.<%= camelize(fileName) %>Service.add(data).then(
       (item) => {
-        this.router.navigate([APP_ROUTE_NAMES.<%= classify(fileName) %>S]);
         this.toastr.success("<%= classify(fileName) %> saved");
+        this.onAdd.emit(item.id);
       }
     )
   }
@@ -69,9 +73,9 @@ export class <%= classify(fileName) %>FormComponent implements OnInit {
   update(data: I<%= classify(fileName) %>) {
     // Update
     this.<%= camelize(fileName) %>Service.update(data).then(
-      (resp) => {
-        this.router.navigate([APP_ROUTE_NAMES.<%= classify(fileName) %>S]);
+      () => {
         this.toastr.success("<%= classify(fileName) %> updated");
+        this.onAdd.emit(data.id);
       }
     )
   }
