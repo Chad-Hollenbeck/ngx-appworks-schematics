@@ -21,13 +21,15 @@ The double hash on the end of the script allows arguments to apply to the `ng g`
   "ngc:routes": "ng g @chollenbeck/ngc:routes -- ",
   "ngc:component": "ng g @chollenbeck/ngc:component -- ",
   "ngc:model": "ng g @chollenbeck/ngc:model -- ",
-  "ngc:service": "ng g @chollenbeck/ngc:service -- ",
+  "ngc:service:firebase": "ng g @chollenbeck/ngc:service-http -- ",
+  "ngc:service:http": "ng g @chollenbeck/ngc:service-firebase -- ",
   "ngc:component:table": "ng g @chollenbeck/ngc:component-table --",
   "ngc:component:form": "ng g @chollenbeck/ngc:component-form --",
   "ngc:component": "ng g @chollenbeck/ngc:component --",
   "ngc:component:list": "ng g @chollenbeck/ngc:component-list --",
   "ngc:component:manage": "ng g @chollenbeck/ngc:component-manage --",
-  "ngc:feature:crud": "ng g @chollenbeck/ngc:feature-crud --",
+  "ngc:feature:firebase": "ng g @chollenbeck/ngc:feature-firebase --",
+  "ngc:feature:http": "ng g @chollenbeck/ngc:feature-http --",
 
 }
 ```

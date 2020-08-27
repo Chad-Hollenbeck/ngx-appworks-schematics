@@ -1,5 +1,19 @@
 ## Version Log
 
+### 3.6.x -> 3.7.0
+- Split services into firebase and http variants.
+- Split feature component into firebase and http variants;
+- Fixed missing semicolon on table component.
+- Fixed missing imports on table component.
+- Replaced generic object with model defaults on form view.
+
+### 3.5.x -> 3.6.0
+- Constant export from models for simpler form building with default values
+- Added filtes to list feature
+- Updated default layout component name
+- Updated service syntax for Angular 9
+- Removed imports to prevent uneeded future patches on services and components.
+
 ### 3.4.5 -> 3.5.0
 - Hotfixes to missing wildcard options across various schematics
 - Added Manage schematic to wrap form in default html w/ angular component logic

@@ -5,7 +5,7 @@ import { ServiceOptions } from '../shared/service.params';
 
 // You don't have to export the function as default. You can also have more than one rule factory
 // per file.
-export function ngcService(options: ServiceOptions): Rule {
+export function ngcServiceFirebase(options: ServiceOptions): Rule {
   return (tree: Tree, _context: SchematicContext) => {
     // Default file path
     const defaultProjectPath = 'src/app';

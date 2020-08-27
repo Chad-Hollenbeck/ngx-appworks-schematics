@@ -5,7 +5,7 @@ import { ModuleOptions } from '../shared/module-routing.model';
 
 // You don't have to export the function as default. You can also have more than one rule factory
 // per file.
-export function ngcFeatureCrud(options: ComponentOptions): Rule {
+export function ngcFeatureFirebase(options: ComponentOptions): Rule {
   return (tree: Tree, _context: SchematicContext) => {
 
     // Default file path
@@ -28,7 +28,7 @@ export function ngcFeatureCrud(options: ComponentOptions): Rule {
     const rule = chain([
       moduleBuffer != null ? noop() : schematic('module', moduleOptions),
       schematic('class', componentOptions),
-      schematic('service', componentOptions),
+      schematic('service-firebase', componentOptions),
       schematic('component-list', componentOptions),
       schematic('component-manage', componentOptions),
     ]);

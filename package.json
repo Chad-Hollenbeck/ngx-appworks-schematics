@@ -1,6 +1,6 @@
 {
   "name": "@chollenbeck/ngc",
-  "version": "3.6.7",
+  "version": "3.7.1",
   "description": "Custom angular schematics for Angular 8 development",
   "scripts": {
     "build": "rimraf ./src/app && tsc -p tsconfig.json",
@@ -14,9 +14,11 @@
     "ngc:component": "schematics .:component --debug=false --",
     "ngc:component:list": "schematics .:component-list --debug=false --",
     "ngc:component:manage": "schematics .:component-manage --debug=false --",
-    "ngc:feature:crud": "schematics .:feature-crud --debug=false --",
+    "ngc:feature:http": "schematics .:feature-http --debug=false --",
+    "ngc:feature:fire": "schematics .:feature-firebase --debug=false --",
     "ngc:class": "schematics .:class --debug=false --",
-    "ngc:service": "schematics .:service --debug=false --"
+    "ngc:service:http": "schematics .:service-http --debug=false --",
+    "ngc:service:fire": "schematics .:service-firebase --debug=false --"
   },
   "keywords": [
     "schematics",

@@ -1,9 +1,14 @@
 {
   "$schema": "../node_modules/@angular-devkit/schematics/collection-schema.json",
   "schematics": {
-    "feature-crud": {
-      "description": "A full CRUD feature with new module, routing, list, and manage components.",
-      "factory": "./ngc-feature-crud/index#ngcFeatureCrud",
+    "feature-http": {
+      "description": "A full CRUD feature with new module, routing, list, and manage components for Http communication.",
+      "factory": "./ngc-feature-http/index#ngcFeatureHttp",
+      "schema": "./schema/component.json"
+    },
+    "feature-firebase": {
+      "description": "A full CRUD feature with new module, routing, list, and manage components for Http communication.",
+      "factory": "./ngc-feature-firebase/index#ngcFeatureFirebase",
       "schema": "./schema/component.json"
     },
     "component": {
@@ -41,9 +46,14 @@
       "factory": "./ngc-model/index#ngcModel",
       "schema": "./schema/model.json"
     },
-    "service": {
-      "description": "A Default service.",
-      "factory": "./ngc-service/index#ngcService",
+    "service-http": {
+      "description": "A Default service w/ HTTP comms.",
+      "factory": "./ngc-service-http/index#ngcServiceHttp",
+      "schema": "./schema/service.json"
+    },
+    "service-firebase": {
+      "description": "A Default service w/ Firebase comms.",
+      "factory": "./ngc-service-firebase/index#ngcServiceFirebase",
       "schema": "./schema/service.json"
     },
     "routing": {

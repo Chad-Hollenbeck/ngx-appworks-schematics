@@ -25,7 +25,7 @@ export class <%= classify(fileName) %>FormComponent implements OnInit {
 
   constructor(private formUtilityService: FormUtilityService, private <%= camelize(fileName) %>Service: <%= classify(fileName) %>Service, private router: Router, private toastr: ToastrService) {
 
-    this.selectedItem = { isActive: true };
+    this.selectedItem = I<%= classify(fileName).toUpperCase() %>_DEFAULTS;
     this.detailForm = this.formUtilityService.buildFormGroup(this.selectedItem);
 
     // Form Validators
