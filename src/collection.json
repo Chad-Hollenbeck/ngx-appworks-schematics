@@ -26,9 +26,14 @@
       "factory": "./ngc-component-manage/index#ngcComponentManage",
       "schema": "./schema/component.json"
     },
-    "component-form": {
+    "component-form-subscription": {
       "description": "A form component.",
-      "factory": "./ngc-component-form/index#ngcFormComponent",
+      "factory": "./ngc-component-form-subscription/index#ngcFormSubscriptionComponent",
+      "schema": "./schema/component.json"
+    },
+    "component-form-promise": {
+      "description": "A form component.",
+      "factory": "./ngc-component-form-promise/index#ngcFormPromiseComponent",
       "schema": "./schema/component.json"
     },
     "component-table": {

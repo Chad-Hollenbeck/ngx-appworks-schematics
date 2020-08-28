@@ -1,11 +1,9 @@
 
 import { Component, OnInit, Input, EventEmitter } from '@angular/core';
-import { AppService } from '@app/app.service';
 import { FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { APP_ROUTE_NAMES } from '@app/app.routes.names';
-import { <%= classify(fileName) %>Service } from '../services/<%= dasherize(fileName) %>.service';
+import { first } from 'rxjs/internal/operators/first';import { <%= classify(fileName) %>Service } from '../services/<%= dasherize(fileName) %>.service';
 import { I<%= classify(fileName) %> } from '../models/<%= dasherize(fileName) %>.model';
 
 @Component({
@@ -62,22 +60,22 @@ export class <%= classify(fileName) %>FormComponent implements OnInit {
   }
 
   add(data: I<%= classify(fileName) %>) {
-    this.<%= camelize(fileName) %>Service.add(data).then(
+    this.<%= camelize(fileName) %>Service.add(data).pipe(first()).subscribe(
       (item) => {
         this.toastr.success("<%= classify(fileName) %> saved");
         this.onAdd.emit(item.id);
       }
-    )
+    );
   }
 
   update(data: I<%= classify(fileName) %>) {
     // Update
-    this.<%= camelize(fileName) %>Service.update(data).then(
+    this.<%= camelize(fileName) %>Service.update(data).pipe(first()).subscribe(
       () => {
         this.toastr.success("<%= classify(fileName) %> updated");
         this.onAdd.emit(data.id);
       }
-    )
+    );
   }
 
 

@@ -98,7 +98,7 @@ export function ngcComponentManage(options: ComponentOptions): Rule {
       }
 
       const rule = chain([
-        schematic('component-form', { moduleName: options.moduleName, fileName: options.fileName }),
+        options.useSubscriptions ? schematic('component-form-subscription', { moduleName: options.moduleName, fileName: options.fileName }) : schematic('component-form-promise', { moduleName: options.moduleName, fileName: options.fileName }),
         mergeWith(sourceParametrized, MergeStrategy.Default)
       ]);
 

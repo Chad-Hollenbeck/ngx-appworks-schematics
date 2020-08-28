@@ -18,7 +18,7 @@ export function ngcFeatureHttp(options: ComponentOptions): Rule {
 
     // Stock options for all schematics
     const moduleOptions: ModuleOptions = { moduleName: options.moduleName, routing: true };
-    const componentOptions: ComponentOptions = { moduleName: options.moduleName, fileName: options.fileName };
+    const componentOptions: ComponentOptions = { moduleName: options.moduleName, fileName: options.fileName, useSubscriptions: true };
 
     // Check if module exists
     const moduleFileName = options.moduleName + '.module.ts';

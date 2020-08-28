@@ -1,40 +1,44 @@
 <h4 class="py-3 mb-4">
   <ol class="breadcrumb font-weight-bold m-0">
     <li class="breadcrumb-item"><a [routerLink]="['/', '<%= dasherize(fileName) %>']"><%= classify(fileName) %></a></li>
-    <li class="breadcrumb-item active">{{selectedItem ? selectedItem.name : 'New Item'}}</li>
+    <li class="breadcrumb-item active">{{selectedItem ? selectedItem.name : 'New'}}</li>
   </ol>
 </h4>
+<div class="row">
+  <div class="col-lg-10 col-xl-8">
 
-<div class="card overflow-hidden">
-  <div class="row no-gutters row-bordered row-border-light">
-    <div class="col-md-3 pt-0">
-      <div class="list-group list-group-flush account-settings-links">
-        <button type="button"
-                class="list-group-item list-group-item-action"
-                [ngClass]="{active: curTab === 'general'}"
-                (click)="changeTab('general')">General</button>
+    <div class="card overflow-hidden">
+      <div class="row no-gutters row-bordered row-border-light">
+        <div class="col-md-3 pt-0">
+          <div class="list-group list-group-flush account-settings-links">
+            <button type="button"
+                    class="list-group-item list-group-item-action"
+                    [ngClass]="{active: curTab === 'general'}"
+                    (click)="changeTab('general')">General</button>
 
-      </div>
-    </div>
+          </div>
+        </div>
 
-    <!-- General Info -->
-    <div class="col-md-9"
-         *ngIf="curTab === 'general'">
-      <div class="card-body"
-           *ngIf="selectedItem || isNew">
-        <app-<%= dasherize(fileName) %>-form [selectedItem]="selectedItem"
-                (onAdd)="onSave($event)"
-                (onUpdate)="onSave($event)"
-                [isNew]="isNew"></app-<%= dasherize(fileName) %>-form>
-      </div>
-    </div>
+        <!-- General Info -->
+        <div class="col-md-9"
+             *ngIf="curTab === 'general'">
+          <div class="card-body"
+               *ngIf="selectedItem || isNew">
+            <app-<%= dasherize(fileName) %>-form [selectedItem]="selectedItem"
+                                                 (onAdd)="onSave($event)"
+                                                 (onUpdate)="onSave($event)"
+                                                 [isNew]="isNew"></app-<%= dasherize(fileName) %>-form>
+          </div>
+        </div>
 
-    <!-- Loading Spinner -->
-    <div class="col-9 text-center"
-         *ngIf="loading">
-      <div class="card-body">
-        <app-spinner id="manage-item"
-                     [show]="loading"></app-spinner>
+        <!-- Loading Spinner -->
+        <div class="col-9 text-center"
+             *ngIf="loading">
+          <div class="card-body">
+            <app-spinner id="manage-item"
+                         [show]="loading"></app-spinner>
+          </div>
+        </div>
       </div>
     </div>
   </div>

@@ -7,7 +7,7 @@
   <tbody>
     <tr *ngFor="let item of items">
       <td class="align-middle">
-        <a [routerLink]="['/', '<%= dasherize(fileName) %>, item.id]">{{item.id}}</a>
+        <a [routerLink]="['/', '<%= dasherize(fileName) %>', item.id]">{{item.id}}</a>
       </td>
     </tr>
     <tr *ngIf="items && items.length == 0">
