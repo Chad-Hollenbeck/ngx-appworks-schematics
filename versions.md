@@ -1,5 +1,13 @@
 ## Version Log
 
+### 3.9.x -> 3.10.0
+- Patched typo with hyphenated module names on routing files
+- Renamed model to interface for continuity
+- Renamed IBaseModelVM to IBaseModel for continuity
+
+### 3.7.x -> 3.9.0
+- Added event emitters to form/manage features for propogated updates
+
 ### 3.6.x -> 3.7.0
 - Split services into firebase and http variants.
 - Split feature component into firebase and http variants;
