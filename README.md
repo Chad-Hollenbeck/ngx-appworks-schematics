@@ -11,26 +11,22 @@ Please submit any and all issues/enhancements to Github. I monitor the repo mult
 
 ## Installation
 This package is best used a dev dependency and can be installed via NPM with the following command:
-`npm install --save-dev @chollenbeck/ngc`
+`npm install --save-dev @chollenbeck/ngc@latest`
 
 **Recommended package.json scripts**
 The double hash on the end of the script allows arguments to apply to the `ng g` action vs the `npm run` action.
 ```json
 "scripts": {
   "ngc:module": "ng g @chollenbeck/ngc:module -- ",
-  "ngc:routes": "ng g @chollenbeck/ngc:routes -- ",
+  "ngc:form": "ng g @chollenbeck/ngc:component-form-promise -- ",
+  "ngc:table": "ng g @chollenbeck/ngc:component-table -- ",
   "ngc:component": "ng g @chollenbeck/ngc:component -- ",
-  "ngc:model": "ng g @chollenbeck/ngc:model -- ",
-  "ngc:service:firebase": "ng g @chollenbeck/ngc:service-http -- ",
-  "ngc:service:http": "ng g @chollenbeck/ngc:service-firebase -- ",
-  "ngc:component:table": "ng g @chollenbeck/ngc:component-table --",
-  "ngc:component:form": "ng g @chollenbeck/ngc:component-form --",
-  "ngc:component": "ng g @chollenbeck/ngc:component --",
-  "ngc:component:list": "ng g @chollenbeck/ngc:component-list --",
-  "ngc:component:manage": "ng g @chollenbeck/ngc:component-manage --",
-  "ngc:feature:firebase": "ng g @chollenbeck/ngc:feature-firebase --",
+  "ngc:list": "ng g @chollenbeck/ngc:component-list --",
+  "ngc:manage": "ng g @chollenbeck/ngc:component-manage --",
+  "ngc:feature:fire": "ng g @chollenbeck/ngc:feature-firebase --",
   "ngc:feature:http": "ng g @chollenbeck/ngc:feature-http --",
-
+  "ngc:interface": "ng g @chollenbeck/ngc:interface --",
+  "ngc:service:fire": "ng g @chollenbeck/ngc:service-firebase -- "
 }
 ```
 
