@@ -5,7 +5,7 @@ import { ModelOptions } from '../shared/model.params';
 
 // You don't have to export the function as default. You can also have more than one rule factory
 // per file.
-export function ngcModel(options: ModelOptions): Rule {
+export function ngcInterface(options: ModelOptions): Rule {
   return (tree: Tree, _context: SchematicContext) => {
     const defaultProjectPath = 'src/app';
 

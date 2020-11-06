@@ -15,8 +15,8 @@
     },
     "fileName": {
       "type": "string",
-      "x-prompt": "Model Name",
-      "description": "The name of the new class model to be created",
+      "x-prompt": "Interface Name",
+      "description": "The name of the new interface to be created",
       "$default": {
         "$source": "argv",
         "index": 1

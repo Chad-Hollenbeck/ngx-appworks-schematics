@@ -46,9 +46,9 @@
       "factory": "./ngc-module/index#ngcModule",
       "schema": "./schema/module-routing.json"
     },
-    "class": {
+    "interface": {
       "description": "A default model using an interface.",
-      "factory": "./ngc-model/index#ngcModel",
+      "factory": "./ngc-interface/index#ngcInterface",
       "schema": "./schema/model.json"
     },
     "service-http": {

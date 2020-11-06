@@ -27,7 +27,7 @@ export function ngcFeatureHttp(options: ComponentOptions): Rule {
 
     const rule = chain([
       moduleBuffer != null ? noop() : schematic('module', moduleOptions),
-      schematic('class', componentOptions),
+      schematic('interface', componentOptions),
       schematic('service-http', componentOptions),
       schematic('component-list', componentOptions),
       schematic('component-manage', componentOptions),
