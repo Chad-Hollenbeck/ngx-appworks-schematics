@@ -1,15 +1,14 @@
 {
   "name": "@chollenbeck/ngc",
   "version": "3.10.1",
-  "description": "Custom angular schematics for Angular 8 development",
+  "description": "Custom angular schematics for Angular 9 development w/ homebrew starter template.",
   "scripts": {
     "build": "rimraf ./src/app && tsc -p tsconfig.json",
     "build:watch": "tsc -p tsconfig.json --watch",
     "pub": "rimraf ./src/app && npm run build && npm publish",
     "test": "npm run build && jasmine src/**/*_spec.js",
     "ngc:module": "schematics .:module --debug=false --",
-    "ngc:route": "schematics .:routing --debug=false --",
-    "ngc:component:table": "schematics .:component-table --debug=false --",
+    "ngc:table": "schematics .:component-table --debug=false --",
     "ngc:form:promise": "schematics .:component-form-promise --debug=false --",
     "ngc:form:sub": "schematics .:component-form-subscription --debug=false --",
     "ngc:component": "schematics .:component --debug=false --",
@@ -17,13 +16,14 @@
     "ngc:component:manage": "schematics .:component-manage --debug=false --",
     "ngc:feature:http": "schematics .:feature-http --debug=false --",
     "ngc:feature:fire": "schematics .:feature-firebase --debug=false --",
-    "ngc:class": "schematics .:class --debug=false --",
+    "ngc:interface": "schematics .:interface --debug=false --",
     "ngc:service:http": "schematics .:service-http --debug=false --",
     "ngc:service:fire": "schematics .:service-firebase --debug=false --"
   },
   "keywords": [
     "schematics",
-    "angular"
+    "angular",
+    "appworks"
   ],
   "author": "chollenbeck",
   "license": "MIT",
