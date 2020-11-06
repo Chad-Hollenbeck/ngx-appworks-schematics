@@ -4,6 +4,7 @@ import { I<%= classify(fileName) %> } from '../models/<%= dasherize(fileName) %>
 import { <%= classify(fileName) %>Service } from '../services/<%= dasherize(fileName) %>.service';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { APP_ROUTE_NAMES } from '@app/app.routes.names';
+import { AppService } from '@app/app.service';
 
 
 @Component({
@@ -66,7 +67,7 @@ export class <%= classify(fileName) %>ManageComponent implements OnInit {
   }
 
   onSave(id: number){
-    this.router.navigate(['/', APP_ROUTE_NAMES.<%= classify(moduleName).toUpperCase() %>]);
+    this.router.navigate(['/', APP_ROUTE_NAMES.<%= classify(moduleName).toUpperCase() %>, id]);
   }
 
 

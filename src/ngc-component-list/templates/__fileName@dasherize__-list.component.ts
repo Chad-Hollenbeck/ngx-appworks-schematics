@@ -3,6 +3,7 @@ import { AppService } from '@app/app.service';
 import { I<%= classify(fileName) %> } from '../models/<%= dasherize(fileName) %>.model';
 import { <%= classify(fileName) %>Service } from '../services/<%= dasherize(fileName) %>.service';
 import { first } from 'rxjs/operators';
+import { TableUtilityService } from '@app/shared/+utilities/services/table-utility.service';
 
 @Component({
   selector: 'app-<%= dasherize(fileName) %>-list',

@@ -1,13 +1,11 @@
 
-import { Component, OnInit, Input, EventEmitter } from '@angular/core';
-import { AppService } from '@app/app.service';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { APP_ROUTE_NAMES } from '@app/app.routes.names';
 import { <%= classify(fileName) %>Service } from '../services/<%= dasherize(fileName) %>.service';
 import { I<%= classify(fileName) %> } from '../models/<%= dasherize(fileName) %>.model';
-
+import { FormUtilityService } from '@app/shared/+utilities/services/form-utility.service';
 @Component({
   selector: 'app-<%= dasherize(fileName) %>-form',
   templateUrl: './<%= dasherize(fileName) %>-form.component.html',

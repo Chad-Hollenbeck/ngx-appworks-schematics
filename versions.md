@@ -1,9 +1,13 @@
 ## Version Log
 
+### 3.10.0 -> 3.10.1
+- Fixed a handful of missing imports for manage and list views
+- Fixed linter errors for components and routing.
+
 ### 3.9.x -> 3.10.0
 - Patched typo with hyphenated module names on routing files
-- Renamed model to interface for continuity
 - Renamed IBaseModelVM to IBaseModel for continuity
+- Renamed ngc:model to ngc:interface
 
 ### 3.7.x -> 3.9.0
 - Added event emitters to form/manage features for propogated updates

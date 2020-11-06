@@ -37,11 +37,11 @@ export function ngcRouting(_options: ModuleOptions): Rule {
       const content = routingBuffer.toString();
       // Define appended content
       const appendedContent =
-        "  {\n" +
-        "    path: APP_ROUTE_NAMES." + _options.moduleName.replace('-', '').toUpperCase() + ",\n" +
-        "    component: Layout2AdminComponent,\n" +
-        "    children: [\n" +
-        "      { path: '', loadChildren: () => import('./+" + _options.moduleName + "/" + _options.moduleName + ".module').then(m => m." + classify(_options.moduleName) + "Module) },\n" + "    ]\n  },\n" + TAGS.appRoute
+        "{\n" +
+        "  path: APP_ROUTE_NAMES." + _options.moduleName.replace('-', '').toUpperCase() + ",\n" +
+        "  component: Layout2AdminComponent,\n" +
+        "  children: [\n" +
+        "    { path: '', loadChildren: () => import('./+" + _options.moduleName + "/" + _options.moduleName + ".module').then(m => m." + classify(_options.moduleName) + "Module) },\n" + "    ]\n  },\n" + TAGS.appRoute
 
       let newContent = content.replace(TAGS.appRoute, appendedContent);
 
@@ -58,7 +58,7 @@ export function ngcRouting(_options: ModuleOptions): Rule {
       const routePathSplitStr = "}";
 
       // Define appended content
-      const appendedContent = "  " + _options.moduleName.replace('-', '').toUpperCase() + ": '" + _options.moduleName + "',\n" + routePathSplitStr;
+      const appendedContent = "  " + _options.moduleName.replace('-', '').toUpperCase() + ": '" + _options.moduleName + "',\n" + routePathSplitStr + ';';
 
       let newContent = '';
       // Register component with route with default name
