@@ -12,6 +12,7 @@
     "ngc:form:promise": "schematics .:component-form-promise --debug=false --",
     "ngc:form:sub": "schematics .:component-form-subscription --debug=false --",
     "ngc:component": "schematics .:component --debug=false --",
+    "ngc:component:export": "schematics .:component-export --debug=false --",
     "ngc:component:list": "schematics .:component-list --debug=false --",
     "ngc:component:manage": "schematics .:component-manage --debug=false --",
     "ngc:feature:http": "schematics .:feature-http --debug=false --",

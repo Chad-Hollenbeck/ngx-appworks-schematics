@@ -16,6 +16,11 @@
       "factory": "./ngc-component/index#ngcComponent",
       "schema": "./schema/component.json"
     },
+    "component-export": {
+      "description": "A default component exported.",
+      "factory": "./ngc-component-export/index#ngcComponentExport",
+      "schema": "./schema/component.json"
+    },
     "component-list": {
       "description": "A list component w/ table subcomponent.",
       "factory": "./ngc-component-list/index#ngcComponentList",

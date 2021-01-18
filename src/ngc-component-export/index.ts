@@ -6,7 +6,7 @@ import { ComponentOptions } from '../shared/component.params';
 
 // You don't have to export the function as default. You can also have more than one rule factory
 // per file.
-export function ngcComponent(options: ComponentOptions): Rule {
+export function ngcComponentExport(options: ComponentOptions): Rule {
   return chain([
     (tree: Tree, _context: SchematicContext) => {
       // Default file path
@@ -15,7 +15,7 @@ export function ngcComponent(options: ComponentOptions): Rule {
 
       // Module and Component names formatted with proper prefix
       const moduleName = (options.moduleName.substr(0, 1) == "+") ? options.moduleName : '+' + options.moduleName;
-      const prefix = '+';
+      const prefix = '_';
 
       const componentName = prefix + options.fileName;
 
@@ -44,7 +44,7 @@ export function ngcComponent(options: ComponentOptions): Rule {
         // Create new content snippets
         const componentClassImport = "import { " + classify(options.fileName) + "Component } from '../+" + options.fileName + "/" + options.fileName + ".component';\n  " + TAGS.componentImport;
 
-        const componentRoute = "{ path: " + options.moduleName.toUpperCase() + "_ROUTE_NAMES." + camelize(options.fileName).toUpperCase() + ", component: " + classify(options.fileName) + "Component },\n  " + TAGS.componentRoute;
+        const componentRoute = "{ path: " + options.moduleName.replace('-', '').toUpperCase() + "_ROUTE_NAMES." + camelize(options.fileName).toUpperCase() + ", component: " + classify(options.fileName) + "Component },\n  " + TAGS.componentRoute;
 
 
         // Replace overwrite tags
@@ -68,11 +68,14 @@ export function ngcComponent(options: ComponentOptions): Rule {
 
         const componentRoute = "{ path: " + options.moduleName.replace('-', '').toUpperCase() + "_ROUTE_NAMES." + camelize(options.fileName).toUpperCase() + ", component: " + classify(options.fileName) + "Component },\n  " + TAGS.componentRoute;
 
+        const componentExport = classify(options.fileName) + "Component,\n  " + TAGS.moduleExport;
+
         const moduleComponentDeclaration = classify(options.fileName) + "Component,\n  " + TAGS.componentDeclaration;
 
         // Replace overwrite tags
         let newContent = content
           .replace(TAGS.componentImport, componentClassImport)
+          .replace(TAGS.moduleExport, componentExport)
           .replace(TAGS.componentRoute, componentRoute)
           .replace(TAGS.componentDeclaration, moduleComponentDeclaration);
 

@@ -24,7 +24,6 @@
     }
   },
   "required": [
-    "moduleName",
-    "fileName"
+    "moduleName"
   ]
 }

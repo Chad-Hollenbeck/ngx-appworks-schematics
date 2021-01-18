@@ -10,6 +10,7 @@ export function ngcFeatureFirebase(options: ComponentOptions): Rule {
 
     // Default file path
     const defaultProjectPath = 'src/app';
+    options.fileName = options.fileName || options.moduleName;
 
     // Module and Component names formatted with '+'
     const moduleName = (options.moduleName.substr(0, 1) == "+") ? options.moduleName : '+' + options.moduleName;
