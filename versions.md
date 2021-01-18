@@ -1,5 +1,9 @@
 ## Version Log
 
+### 3.10.x -> 3.11.0
+- Fixed base component stynax for module registration
+- Added exportable base component for exported widgets.
+
 ### 3.10.0 -> 3.10.1
 - Fixed a handful of missing imports for manage and list views
 - Fixed linter errors for components and routing.
