@@ -26,6 +26,7 @@ export class <%= classify(fileName) %>ManageComponent implements OnInit {
 
   constructor(private appService: AppService, private toastr: ToastrService, private <%= camelize(fileName) %>Service: <%= classify(fileName) %>Service, private activeRoute: ActivatedRoute, private router: Router) {
     this.appService.pageTitle = '<%= classify(fileName) %> Manage';
+    this.loading = true;
   }
   ngOnInit() {
     this.activeRoute.paramMap.subscribe(

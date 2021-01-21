@@ -1,5 +1,8 @@
 ## Version Log
 
+### 3.11.x -> 3.12.0
+- Added NgBlockUI directive for spinner/loading controls on component list and manage controls.
+
 ### 3.10.x -> 3.11.0
 - Fixed base component stynax for module registration
 - Added exportable base component for exported widgets.

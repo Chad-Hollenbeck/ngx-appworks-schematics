@@ -1,8 +1,13 @@
 <h4 class="d-flex justify-content-between align-items-center w-100 font-weight-bold py-3 mb-4">
-  <div><%= classify(fileName) %></div>
+  <div>
+    <%= classify(fileName)
+        %>
+  </div>
   <a [routerLink]="['/', '<%= dasherize(fileName) %>', 'new']"
      class="btn btn-primary rounded-pill d-block"><span class="ion ion-md-add"></span>&nbsp; Create
-    <%= classify(fileName) %></a>
+    <%= classify(fileName)
+        %>
+  </a>
 </h4>
 
 <!-- Filters -->
@@ -40,70 +45,75 @@
   </div>
 </div> -->
 <!-- / Filters -->
+<app-block-ui [show]="loading">
 
-<div class="card">
-  <!-- Table controls -->
-  <div class="card-body">
+  <div class="card">
+    <!-- Table controls -->
+    <div class="card-body">
 
-    <div class="row">
-      <div class="col">
-        Per page: &nbsp;
-        <select [(ngModel)]="perPage"
-                (change)="update()"
-                class="custom-select custom-select-sm d-inline-block w-auto">
-          <option *ngFor="let limit of [20, 30, 40, 50]"
-                  [ngValue]="limit">{{limit}}</option>
-        </select>
+      <div class="row">
+        <div class="col">
+          Per page: &nbsp;
+          <select [(ngModel)]="perPage"
+                  (change)="update()"
+                  class="custom-select custom-select-sm d-inline-block w-auto">
+            <option *ngFor="let limit of [20, 30, 40, 50]"
+                    [ngValue]="limit">{{limit}}</option>
+          </select>
+        </div>
+        <div class="col">
+          <input type="text"
+                 [(ngModel)]="filterVal"
+                 (input)="currentPage = 1; update()"
+                 class="form-control form-control-sm d-inline-block w-auto float-sm-right"
+                 placeholder="Search...">
+        </div>
       </div>
-      <div class="col">
-        <input type="text"
-               [(ngModel)]="filterVal"
-               (input)="currentPage = 1; update()"
-               class="form-control form-control-sm d-inline-block w-auto float-sm-right"
-               placeholder="Search...">
+
+    </div>
+    <!-- / Table controls -->
+
+    <!-- Table -->
+    <div class="card-body py-0"
+         *ngIf="!loading">
+      <hr class="border-light m-0">
+      <div class="table-responsive">
+        <app-<%= dasherize(fileName)
+                 %>-table [items]="displayedItems"
+          classNames="table-striped table-bordered card-table">
+        </app-<%= dasherize(fileName)
+                  %>-table>
       </div>
     </div>
+    <!-- /Table -->
 
-  </div>
-  <!-- / Table controls -->
-
-  <!-- Table -->
-  <div class="card-body py-0" *ngIf="!loading">
-    <hr class="border-light m-0">
-    <div class="table-responsive">
-      <app-<%= dasherize(fileName) %>-table [items]="displayedItems"
-                                            classNames="table-striped table-bordered card-table">
-      </app-<%= dasherize(fileName) %>-table>
+    <!-- Loading -->
+    <div class="card-body py-0 text-center"
+         *ngIf="loading">
+      <app-spinner [show]="loading"
+                   id="user-loading"></app-spinner>
     </div>
-  </div>
-  <!-- /Table -->
+    <!-- /Loading -->
 
-  <!-- Loading -->
-  <div class="card-body py-0 text-center"
-       *ngIf="loading">
-    <app-spinner [show]="loading"
-                 id="user-loading"></app-spinner>
-  </div>
-  <!-- /Loading -->
+    <!-- Pagination -->
+    <div class="card-body py-0">
 
-  <!-- Pagination -->
-  <div class="card-body py-0">
-
-    <div class="row">
-      <div class="col-sm text-sm-left text-center pt-3">
-        <span class="text-muted"
-              *ngIf="totalItems">Page {{ currentPage }} of {{ totalPages }}</span>
+      <div class="row">
+        <div class="col-sm text-sm-left text-center pt-3">
+          <span class="text-muted"
+                *ngIf="totalItems">Page {{ currentPage }} of {{ totalPages }}</span>
+        </div>
+        <div class="col-sm pt-3">
+          <ngb-pagination [collectionSize]="totalItems"
+                          [pageSize]="perPage"
+                          [(page)]="currentPage"
+                          (pageChange)="update()"
+                          size="sm"
+                          class="d-flex justify-content-center justify-content-sm-end m-0"></ngb-pagination>
+        </div>
       </div>
-      <div class="col-sm pt-3">
-        <ngb-pagination [collectionSize]="totalItems"
-                        [pageSize]="perPage"
-                        [(page)]="currentPage"
-                        (pageChange)="update()"
-                        size="sm"
-                        class="d-flex justify-content-center justify-content-sm-end m-0"></ngb-pagination>
-      </div>
+
     </div>
-
+    <!-- / Pagination -->
   </div>
-  <!-- / Pagination -->
-</div>
+</app-block-ui>

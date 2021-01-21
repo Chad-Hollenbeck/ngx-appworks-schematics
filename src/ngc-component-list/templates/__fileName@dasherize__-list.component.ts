@@ -27,6 +27,7 @@ export class <%= classify(fileName) %>ListComponent implements OnInit {
 
   constructor(private appService: AppService, private tableUtilityService: TableUtilityService, private <%= camelize(fileName) %>Service: <%= classify(fileName) %>Service) {
     this.appService.pageTitle = '<%= classify(fileName) %> List';
+    this.loading = true;
   }
 
   ngOnInit() {
@@ -37,7 +38,6 @@ export class <%= classify(fileName) %>ListComponent implements OnInit {
         this.update();
       }
     );
-    this.loading = false;
   }
 
   update() {
@@ -45,6 +45,7 @@ export class <%= classify(fileName) %>ListComponent implements OnInit {
 
     this.totalItems = this.allItems.length;
     this.totalPages = this.tableUtilityService.getTotalPages(this.totalItems, this.perPage);
+    this.loading = false;
 
   }
 
