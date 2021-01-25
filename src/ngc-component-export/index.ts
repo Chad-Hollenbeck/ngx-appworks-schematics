@@ -35,14 +35,14 @@ export function ngcComponentExport(options: ComponentOptions): Rule {
       ]);
 
       //* Add route to feature routing module
-      const routeModuleFileName = options.moduleName + '.routes.module.ts';
+     /*  const routeModuleFileName = options.moduleName + '.routes.module.ts';
       const routeModuleBuffer = tree.read(modulePath + '/routes/' + routeModuleFileName);
 
       if (routeModuleBuffer != null) {
         const content = routeModuleBuffer.toString();
 
         // Create new content snippets
-        const componentClassImport = "import { " + classify(options.fileName) + "Component } from '../+" + options.fileName + "/" + options.fileName + ".component';\n  " + TAGS.componentImport;
+        const componentClassImport = "import { " + classify(options.fileName) + "Component } from '../_" + options.fileName + "/" + options.fileName + ".component';\n  " + TAGS.componentImport;
 
         const componentRoute = "{ path: " + options.moduleName.replace('-', '').toUpperCase() + "_ROUTE_NAMES." + camelize(options.fileName).toUpperCase() + ", component: " + classify(options.fileName) + "Component },\n  " + TAGS.componentRoute;
 
@@ -54,7 +54,7 @@ export function ngcComponentExport(options: ComponentOptions): Rule {
 
 
         tree.overwrite(modulePath + '/routes/' + routeModuleFileName, newContent);
-      }
+      } */
 
       //* Register component with feature module
       const moduleFileName = options.moduleName + '.module.ts';
@@ -78,11 +78,6 @@ export function ngcComponentExport(options: ComponentOptions): Rule {
           .replace(TAGS.moduleExport, componentExport)
           .replace(TAGS.componentRoute, componentRoute)
           .replace(TAGS.componentDeclaration, moduleComponentDeclaration);
-
-        // if (options.export) {
-        //   const moduleComponentExport = classify(options.fileName) + "Component,\n  " + TAGS.moduleExport;
-        //   newContent = newContent.replace(TAGS.moduleExport, moduleComponentExport);
-        // }
 
         tree.overwrite(modulePath + '/' + moduleFileName, newContent);
       }
