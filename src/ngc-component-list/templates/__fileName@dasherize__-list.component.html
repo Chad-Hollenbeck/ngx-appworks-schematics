@@ -1,48 +1,35 @@
 <h4 class="d-flex justify-content-between align-items-center w-100 font-weight-bold py-3 mb-4">
   <div>
-    <%= classify(fileName) %>
+    <%= classify(fileName)  %>
   </div>
   <a [routerLink]="['/', '<%= dasherize(fileName) %>', 'new']"
      class="btn btn-primary rounded-pill d-block"><span class="ion ion-md-add"></span>&nbsp; Create
-    <%= classify(fileName) %>
+    <%= classify(fileName)  %>
   </a>
 </h4>
 
-<!-- Filters -->
-<!-- <div class="ui-bordered px-4 pt-4 mb-4">
+<!--#region Filters -->
+<div class="ui-bordered px-4 pt-4 mb-4">
   <div class="form-row align-items-center">
-    <div class="col-md mb-4">
-      <label class="form-label">Verified</label>
-      <select class="custom-select" name="filterVerified"
-              [(ngModel)]="filterVerified">
-        <option *ngFor="let item of ['Any', 'Yes', 'No']"
-                [value]="item">{{item}}</option>
-      </select>
-    </div>
-    <div class="col-md mb-4">
-      <label class="form-label">Role</label>
-      <select class="custom-select"name="filterRole"
-              [(ngModel)]="filterRole">
-        <option *ngFor="let item of ['Any', 'User', 'Author', 'Staff', 'Admin']"
-                [value]="item">{{item}}</option>
-      </select>
-    </div>
-    <div class="col-md mb-4">
+    <div class="col-md-3 mb-4">
       <label class="form-label">Status</label>
-      <select class="custom-select"name="filterStatus"
-              [(ngModel)]="filterStatus">
-        <option *ngFor="let item of ['Any', 'Active', 'Banned', 'Deleted']"
-                [value]="item">{{item}}</option>
+      <select class="custom-select"
+              name="filterStatus"
+              (change)="loadData"
+              [(ngModel)]="filterStatusValue">
+        <option *ngFor="let item of filterStatusOptions"
+                [ngValue]="item.value">{{item.key}}</option>
       </select>
     </div>
-    <div class="col-md col-xl-2 mb-4">
-      <label class="form-label d-none d-md-block">&nbsp;</label>
-      <button type="button"
-              class="btn btn-secondary btn-block">Show</button>
-    </div>
+    <!-- <div class="col-md-3 text-right offset-6">
+      <button class="btn btn-secondary btn-block"
+              type="button"
+              (click)="loadData()">Show</button>
+    </div> -->
   </div>
-</div> -->
-<!-- / Filters -->
+</div>
+<!--#endregion -->
+
 <app-block-ui [show]="loading">
 
   <div class="card">
@@ -76,9 +63,13 @@
          *ngIf="!loading">
       <hr class="border-light m-0">
       <div class="table-responsive">
-        <app-<%= dasherize(fileName) %>-table [items]="displayedItems"
+        <app-<%= dasherize(fileName) %>-table
+          [items]="displayedItems"
+          (onActivate)="onActivate($event)"
+          (onArchive)="onArchive($event)"
           classNames="table-striped table-bordered card-table">
-        </app-<%= dasherize(fileName) %>-table>
+        </app-<%= dasherize(fileName)
+                  %>-table>
       </div>
     </div>
     <!-- /Table -->

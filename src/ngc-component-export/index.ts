@@ -44,7 +44,7 @@ export function ngcComponentExport(options: ComponentOptions): Rule {
         // Create new content snippets
         const componentClassImport = "import { " + classify(options.fileName) + "Component } from '../_" + options.fileName + "/" + options.fileName + ".component';\n  " + TAGS.componentImport;
 
-        const componentRoute = "{ path: " + options.moduleName.replace('-', '').toUpperCase() + "_ROUTE_NAMES." + camelize(options.fileName).toUpperCase() + ", component: " + classify(options.fileName) + "Component },\n  " + TAGS.componentRoute;
+        const componentRoute = "{ path: " + options.moduleName.replace(/-/g, '_'.toUpperCase() + "_ROUTE_NAMES." + camelize(options.fileName).toUpperCase() + ", component: " + classify(options.fileName) + "Component },\n  " + TAGS.componentRoute;
 
 
         // Replace overwrite tags
@@ -66,7 +66,7 @@ export function ngcComponentExport(options: ComponentOptions): Rule {
         // Create new content snippets
         const componentClassImport = "import { " + classify(options.fileName) + "Component } from './" + prefix + options.fileName + "/" + options.fileName + ".component';\n  " + TAGS.componentImport;
 
-        const componentRoute = "{ path: " + options.moduleName.replace('-', '').toUpperCase() + "_ROUTE_NAMES." + camelize(options.fileName).toUpperCase() + ", component: " + classify(options.fileName) + "Component },\n  " + TAGS.componentRoute;
+        const componentRoute = "{ path: " + options.moduleName.replace(/-/g, '_').toUpperCase() + "_ROUTE_NAMES." + camelize(options.fileName).toUpperCase() + ", component: " + classify(options.fileName) + "Component },\n  " + TAGS.componentRoute;
 
         const componentExport = classify(options.fileName) + "Component,\n  " + TAGS.moduleExport;
 
