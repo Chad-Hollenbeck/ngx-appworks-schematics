@@ -21,14 +21,24 @@
       "factory": "./ngc-component-export/index#ngcComponentExport",
       "schema": "./schema/component.json"
     },
-    "component-list": {
+    "component-list-firebase": {
       "description": "A list component w/ table subcomponent.",
-      "factory": "./ngc-component-list/index#ngcComponentList",
+      "factory": "./ngc-component-list-firebase/index#ngcComponentListFirebase",
       "schema": "./schema/component.json"
     },
-    "component-manage": {
+    "component-list-http": {
+      "description": "A list component w/ table subcomponent.",
+      "factory": "./ngc-component-list-http/index#ngcComponentListHttp",
+      "schema": "./schema/component.json"
+    },
+    "component-manage-firebase": {
       "description": "A detail component w/ form subcomponent.",
-      "factory": "./ngc-component-manage/index#ngcComponentManage",
+      "factory": "./ngc-component-manage-firebase/index#ngcComponentManageFirebase",
+      "schema": "./schema/component.json"
+    },
+    "component-manage-http": {
+      "description": "A detail component w/ form subcomponent.",
+      "factory": "./ngc-component-manage-http/index#ngcComponentManageHttp",
       "schema": "./schema/component.json"
     },
     "component-form-subscription": {

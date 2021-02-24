@@ -6,7 +6,7 @@ import { ComponentOptions } from '../shared/component.params';
 
 // You don't have to export the function as default. You can also have more than one rule factory
 // per file.
-export function ngcComponentManage(options: ComponentOptions): Rule {
+export function ngcComponentManageHttp(options: ComponentOptions): Rule {
   return chain([
     (tree: Tree, _context: SchematicContext) => {
       // Default file path

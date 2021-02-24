@@ -30,8 +30,8 @@ export function ngcFeatureFirebase(options: ComponentOptions): Rule {
       moduleBuffer != null ? noop() : schematic('module', moduleOptions),
       schematic('interface', componentOptions),
       schematic('service-firebase', componentOptions),
-      schematic('component-list', componentOptions),
-      schematic('component-manage', componentOptions),
+      schematic('component-list-firebase', componentOptions),
+      schematic('component-manage-firebase', componentOptions),
     ]);
 
     return rule(tree, _context);

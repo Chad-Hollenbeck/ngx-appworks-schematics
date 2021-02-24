@@ -30,8 +30,8 @@ export function ngcFeatureHttp(options: ComponentOptions): Rule {
       moduleBuffer != null ? noop() : schematic('module', moduleOptions),
       schematic('interface', componentOptions),
       schematic('service-http', componentOptions),
-      schematic('component-list', componentOptions),
-      schematic('component-manage', componentOptions),
+      schematic('component-list-http', componentOptions),
+      schematic('component-manage-http', componentOptions),
     ]);
 
     return rule(tree, _context);
