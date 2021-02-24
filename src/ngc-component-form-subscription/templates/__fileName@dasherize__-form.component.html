@@ -5,6 +5,8 @@
       <div class="form-group">
         <label class="form-label">ID</label>
         <input formControlName="id" type="text" class="form-control">
+        <small class="d-block text-danger"
+               *ngIf="detailForm.get('id').invalid">{{getControlError('id')}}</small>
       </div>
     </div>
   </div>

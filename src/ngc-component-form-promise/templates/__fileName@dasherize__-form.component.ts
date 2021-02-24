@@ -78,5 +78,8 @@ export class <%= classify(fileName) %>FormComponent implements OnInit {
     );
   }
 
+  getControlError(name: string): string {
+    return this.formUtilityService.getControlError(this.detailForm, name);
+  }
 
 }

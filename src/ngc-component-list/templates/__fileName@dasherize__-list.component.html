@@ -68,19 +68,11 @@
           (onActivate)="onActivate($event)"
           (onArchive)="onArchive($event)"
           classNames="table-striped table-bordered card-table">
-        </app-<%= dasherize(fileName)
-                  %>-table>
+        </app-<%= dasherize(fileName) %>-table>
       </div>
     </div>
     <!-- /Table -->
 
-    <!-- Loading -->
-    <div class="card-body py-0 text-center"
-         *ngIf="loading">
-      <app-spinner [show]="loading"
-                   id="user-loading"></app-spinner>
-    </div>
-    <!-- /Loading -->
 
     <!-- Pagination -->
     <div class="card-body py-0">
