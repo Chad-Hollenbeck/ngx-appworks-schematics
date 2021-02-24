@@ -40,6 +40,7 @@ export function ngcRouting(_options: ModuleOptions): Rule {
         "{\n" +
         "  path: APP_ROUTE_NAMES." + _options.moduleName.replace(/-/g, '_').toUpperCase() + ",\n" +
         "  component: Layout2AdminComponent,\n" +
+        "  canActivate: [AngularFireAuthGuard], data: { authGuardPipe: GUARD_PIPES.redirectUnauthorizedToLogin }" +
         "  children: [\n" +
         "    { path: '', loadChildren: () => import('./+" + _options.moduleName + "/" + _options.moduleName + ".module').then(m => m." + classify(_options.moduleName) + "Module) },\n" + "    ]\n  },\n" + TAGS.appRoute
 

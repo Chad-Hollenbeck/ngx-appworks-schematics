@@ -1,5 +1,14 @@
 ## Version Log
 
+### 3.12.x -> 3.13.0
+- Removed all old spinner component stubs in form and table schematics
+- Split List and Manage schematics into HTTP and Firebase specific schematics.
+- Fixed hyphen replacement for multi-hyphen input to prevent semantic issues with Typescript Objects.
+- Moved colspan attribute from H3 to <td> on table schematics.
+- Added active status filter by default to table & list schematics.
+- Added reactive forms error helper function to all form schematics.
+- Added basic route guard with Firebase Guards for module level routes.
+
 ### 3.11.x -> 3.12.0
 - Added NgBlockUI directive for spinner/loading controls on component list and manage controls.
 
