@@ -1,6 +1,6 @@
 {
   "name": "@chollenbeck/ngc",
-  "version": "3.13.0",
+  "version": "3.14.0",
   "description": "Custom angular schematics for Angular 9 development w/ homebrew starter template.",
   "scripts": {
     "build": "rimraf ./src/app && tsc -p tsconfig.json",
