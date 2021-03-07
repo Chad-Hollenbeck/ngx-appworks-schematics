@@ -11,6 +11,6 @@ export class <%= classify(fileName) %>TableComponent {
   @Input() items: I<%= classify(fileName) %>[];
   @Input() classNames: string[];
 
-  @Output() onArchive = new EventEmitter <I<%= classify(fileName) %>>();
+  @Output() onRecover = new EventEmitter <I<%= classify(fileName) %>>();
   @Output() onActivate = new EventEmitter <I<%= classify(fileName) %>>();
 }

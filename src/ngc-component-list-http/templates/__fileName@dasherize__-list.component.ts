@@ -27,16 +27,22 @@ export class <%= classify(fileName) %>ListComponent implements OnInit {
   totalItems: number;
   totalPages: number;
 
+  sortByKey: string;
+  sortDesc: boolean;
+
   filterStatusValue: boolean;
   filterStatusOptions = ActiveFilterStatusOptions;
 
   constructor(private appService: AppService, private tableUtilityService: TableUtilityService, private <%= camelize(fileName) %>Service: <%= classify(fileName) %>Service) {
     this.appService.pageTitle = '<%= classify(fileName) %> List';
     this.loading = true;
+
+    this.sortByKey = 'id';
+    this.sortDesc = false;
   }
 
   ngOnInit() {
-    this.<%= camelize(fileName) %> Service.query([{ field: 'isActive', operator: '==', value: this.filterStatusValue }]).pipe(first()).subscribe(
+    this.<%= camelize(fileName) %>Service.query([{ field: 'isActive', operator: '==', value: this.filterStatusValue }]).pipe(first()).subscribe(
       (items) => {
         this.allItems = items;
 
@@ -46,7 +52,7 @@ export class <%= classify(fileName) %>ListComponent implements OnInit {
   }
 
   update() {
-    this.displayedItems = this.tableUtilityService.applyAllUpdates(this.allItems, this.filterVal, this.searchKeys, 'name', false, this.perPage, this.currentPage);
+    this.displayedItems = this.tableUtilityService.applyAllUpdates(this.allItems, this.filterVal, this.searchKeys, this.sortByKey, this.sortDesc, this.perPage, this.currentPage);
 
     this.totalItems = this.allItems.length;
     this.totalPages = this.tableUtilityService.getTotalPages(this.totalItems, this.perPage);

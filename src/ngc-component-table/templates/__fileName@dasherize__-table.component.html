@@ -17,7 +17,7 @@
                 (click)="onArchive.emit(item)"
                 *ngIf="item.isActive">Disable</button>
         <button class="btn btn-sm btn-outline-success"
-                (click)="onActivate.emit(item)"
+                (click)="onRecover.emit(item)"
                 *ngIf="!item.isActive">Activate</button>
       </td>
     </tr>

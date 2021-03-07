@@ -65,7 +65,7 @@
       <div class="table-responsive">
         <app-<%= dasherize(fileName) %>-table
           [items]="displayedItems"
-          (onActivate)="onActivate($event)"
+          (onRecover)="onRecover($event)"
           (onArchive)="onArchive($event)"
           classNames="table-striped table-bordered card-table">
         </app-<%= dasherize(fileName) %>-table>

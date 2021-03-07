@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { I<%= classify(fileName) %> } from '../models/<%= dasherize(fileName) %>.model';
+import { I<%= classify(fileName) %>, I<%= classify(fileName).toUpperCase() %>_DEFAULTS } from '../models/<%= dasherize(fileName) %>.model';
 import { <%= classify(fileName) %>Service } from '../services/<%= dasherize(fileName) %>.service';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { APP_ROUTE_NAMES } from '@app/app.routes.names';
@@ -28,6 +28,7 @@ export class <%= classify(fileName) %>ManageComponent implements OnInit {
     this.appService.pageTitle = '<%= classify(fileName) %> Manage';
     this.loading = true;
   }
+
   ngOnInit() {
     this.activeRoute.paramMap.subscribe(
       (value: ParamMap) => {
