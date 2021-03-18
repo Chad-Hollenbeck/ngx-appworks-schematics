@@ -65,11 +65,11 @@ export class <%= classify(fileName) %>ManageComponent implements OnInit {
   }
 
   changeTab(newVal: string) {
-    this.router.navigate(['/', APP_ROUTE_NAMES.<%= classify(moduleName).toUpperCase() %>, this.selectedId], { queryParams: { tab: newVal } });
+    this.router.navigate(['/', APP_ROUTE_NAMES.<%= classify(moduleName).replace(/-/g, '_').toUpperCase() %>, this.selectedId], { queryParams: { tab: newVal } });
   }
 
   onSave(id: string){
-    this.router.navigate(['/', APP_ROUTE_NAMES.<%= classify(moduleName).toUpperCase() %>, id]);
+    this.router.navigate(['/', APP_ROUTE_NAMES.<%= classify(moduleName).replace(/-/g, '_').toUpperCase() %>, id]);
   }
 
 

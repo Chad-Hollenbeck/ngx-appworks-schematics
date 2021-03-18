@@ -1,5 +1,5 @@
 
-import { Component, EventEmitter, Input} from '@angular/core';
+import { Component, EventEmitter, Input, Output} from '@angular/core';
 import { I<%= classify(fileName) %> } from '../models/<%= dasherize(fileName) %>.model';
 
 @Component({
@@ -9,8 +9,8 @@ import { I<%= classify(fileName) %> } from '../models/<%= dasherize(fileName) %>
 })
 export class <%= classify(fileName) %>TableComponent {
   @Input() items: I<%= classify(fileName) %>[];
-  @Input() classNames: string[];
+  @Input() classNames: string;
 
   @Output() onRecover = new EventEmitter <I<%= classify(fileName) %>>();
-  @Output() onActivate = new EventEmitter <I<%= classify(fileName) %>>();
+  @Output() onArchive = new EventEmitter <I<%= classify(fileName) %>>();
 }

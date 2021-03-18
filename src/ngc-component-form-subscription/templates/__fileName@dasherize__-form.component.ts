@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { first } from 'rxjs/internal/operators/first';import { <%= classify(fileName) %>Service } from '../services/<%= dasherize(fileName) %>.service';
 import { FormUtilityService } from '@app/shared/+utilities/services/form-utility.service';
-import { I<%= classify(fileName) %> } from '../models/<%= dasherize(fileName) %>.model';
+import { I<%= classify(fileName) %>, I<%= classify(fileName).toUpperCase() %>_DEFAULTS } from '../models/<%= dasherize(fileName) %>.model';
 
 @Component({
   selector: 'app-<%= dasherize(fileName) %>-form',
@@ -22,8 +22,8 @@ export class <%= classify(fileName) %>FormComponent implements OnInit {
   @Input() selectedItem: I<%= classify(fileName) %>;
   @Input() isNew: boolean;
 
-  @Output() onAdd: EventEmitter <number> = new EventEmitter();
-  @Output() onUpdate: EventEmitter <number> = new EventEmitter();
+  @Output() onAdd: EventEmitter <string> = new EventEmitter();
+  @Output() onUpdate: EventEmitter <string> = new EventEmitter();
 
 
   constructor(private formUtilityService: FormUtilityService, private <%= camelize(fileName) %>Service: <%= classify(fileName) %>Service, private router: Router, private toastr: ToastrService) {
@@ -71,7 +71,7 @@ export class <%= classify(fileName) %>FormComponent implements OnInit {
 
   update(data: I<%= classify(fileName) %>) {
     // Update
-    this.<%= camelize(fileName) %>Service.update(data).pipe(first()).subscribe(
+    this.<%= camelize(fileName) %>Service.update(data.id, data).pipe(first()).subscribe(
       () => {
         this.toastr.success("<%= classify(fileName) %> updated");
         this.onAdd.emit(data.id);

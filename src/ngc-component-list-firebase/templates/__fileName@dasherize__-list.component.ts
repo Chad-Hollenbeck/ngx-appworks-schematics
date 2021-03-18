@@ -41,6 +41,8 @@ export class <%= classify(fileName) %>ListComponent implements OnInit {
 
     this.sortByKey = 'id';
     this.sortDesc = false;
+
+    this.filterStatusValue = true;
   }
 
   ngOnInit() {
@@ -54,7 +56,7 @@ export class <%= classify(fileName) %>ListComponent implements OnInit {
   loadData() {
     this.buildQuery();
 
-    this.widgetService.query(this.queryList).then(
+    this.<%= camelize(fileName) %>Service.query(this.queryList).then(
       (items) => {
         this.allItems = items;
 
@@ -116,7 +118,7 @@ export class <%= classify(fileName) %>ListComponent implements OnInit {
    * firestore query.
    * ! Note all included params are AND not OR
    */
-  private buildQuery(): IFirestoreQueryParam[] {
+  private buildQuery(): void {
     this.queryList = [
       { field: 'isActive', operator: '==', value: this.filterStatusValue }
     ]
