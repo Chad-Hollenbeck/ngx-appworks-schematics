@@ -1,18 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { I<%= classify(fileName) %>, I<%= classify(fileName).toUpperCase() %>_DEFAULTS } from '../models/<%= dasherize(fileName) %>.model';
 import { <%= classify(fileName) %>Service } from '../services/<%= dasherize(fileName) %>.service';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { APP_ROUTE_NAMES } from '@app/app.routes.names';
 import { AppService } from '@app/app.service';
-
+import { ReplaySubject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-<%= dasherize(fileName)%>-manage',
   templateUrl: './<%= dasherize(fileName) %>-manage.component.html',
   styleUrls: ['./<%= dasherize(fileName) %>-manage.component.scss']
 })
-export class <%= classify(fileName) %>ManageComponent implements OnInit {
+export class <%= classify(fileName) %>ManageComponent implements OnInit, OnDestroy {
+  private destroyed$: ReplaySubject < boolean > = new ReplaySubject(1);
 
   loading: boolean;
   loadingDocuments: boolean;
@@ -30,7 +32,7 @@ export class <%= classify(fileName) %>ManageComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.activeRoute.paramMap.subscribe(
+    this.activeRoute.paramMap.pipe(takeUntil(this.destroyed$)).subscribe(
       (value: ParamMap) => {
         if (value.keys.length === 0) {
           this.toastr.error('No id found');
@@ -40,7 +42,7 @@ export class <%= classify(fileName) %>ManageComponent implements OnInit {
         this.isNew = (this.selectedId === 'new');
 
         if (!this.isNew) {
-          this.<%= camelize(fileName) %>Service.get(this.selectedId).subscribe(
+          this.<%= camelize(fileName) %> Service.get(this.selectedId).pipe(takeUntil(this.destroyed$)).subscribe(
             (item: I<%= classify(fileName) %>) => {
               this.selectedItem = item;
               this.loading = false;
@@ -53,7 +55,7 @@ export class <%= classify(fileName) %>ManageComponent implements OnInit {
     );
 
     // Check for query params for tab control
-    this.activeRoute.queryParamMap.subscribe(
+  this.activeRoute.queryParamMap.pipe(takeUntil(this.destroyed$)).subscribe(
       (value: ParamMap) => {
         if (value.get('tab')) {
           this.curTab = value.get('tab');

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AppService } from '@app/app.service';
 import { I<%= classify(fileName) %> } from '../models/<%= dasherize(fileName) %>.model';
 import { <%= classify(fileName) %>Service } from '../services/<%= dasherize(fileName) %>.service';
@@ -6,13 +6,17 @@ import { first } from 'rxjs/operators';
 import { TableUtilityService } from '@app/shared/+utilities/services/table-utility.service';
 import * as _ from 'lodash';
 import { ActiveFilterStatusOptions } from '@app/shared/constants/active-filter-options.const';
+import { ReplaySubject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-<%= dasherize(fileName) %>-list',
   templateUrl: './<%= dasherize(fileName) %>-list.component.html',
   styleUrls: ['./<%= dasherize(fileName) %>-list.component.scss']
 })
-export class <%= classify(fileName) %>ListComponent implements OnInit {
+export class <%= classify(fileName) %>ListComponent implements OnInit, OnDestroy {
+  private destroyed$: ReplaySubject < boolean > = new ReplaySubject(1);
 
   loading: boolean;
   allItems: I<%= classify(fileName) %>[];
@@ -49,6 +53,11 @@ export class <%= classify(fileName) %>ListComponent implements OnInit {
     this.loadData();
   }
 
+  ngOnDestroy() {
+    this.destroyed$.next(true);
+    this.destroyed$.complete();
+  }
+
 
   /**
    * Build query and search collection for results
@@ -56,7 +65,7 @@ export class <%= classify(fileName) %>ListComponent implements OnInit {
   loadData() {
     this.buildQuery();
 
-    this.<%= camelize(fileName) %>Service.query(this.queryList).then(
+    this.<%= camelize(fileName) %> Service.query(this.queryList).pipe(takeUntil(this.destroyed$)).subscribe(
       (items) => {
         this.allItems = items;
 

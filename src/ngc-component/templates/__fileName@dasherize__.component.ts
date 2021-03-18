@@ -1,13 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from '@app/app.service';
 import { ToastrService } from 'ngx-toastr';
+import { ReplaySubject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-<%= dasherize(fileName) %>',
   templateUrl: './<%= dasherize(fileName) %>.component.html',
   styleUrls: ['./<%= dasherize(fileName) %>.component.scss']
 })
-export class <%= classify(fileName) %>Component implements OnInit {
+export class <%= classify(fileName) %>Component implements OnInit, OnDestroy {
+  private destroyed$: ReplaySubject <boolean> = new ReplaySubject(1);
 
   loading: boolean;
 
@@ -18,6 +22,11 @@ export class <%= classify(fileName) %>Component implements OnInit {
 
   ngOnInit() {
     this.loading = true;
+  }
+
+  ngOnDestroy() {
+    this.destroyed$.next(true);
+    this.destroyed$.complete();
   }
 
 
