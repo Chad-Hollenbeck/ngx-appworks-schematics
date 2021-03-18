@@ -1,5 +1,14 @@
 ## Version Log
 
+### 3.14.x -> 3.15.0
+- Added subscription mgmt tools to list, manage, and default components.
+- bugfixes to a handful of inconsitencies between table, form, list, and component schematics.
+
+### 3.13.x -> 3.14.0
+- Added route guards to top level routing configuration for auth checks
+- Updated filtering and sorting for simpler firebase list components.
+- Updated Readme with new scripts in package.json
+
 ### 3.12.x -> 3.13.0
 - Removed all old spinner component stubs in form and table schematics
 - Split List and Manage schematics into HTTP and Firebase specific schematics.

@@ -10,6 +10,15 @@ Schematics included for both RESTful API and Google's Firebase platform. Both sc
 ## Issues
 Please submit any and all issues/enhancements to Github. I monitor the repo multiple times a week and usually respond to requests within a few days.
 
+## Versions
+Please use the following versions based on which AppWorks Core Template is being used.
+
+| AppWorks Core | NGC       |
+|---------------|-----------|
+| 1.6.0         | latest    |
+| 1.5.2         | <= 3.14.x |
+
+
 
 ## Installation
 This package is best used a dev dependency and can be installed via NPM with the following command:
