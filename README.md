@@ -13,10 +13,11 @@ Please submit any and all issues/enhancements to Github. I monitor the repo mult
 ## Versions
 Please use the following versions based on which AppWorks Core Template is being used.
 
-| AppWorks Core | NGC       |
-|---------------|-----------|
-| 1.6.0         | latest    |
-| 1.5.2         | <= 3.14.x |
+| AppWorks Core  | NGC       |
+|----------------|-----------|
+| 1.11.1         | 4.x.x     |
+| 1.11.0         | 3.15.x    |
+| 1.5.2          | <= 3.14.x |
 
 
 

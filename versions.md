@@ -1,5 +1,9 @@
 ## Version Log
 
+### 3.15.x -> 4.0.0
+- Altered firebase service to utilize ngZone for new observable based query format
+- Version increment to 4.0 since addition of ngZone is a breaking change for 3.15.x projects without correct Appworks base template version.
+
 ### 3.14.x -> 3.15.0
 - Added subscription mgmt tools to list, manage, and default components.
 - bugfixes to a handful of inconsitencies between table, form, list, and component schematics.
