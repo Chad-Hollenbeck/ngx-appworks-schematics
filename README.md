@@ -1,4 +1,4 @@
-# NGC Schematics
+# NGX Appworks Schematics
 
 ![Angular Version](https://img.shields.io/badge/Angular-v11.0.0-informational)
 
@@ -13,17 +13,21 @@ Please submit any and all issues/enhancements to Github. I monitor the repo mult
 ## Versions
 Please use the following versions based on which AppWorks Core Template is being used.
 
-| AppWorks Core  | NGC       |
+| AppWorks Core  | NGX       |
 |----------------|-----------|
 | 1.11.1         | 4.x.x     |
+
+### Depreciated
+Due to naming convention, previous schematics had to be renamed. Use @chollenbeck/ngc for v3.15 or lower
+| AppWorks Core  | NGC       |
+|----------------|-----------|
 | 1.11.0         | 3.15.x    |
 | 1.5.2          | <= 3.14.x |
 
 
-
 ## Installation
 This package is best used a dev dependency and can be installed via NPM with the following command:
-`npm install --save-dev @chollenbeck/ngc@latest`
+`npm install --save-dev @chollenbeck/ngx-appworks-schematics@latest`
 
 #### Recommended package.json scripts
 The double hash on the end of the script allows arguments to apply to the `ng g` action vs the `npm run` action. Add/Remove functions and rename as needed.

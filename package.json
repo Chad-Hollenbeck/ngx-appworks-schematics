@@ -1,7 +1,7 @@
 {
-  "name": "@chollenbeck/ngc",
+  "name": "@chollenbeck/ngx-appworks-schematics",
   "version": "4.0.0",
-  "description": "Custom angular schematics for Angular 11 development w/ homebrew starter template.",
+  "description": "Custom angular schematics for Angular 11 development w/ AppWorks starter template.",
   "scripts": {
     "build": "rimraf ./src/app && tsc -p tsconfig.json",
     "build:watch": "tsc -p tsconfig.json --watch",
@@ -44,10 +44,10 @@
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Chad-Hollenbeck/ngc-schematics.git"
+    "url": "git+https://github.com/Chad-Hollenbeck/ngx-appworks-schematics"
   },
   "bugs": {
-    "url": "https://github.com/Chad-Hollenbeck/ngc-schematics/issues"
+    "url": "https://github.com/Chad-Hollenbeck/ngx-appworks-schematics/issues"
   },
-  "homepage": "https://github.com/Chad-Hollenbeck/ngc-schematics#readme"
+  "homepage": "https://github.com/Chad-Hollenbeck/ngx-appworks-schematics#readme"
 }
