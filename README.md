@@ -11,11 +11,12 @@ Schematics included for both RESTful API and Google's Firebase platform. Both sc
 Please submit any and all issues/enhancements to Github. I monitor the repo multiple times a week and usually respond to requests within a few days.
 
 ## Versions
-Please use the following versions based on which AppWorks Core Template is being used.
+Please use the following versions based on which AppWorks Core Template is being used. If your current version is now explicitely shown, use the closest version number of the last digit that does not exceed your version. i.e. `11.160.2` should use `4.0.0`
 
-| AppWorks Core  | NGX       |
-|----------------|-----------|
-| 1.11.1         | 4.x.x     |
+|  AppWorks Core   | NGX       |
+|------------------|-----------|
+| 11.160.3         | 4.1.0     |
+| 11.160.1         | 4.0.0     |
 
 ### Depreciated
 Due to naming convention, previous schematics had to be renamed. Use @chollenbeck/ngc for v3.15 or lower

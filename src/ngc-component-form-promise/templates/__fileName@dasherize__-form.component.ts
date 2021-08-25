@@ -6,6 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { <%= classify(fileName) %>Service } from '../services/<%= dasherize(fileName) %>.service';
 import { I<%= classify(fileName) %> } from '../models/<%= dasherize(fileName) %>.model';
 import { FormUtilityService } from '@app/shared/+utilities/services/form-utility.service';
+
 @Component({
   selector: 'app-<%= dasherize(fileName) %>-form',
   templateUrl: './<%= dasherize(fileName) %>-form.component.html',
