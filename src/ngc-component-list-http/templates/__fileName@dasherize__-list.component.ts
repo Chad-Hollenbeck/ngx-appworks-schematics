@@ -33,7 +33,7 @@ export class <%= classify(fileName) %>ListComponent implements OnInit {
   filterStatusValue: boolean;
   filterStatusOptions = ActiveFilterStatusOptions;
 
-  constructor(private appService: AppService, private tableUtilityService: TableUtilityService, private <%= camelize(fileName) %>Service: <%= classify(fileName) %>Service) {
+  constructor(private appService: AppService, private tableUtilityService: TableUtilityService, private <%= camelize(fileName) %>Service: <%= classify(fileName) %>Service, private router: Router, private activatedRoute: ActivatedRoute) {
     this.appService.pageTitle = '<%= classify(fileName) %> List';
     this.loading = true;
 
@@ -42,6 +42,18 @@ export class <%= classify(fileName) %>ListComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    this.activatedRoute.queryParamMap.pipe(takeUntil(this.destroyed$)).subscribe((params) => {
+      if (params.has('status')) {
+        this.filterStatusValue = params.get('status') === '1';
+      }
+
+    this.loadData();
+    });
+
+  }
+
+  loadData(){
     this.<%= camelize(fileName) %>Service.query([{ field: 'isActive', operator: '==', value: this.filterStatusValue }]).pipe(first()).subscribe(
       (items) => {
         this.allItems = items;
@@ -51,13 +63,18 @@ export class <%= classify(fileName) %>ListComponent implements OnInit {
     );
   }
 
+   applyFilters() {
+    this.router.navigate(['/', APP_ROUTE_NAMES.DEFAULT], { queryParams: { status: (this.filterStatusValue) ? '1' : '0' }, queryParamsHandling: 'merge' });
+  }
+
   update() {
-    this.displayedItems = this.tableUtilityService.applyAllUpdates(this.allItems, this.filterVal, this.searchKeys, this.sortByKey, this.sortDesc, this.perPage, this.currentPage);
+    const vm = this.tableUtilityService.applyAllUpdates(this.allItems, this.filterVal, this.searchKeys, this.sortByKey, this.sortDesc, this.perPage, this.currentPage);
 
-    this.totalItems = this.allItems.length;
-    this.totalPages = this.tableUtilityService.getTotalPages(this.totalItems, this.perPage);
+    this.displayedItems = vm.results;
+    this.totalItems = vm.totalItems;
+    this.totalPages = vm.totalPages;
+
     this.loading = false;
-
   }
 
   onArchive(item: I<%= classify(fileName) %>) {

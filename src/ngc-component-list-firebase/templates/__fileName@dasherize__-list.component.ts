@@ -16,7 +16,7 @@ import { takeUntil } from 'rxjs/operators';
   styleUrls: ['./<%= dasherize(fileName) %>-list.component.scss']
 })
 export class <%= classify(fileName) %>ListComponent implements OnInit, OnDestroy {
-  private destroyed$: ReplaySubject < boolean > = new ReplaySubject(1);
+  private destroyed$: ReplaySubject <boolean> = new ReplaySubject(1);
 
   loading: boolean;
   allItems: I<%= classify(fileName) %>[];
@@ -39,7 +39,7 @@ export class <%= classify(fileName) %>ListComponent implements OnInit, OnDestroy
 
   queryList: IFirestoreQueryParam[];
 
-  constructor(private appService: AppService, private tableUtilityService: TableUtilityService, private <%= camelize(fileName) %>Service: <%= classify(fileName) %>Service) {
+  constructor(private appService: AppService, private tableUtilityService: TableUtilityService, private <%= camelize(fileName) %>Service: <%= classify(fileName) %>Service, private router: Router, private activatedRoute: ActivatedRoute) {
     this.appService.pageTitle = '<%= classify(fileName) %> List';
     this.loading = true;
 
@@ -50,7 +50,13 @@ export class <%= classify(fileName) %>ListComponent implements OnInit, OnDestroy
   }
 
   ngOnInit() {
-    this.loadData();
+    this.activatedRoute.queryParamMap.pipe(takeUntil(this.destroyed$)).subscribe((params) => {
+      if (params.has('status')) {
+        this.filterStatusValue = params.get('status') === '1';
+      }
+
+      this.loadData();
+    });
   }
 
   ngOnDestroy() {
@@ -74,16 +80,21 @@ export class <%= classify(fileName) %>ListComponent implements OnInit, OnDestroy
     );
   }
 
+  applyFilters() {
+    this.router.navigate(['/', APP_ROUTE_NAMES.DEFAULT], { queryParams: { status: (this.filterStatusValue) ? '1' : '0' }, queryParamsHandling: 'merge' });
+  }
+
   /**
    * Apply all table operations for filter, sorting, and paging.
    */
   update() {
-    this.displayedItems = this.tableUtilityService.applyAllUpdates(this.allItems, this.filterVal, this.searchKeys, this.sortByKey, this.sortDesc, this.perPage, this.currentPage);
+    const vm = this.tableUtilityService.applyAllUpdates(this.allItems, this.filterVal, this.searchKeys, this.sortByKey, this.sortDesc, this.perPage, this.currentPage);
 
-    this.totalItems = this.allItems.length;
-    this.totalPages = this.tableUtilityService.getTotalPages(this.totalItems, this.perPage);
+    this.displayedItems = vm.results;
+    this.totalItems = vm.totalItems;
+    this.totalPages = vm.totalPages;
+
     this.loading = false;
-
   }
 
   /**
