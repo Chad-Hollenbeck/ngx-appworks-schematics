@@ -6,9 +6,8 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AppService } from '@app/app.service';
 import { I<%= classify(fileName) %> } from '../models/<%= dasherize(fileName) %>.model';
 import { <%= classify(fileName) %>Service } from '../services/<%= dasherize(fileName) %>.service';
-import * as _ from 'lodash';
 import { ReplaySubject } from 'rxjs';
-import { takeUntil, first } from 'rxjs/operators';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-<%= dasherize(fileName)%>-manage',
@@ -57,16 +56,16 @@ export class <%= classify(fileName) %>ManageComponent implements OnInit, OnDestr
     );
 
     // Check for query params for tab control
-  this.activeRoute.queryParamMap.pipe(takeUntil(this.destroyed$)).subscribe(
-      (value: ParamMap) => {
-        if (value.get('tab')) {
-          this.curTab = value.get('tab');
-        } else {
-          this.curTab = 'general';
+    this.activeRoute.queryParamMap.pipe(takeUntil(this.destroyed$)).subscribe(
+        (value: ParamMap) => {
+          if (value.get('tab')) {
+            this.curTab = value.get('tab');
+          } else {
+            this.curTab = 'general';
+          }
         }
-      }
-    );
-  }
+      );
+    }
 
   changeTab(newVal: string) {
     this.router.navigate(['/', APP_ROUTE_NAMES.<%= classify(moduleName).replace(/-/g, '_').toUpperCase() %>, this.selectedId], { queryParams: { tab: newVal } });

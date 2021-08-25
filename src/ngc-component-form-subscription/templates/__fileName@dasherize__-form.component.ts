@@ -1,7 +1,6 @@
 
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { first } from 'rxjs/internal/operators/first';import { <%= classify(fileName) %>Service } from '../services/<%= dasherize(fileName) %>.service';
 import { FormUtilityService } from '@app/shared/+utilities/services/form-utility.service';
@@ -26,7 +25,7 @@ export class <%= classify(fileName) %>FormComponent implements OnInit {
   @Output() onUpdate: EventEmitter <string> = new EventEmitter();
 
 
-  constructor(private formUtilityService: FormUtilityService, private <%= camelize(fileName) %>Service: <%= classify(fileName) %>Service, private router: Router, private toastr: ToastrService) {
+  constructor(private formUtilityService: FormUtilityService, private <%= camelize(fileName) %>Service: <%= classify(fileName) %>Service, private toastr: ToastrService) {
 
     this.selectedItem = I<%= classify(fileName).toUpperCase() %>_DEFAULTS;
     this.detailForm = this.formUtilityService.buildFormGroup(this.selectedItem);
@@ -74,7 +73,7 @@ export class <%= classify(fileName) %>FormComponent implements OnInit {
     this.<%= camelize(fileName) %>Service.update(data.id, data).pipe(first()).subscribe(
       () => {
         this.toastr.success("<%= classify(fileName) %> updated");
-        this.onAdd.emit(data.id);
+        this.onUpdate.emit(data.id);
       }
     );
   }

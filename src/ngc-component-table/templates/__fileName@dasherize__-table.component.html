@@ -15,10 +15,10 @@
       <td class="align-middle">
         <button class="btn btn-sm btn-outline-danger"
                 (click)="onArchive.emit(item)"
-                *ngIf="item.isActive">Disable</button>
+                *ngIf="item.isActive">Archive</button>
         <button class="btn btn-sm btn-outline-success"
                 (click)="onRecover.emit(item)"
-                *ngIf="!item.isActive">Activate</button>
+                *ngIf="!item.isActive">Recover</button>
       </td>
     </tr>
     <tr *ngIf="items && items.length == 0">
