@@ -63,7 +63,7 @@ export class <%= classify(fileName) %>FormComponent implements OnInit {
   add(data: I<%= classify(fileName) %>) {
     this.<%= camelize(fileName) %>Service.add(data).then(
       (item) => {
-        this.toastr.success("<%= classify(fileName) %> saved");
+        this.toastr.success('<%= classify(fileName) %> saved');
         this.onAdd.emit(item.id);
       }
     );
@@ -73,7 +73,7 @@ export class <%= classify(fileName) %>FormComponent implements OnInit {
     // Update
     this.<%= camelize(fileName) %>Service.update(data).then(
       () => {
-        this.toastr.success("<%= classify(fileName) %> updated");
+        this.toastr.success('<%= classify(fileName) %> updated');
         this.onAdd.emit(data.id);
       }
     );

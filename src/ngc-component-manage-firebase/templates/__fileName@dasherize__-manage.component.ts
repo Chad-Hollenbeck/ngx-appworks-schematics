@@ -1,12 +1,14 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ToastrService } from 'ngx-toastr';
-import { I<%= classify(fileName) %>, I<%= classify(fileName).toUpperCase() %>_DEFAULTS } from '../models/<%= dasherize(fileName) %>.model';
-import { <%= classify(fileName) %>Service } from '../services/<%= dasherize(fileName) %>.service';
-import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { ActivatedRoute,ParamMap,Router } from '@angular/router';
 import { APP_ROUTE_NAMES } from '@app/app.routes.names';
+import { ToastrService } from 'ngx-toastr';
+
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AppService } from '@app/app.service';
+import { I<%= classify(fileName) %> } from '../models/<%= dasherize(fileName) %>.model';
+import { <%= classify(fileName) %>Service } from '../services/<%= dasherize(fileName) %>.service';
+import * as _ from 'lodash';
 import { ReplaySubject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { takeUntil, first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-<%= dasherize(fileName)%>-manage',
@@ -42,7 +44,7 @@ export class <%= classify(fileName) %>ManageComponent implements OnInit, OnDestr
         this.isNew = (this.selectedId === 'new');
 
         if (!this.isNew) {
-          this.<%= camelize(fileName) %> Service.get(this.selectedId).pipe(takeUntil(this.destroyed$)).subscribe(
+          this.<%= camelize(fileName) %>Service.get(this.selectedId).pipe(takeUntil(this.destroyed$)).subscribe(
             (item: I<%= classify(fileName) %>) => {
               this.selectedItem = item;
               this.loading = false;

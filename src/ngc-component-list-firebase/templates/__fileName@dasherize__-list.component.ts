@@ -2,12 +2,11 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AppService } from '@app/app.service';
 import { I<%= classify(fileName) %> } from '../models/<%= dasherize(fileName) %>.model';
 import { <%= classify(fileName) %>Service } from '../services/<%= dasherize(fileName) %>.service';
-import { first } from 'rxjs/operators';
 import { TableUtilityService } from '@app/shared/+utilities/services/table-utility.service';
 import * as _ from 'lodash';
 import { ActiveFilterStatusOptions } from '@app/shared/constants/active-filter-options.const';
 import { ReplaySubject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { takeUntil, first } from 'rxjs/operators';
 
 
 @Component({
@@ -71,7 +70,7 @@ export class <%= classify(fileName) %>ListComponent implements OnInit, OnDestroy
   loadData() {
     this.buildQuery();
 
-    this.<%= camelize(fileName) %> Service.query(this.queryList).pipe(takeUntil(this.destroyed$)).subscribe(
+    this.<%= camelize(fileName) %>Service.query(this.queryList).pipe(takeUntil(this.destroyed$)).subscribe(
       (items) => {
         this.allItems = items;
 
