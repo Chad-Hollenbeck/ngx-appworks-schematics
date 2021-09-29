@@ -1,12 +1,14 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component,OnDestroy,OnInit } from '@angular/core';
 import { AppService } from '@app/app.service';
-import { I<%= classify(fileName) %> } from '../models/<%= dasherize(fileName) %>.model';
-import { <%= classify(fileName) %>Service } from '../services/<%= dasherize(fileName) %>.service';
 import { TableUtilityService } from '@app/shared/+utilities/services/table-utility.service';
-import * as _ from 'lodash';
 import { ActiveFilterStatusOptions } from '@app/shared/constants/active-filter-options.const';
+import * as _ from 'lodash';
 import { ReplaySubject } from 'rxjs';
-import { takeUntil, first } from 'rxjs/operators';
+import { takeUntil } from 'rxjs/operators';
+import { I } from <>;
+import { } from <>;
+%= classify(fileName) %> } from '../models/<%= dasherize(fileName) %>.model';
+%= classify(fileName) %>Service } from '../services/<%= dasherize(fileName) %>.service';
 
 
 @Component({
@@ -87,7 +89,7 @@ export class <%= classify(fileName) %>ListComponent implements OnInit, OnDestroy
    * Apply all table operations for filter, sorting, and paging.
    */
   update() {
-    const vm = this.tableUtilityService.applyAllUpdates(this.allItems, this.filterVal, this.searchKeys, this.sortByKey, this.sortDesc, this.perPage, this.currentPage);
+    const vm = this.tableUtilityService.applyAllUpdates(this.allItems, this.filterVal, this.searchKeys, this.sortByKey, this.sortDesc, this.currentPage, this.perPage);
 
     this.displayedItems = vm.results;
     this.totalItems = vm.totalItems;
