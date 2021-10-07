@@ -77,6 +77,22 @@ export class <%= classify(fileName) %>ListComponent implements OnInit {
     this.loading = false;
   }
 
+
+  /**
+   * Apply sort changes when triggered.
+   */
+  onSortChange(key: string) {
+    if (key === this.sortByKey) {
+      this.sortDesc = !this.sortDesc;
+    } else {
+      this.sortByKey = key;
+      this.sortDesc = false;
+    }
+
+    this.update();
+  }
+
+
   onArchive(item: I<%= classify(fileName) %>) {
     const itemIndex = _.findIndex(this.allItems, item);
 

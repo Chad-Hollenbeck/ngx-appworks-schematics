@@ -1,3 +1,4 @@
+import { dasherize } from '@angular-devkit/core/src/utils/strings';
 import { Rule, SchematicContext, Tree, schematic, chain, noop } from '@angular-devkit/schematics';
 import { ComponentOptions } from '../shared/component.params';
 import { ModuleOptions } from '../shared/module-routing.model';
@@ -10,7 +11,8 @@ export function ngcFeatureFirebase(options: ComponentOptions): Rule {
 
     // Default file path
     const defaultProjectPath = 'src/app';
-    options.fileName = options.fileName || options.moduleName;
+    options.fileName = dasherize(options.fileName) || dasherize(options.moduleName);
+    options.moduleName = dasherize(options.moduleName);
 
     // Module and Component names formatted with '+'
     const moduleName = (options.moduleName.substr(0, 1) == "+") ? options.moduleName : '+' + options.moduleName;

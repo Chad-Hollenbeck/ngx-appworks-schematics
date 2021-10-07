@@ -1,5 +1,6 @@
-import { Rule, SchematicContext, Tree, url, apply, template, move, mergeWith } from '@angular-devkit/schematics';
 import { strings } from '@angular-devkit/core';
+import { dasherize } from '@angular-devkit/core/src/utils/strings';
+import { apply,mergeWith,move,Rule,SchematicContext,template,Tree,url } from '@angular-devkit/schematics';
 import { ServiceOptions } from '../shared/service.params';
 
 
@@ -9,7 +10,8 @@ export function ngcServiceHttp(options: ServiceOptions): Rule {
   return (tree: Tree, _context: SchematicContext) => {
     // Default file path
     const defaultProjectPath = 'src/app';
-    options.fileName = options.fileName || options.moduleName;
+    options.moduleName = dasherize(options.moduleName);
+    options.fileName = dasherize(options.fileName) || options.moduleName;
 
     // Module and Component names formatted with '+'
     const moduleName = (options.moduleName.substr(0, 1) == "+") ? options.moduleName : '+' + options.moduleName;

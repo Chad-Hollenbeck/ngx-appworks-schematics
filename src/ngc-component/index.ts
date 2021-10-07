@@ -1,6 +1,6 @@
 import { Rule, SchematicContext, Tree, chain, url, apply, template, move, mergeWith } from '@angular-devkit/schematics';
 import { strings } from '@angular-devkit/core';
-import { classify, camelize } from '@angular-devkit/core/src/utils/strings';
+import { classify, camelize, dasherize } from '@angular-devkit/core/src/utils/strings';
 import { TAGS } from '../shared/template-tags';
 import { ComponentOptions } from '../shared/component.params';
 
@@ -11,7 +11,8 @@ export function ngcComponent(options: ComponentOptions): Rule {
     (tree: Tree, _context: SchematicContext) => {
       // Default file path
       const defaultProjectPath = 'src/app';
-      options.fileName = options.fileName || options.moduleName;
+      options.fileName = dasherize(options.fileName) || dasherize(options.moduleName);
+      options.moduleName = dasherize(options.moduleName);
 
       // Module and Component names formatted with proper prefix
       const moduleName = (options.moduleName.substr(0, 1) == "+") ? options.moduleName : '+' + options.moduleName;
@@ -75,11 +76,6 @@ export function ngcComponent(options: ComponentOptions): Rule {
           .replace(TAGS.componentImport, componentClassImport)
           .replace(TAGS.componentRoute, componentRoute)
           .replace(TAGS.componentDeclaration, moduleComponentDeclaration);
-
-        // if (options.export) {
-        //   const moduleComponentExport = classify(options.fileName) + "Component,\n  " + TAGS.moduleExport;
-        //   newContent = newContent.replace(TAGS.moduleExport, moduleComponentExport);
-        // }
 
         tree.overwrite(modulePath + '/' + moduleFileName, newContent);
       }

@@ -67,6 +67,9 @@
           [items]="displayedItems"
           (onRecover)="onRecover($event)"
           (onArchive)="onArchive($event)"
+          (onSortChange)="onSortChange($event)"
+          [sortKey]="sortByKey"
+          [sortDesc]="sortDesc"
           classNames="table-striped table-bordered card-table">
         </app-<%= dasherize(fileName) %>-table>
       </div>

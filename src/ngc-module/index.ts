@@ -1,6 +1,7 @@
-import { Rule, SchematicContext, Tree, url, template, move, apply, mergeWith, schematic, chain, MergeStrategy } from '@angular-devkit/schematics';
-import { parseName } from '@schematics/angular/utility/parse-name';
 import { strings } from '@angular-devkit/core';
+import { dasherize } from '@angular-devkit/core/src/utils/strings';
+import { apply,chain,MergeStrategy,mergeWith,move,Rule,schematic,SchematicContext,template,Tree,url } from '@angular-devkit/schematics';
+import { parseName } from '@schematics/angular/utility/parse-name';
 import { ModuleOptions } from '../shared/module-routing.model';
 
 
@@ -9,6 +10,9 @@ import { ModuleOptions } from '../shared/module-routing.model';
 export function ngcModule(options: ModuleOptions): Rule {
   return (tree: Tree, _context: SchematicContext) => {
     const defaultProjectPath = 'src/app';
+    options.moduleName = dasherize(options.moduleName);
+
+
 
     const parsedPath = parseName(defaultProjectPath, options.moduleName);
 

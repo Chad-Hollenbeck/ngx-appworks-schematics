@@ -97,6 +97,20 @@ export class <%= classify(fileName) %>ListComponent implements OnInit, OnDestroy
   }
 
   /**
+   * Apply sort changes when triggered.
+   */
+  onSortChange(key: string) {
+    if (key === this.sortByKey) {
+      this.sortDesc = !this.sortDesc;
+    } else {
+      this.sortByKey = key;
+      this.sortDesc = false;
+    }
+
+    this.update();
+  }
+
+  /**
    * Archive a record by setting the isActive bool to false
    */
   onArchive(item: I<%= classify(fileName) %>) {

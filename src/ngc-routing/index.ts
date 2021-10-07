@@ -1,18 +1,19 @@
-import { Rule, SchematicContext, Tree, url, template, move, apply, mergeWith } from '@angular-devkit/schematics';
-import { parseName } from '@schematics/angular/utility/parse-name';
 import { strings } from '@angular-devkit/core';
-import { classify } from '@angular-devkit/core/src/utils/strings';
-import { TAGS } from '../shared/template-tags';
+import { classify,dasherize } from '@angular-devkit/core/src/utils/strings';
+import { apply,mergeWith,move,Rule,SchematicContext,template,Tree,url } from '@angular-devkit/schematics';
+import { parseName } from '@schematics/angular/utility/parse-name';
 import { ModuleOptions } from '../shared/module-routing.model';
+import { TAGS } from '../shared/template-tags';
 
 
 // You don't have to export the function as default. You can also have more than one rule factory
 // per file.
-export function ngcRouting(_options: ModuleOptions): Rule {
+export function ngcRouting(options: ModuleOptions): Rule {
   return (tree: Tree, _context: SchematicContext) => {
     const defaultProjectPath = 'src/app';
+    options.moduleName = dasherize(options.moduleName);
 
-    const parsedPath = parseName(defaultProjectPath, _options.moduleName);
+    const parsedPath = parseName(defaultProjectPath, options.moduleName);
 
     const { name, path } = parsedPath;
     const featureName = (name.substr(0, 1) == '+') ? name : '+' + name; //Module name with + appended if needed
@@ -24,7 +25,7 @@ export function ngcRouting(_options: ModuleOptions): Rule {
 
     const sourceParametrized = apply(sourceTemplates, [
       template({
-        ..._options,
+        ...options,
         ...strings,
         uppercase
       }), move(routePath)
@@ -38,11 +39,11 @@ export function ngcRouting(_options: ModuleOptions): Rule {
       // Define appended content
       const appendedContent =
         "{\n" +
-        "  path: APP_ROUTE_NAMES." + _options.moduleName.replace(/-/g, '_').toUpperCase() + ",\n" +
+        "  path: APP_ROUTE_NAMES." + options.moduleName.replace(/-/g, '_').toUpperCase() + ",\n" +
         "  component: Layout2AdminComponent,\n" +
         "  canActivate: [AngularFireAuthGuard], data: { authGuardPipe: GUARD_PIPES.redirectUnauthorizedToLogin }," +
         "  children: [\n" +
-        "    { path: '', loadChildren: () => import('./+" + _options.moduleName + "/" + _options.moduleName + ".module').then(m => m." + classify(_options.moduleName) + "Module) },\n" + "    ]\n  },\n" + TAGS.appRoute
+        "    { path: '', loadChildren: () => import('./+" + options.moduleName + "/" + options.moduleName + ".module').then(m => m." + classify(options.moduleName) + "Module) },\n" + "    ]\n  },\n" + TAGS.appRoute
 
       let newContent = content.replace(TAGS.appRoute, appendedContent);
 
@@ -59,7 +60,7 @@ export function ngcRouting(_options: ModuleOptions): Rule {
       const routePathSplitStr = "}";
 
       // Define appended content
-      const appendedContent = "  " + _options.moduleName.replace(/-/g, '_').toUpperCase() + ": '" + _options.moduleName + "',\n" + routePathSplitStr + ';';
+      const appendedContent = "  " + options.moduleName.replace(/-/g, '_').toUpperCase() + ": '" + options.moduleName + "',\n" + routePathSplitStr + ';';
 
       let newContent = '';
       // Register component with route with default name

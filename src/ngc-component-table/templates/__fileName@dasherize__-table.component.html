@@ -2,7 +2,8 @@
        [ngClass]="classNames">
   <thead>
     <tr>
-      <th class="text-nowrap">ID</th>
+      <th class="text-nowrap" class="text-nowrap" (click)="onSortChange.emit('id')">ID <i class="fas ml-1"
+         [ngClass]="getSortIcon('id')"></i></th>
       <th class="text-nowrap"></th>
     </tr>
   </thead>
