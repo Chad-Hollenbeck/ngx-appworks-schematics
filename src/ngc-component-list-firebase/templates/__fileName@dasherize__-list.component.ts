@@ -1,14 +1,12 @@
-import { Component,OnDestroy,OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AppService } from '@app/app.service';
+import { I<%= classify(fileName) %> } from '../models/<%= dasherize(fileName) %>.model';
+import { <%= classify(fileName) %>Service } from '../services/<%= dasherize(fileName) %>.service';
 import { TableUtilityService } from '@app/shared/+utilities/services/table-utility.service';
-import { ActiveFilterStatusOptions } from '@app/shared/constants/active-filter-options.const';
 import * as _ from 'lodash';
+import { ActiveFilterStatusOptions } from '@app/shared/constants/active-filter-options.const';
 import { ReplaySubject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
-import { I } from <>;
-import { } from <>;
-%= classify(fileName) %> } from '../models/<%= dasherize(fileName) %>.model';
-%= classify(fileName) %>Service } from '../services/<%= dasherize(fileName) %>.service';
+import { takeUntil, first } from 'rxjs/operators';
 
 
 @Component({

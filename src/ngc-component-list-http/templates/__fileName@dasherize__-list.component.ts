@@ -68,7 +68,7 @@ export class <%= classify(fileName) %>ListComponent implements OnInit {
   }
 
   update() {
-    const vm = this.tableUtilityService.applyAllUpdates(this.allItems, this.filterVal, this.searchKeys, this.sortByKey, this.sortDesc, this.perPage, this.currentPage);
+    const vm = this.tableUtilityService.applyAllUpdates(this.allItems, this.filterVal, this.searchKeys, this.sortByKey, this.sortDesc, this.currentPage, this.perPage);
 
     this.displayedItems = vm.results;
     this.totalItems = vm.totalItems;
