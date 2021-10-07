@@ -1,6 +1,6 @@
 {
   "name": "@chollenbeck/ngx-appworks-schematics",
-  "version": "4.3.0",
+  "version": "4.3.1",
   "description": "Custom angular schematics for Angular 11 development w/ AppWorks starter template.",
   "scripts": {
     "build": "rimraf ./src/app && tsc -p tsconfig.json",
