@@ -6,7 +6,7 @@ import { TableUtilityService } from '@app/shared/+utilities/services/table-utili
 import * as _ from 'lodash';
 import { ActiveFilterStatusOptions } from '@app/shared/constants/active-filter-options.const';
 import { ReplaySubject } from 'rxjs';
-import { takeUntil, first } from 'rxjs/operators';
+import { takeUntil } from 'rxjs/operators';
 
 
 @Component({
@@ -154,7 +154,7 @@ export class <%= classify(fileName) %>ListComponent implements OnInit, OnDestroy
   private buildQuery(): void {
     this.queryList = [
       { field: 'isActive', operator: '==', value: this.filterStatusValue }
-    ]
+    ];
   }
   //#endregion
 

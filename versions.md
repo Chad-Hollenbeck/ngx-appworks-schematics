@@ -1,5 +1,12 @@
 ## Version Log
 
+### 4.1.x -> 4.2.0
+- Added boilerplate sorting mechanics to table and list views.
+- User input is now forced into dasherize (kebab case) regardless of input format. This allows for `camelCase`, `snake_case`, or `included spaces`, formatting each to hyphen seperated format (camel-case, snake-case, included-spaces)
+
+### 4.0.x -> 4.1.0
+- Corrected parameter order for `applyAllUpdates` in list view. Minor version increment due to potentially distruptive behavior in established applications.
+
 ### 3.15.x -> 4.0.0
 - Altered firebase service to utilize ngZone for new observable based query format
 - Version increment to 4.0 since addition of ngZone is a breaking change for 3.15.x projects without correct Appworks base template version.

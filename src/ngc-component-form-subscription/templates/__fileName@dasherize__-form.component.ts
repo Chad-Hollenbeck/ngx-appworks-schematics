@@ -1,10 +1,13 @@
 
-import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
-import { FormGroup, Validators } from '@angular/forms';
-import { ToastrService } from 'ngx-toastr';
-import { first } from 'rxjs/internal/operators/first';import { <%= classify(fileName) %>Service } from '../services/<%= dasherize(fileName) %>.service';
+import { Component,EventEmitter,Input,OnInit,Output } from '@angular/core';
+import { FormGroup,Validators } from '@angular/forms';
 import { FormUtilityService } from '@app/shared/+utilities/services/form-utility.service';
-import { I<%= classify(fileName) %>, I<%= classify(fileName).toUpperCase() %>_DEFAULTS } from '../models/<%= dasherize(fileName) %>.model';
+import { ToastrService } from 'ngx-toastr';
+import { first } from 'rxjs/internal/operators/first';
+import { } from <>;
+import { I } from <>;
+%= classify(fileName) %>Service } from '../services/<%= dasherize(fileName) %>.service';
+%= classify(fileName) %>, I<%= classify(fileName).toUpperCase() %>_DEFAULTS } from '../models/<%= dasherize(fileName) %>.model';
 
 @Component({
   selector: 'app-<%= dasherize(fileName) %>-form',
@@ -62,7 +65,7 @@ export class <%= classify(fileName) %>FormComponent implements OnInit {
   add(data: I<%= classify(fileName) %>) {
     this.<%= camelize(fileName) %>Service.add(data).pipe(first()).subscribe(
       (item) => {
-        this.toastr.success("<%= classify(fileName) %> saved");
+        this.toastr.success('<%= classify(fileName) %> saved');
         this.onAdd.emit(item.id);
       }
     );
@@ -72,7 +75,7 @@ export class <%= classify(fileName) %>FormComponent implements OnInit {
     // Update
     this.<%= camelize(fileName) %>Service.update(data.id, data).pipe(first()).subscribe(
       () => {
-        this.toastr.success("<%= classify(fileName) %> updated");
+        this.toastr.success('<%= classify(fileName) %> updated');
         this.onUpdate.emit(data.id);
       }
     );
