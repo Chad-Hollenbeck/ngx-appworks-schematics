@@ -1,8 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { AppService } from '@app/app.service';
-import { ToastrService } from 'ngx-toastr';
-import { ReplaySubject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 
 @Component({
@@ -10,14 +6,15 @@ import { takeUntil } from 'rxjs/operators';
   templateUrl: './<%= dasherize(fileName) %>.component.html',
   styleUrls: ['./<%= dasherize(fileName) %>.component.scss']
 })
-export class <%= classify(fileName) %>Component implements OnInit, OnDestroy {
-  private destroyed$: ReplaySubject <boolean> = new ReplaySubject(1);
+export class <%= classify(fileName) %> Component implements OnInit, OnDestroy {
 
-  loading: boolean;
+  // Input properties from parent
+  @Input() myProperty: any;
 
-  constructor(private appService: AppService, private toastr: ToastrService) {
-    this.appService.pageTitle = '<%= classify(fileName) %>';
+  // Output events
+  @Output() onAction = new EventEmitter<any>();
 
+  constructor() {
   }
 
   ngOnInit() {

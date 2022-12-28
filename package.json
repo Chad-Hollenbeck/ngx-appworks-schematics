@@ -1,45 +1,34 @@
 {
   "name": "@chollenbeck/ngx-appworks-schematics",
-  "version": "4.3.1",
-  "description": "Custom angular schematics for Angular 11 development w/ AppWorks starter template.",
+  "version": "5.0.1",
+  "description": "Custom angular schematics for Angular 14 development.",
   "scripts": {
     "build": "rimraf ./src/app && tsc -p tsconfig.json",
     "build:watch": "tsc -p tsconfig.json --watch",
-    "pub": "rimraf ./src/app && npm run build && npm publish",
+    "pub": "npm run build && npm publish",
     "test": "npm run build && jasmine src/**/*_spec.js",
-    "ngc:module": "schematics .:module --debug=false --",
-    "ngc:table": "schematics .:component-table --debug=false --",
-    "ngc:form:promise": "schematics .:component-form-promise --debug=false --",
-    "ngc:form:sub": "schematics .:component-form-subscription --debug=false --",
+    "ngc:page": "schematics .:page --debug=false --",
     "ngc:component": "schematics .:component --debug=false --",
-    "ngc:component:export": "schematics .:component-export --debug=false --",
-    "ngc:component:list:fire": "schematics .:component-list-firebase --debug=false --",
-    "ngc:component:list:http": "schematics .:component-list-http --debug=false --",
-    "ngc:component:manage:fire": "schematics .:component-manage-firebase --debug=false --",
-    "ngc:component:manage:http": "schematics .:component-manage-http --debug=false --",
-    "ngc:feature:http": "schematics .:feature-http --debug=false --",
-    "ngc:feature:fire": "schematics .:feature-firebase --debug=false --",
-    "ngc:interface": "schematics .:interface --debug=false --",
-    "ngc:service:http": "schematics .:service-http --debug=false --",
-    "ngc:service:fire": "schematics .:service-firebase --debug=false --"
+    "ngc:model": "schematics .:interface --debug=false --",
+    "ngc:service": "schematics .:service-firebase --debug=false --"
   },
   "keywords": [
     "schematics",
     "angular",
-    "appworks"
+    "firebase",
+    "firestore"
   ],
   "author": "chollenbeck",
   "license": "MIT",
   "schematics": "./src/collection.json",
   "dependencies": {
-    "@angular-devkit/core": "^8.3.17",
-    "@angular-devkit/schematics": "^8.3.17"
+    "@angular-devkit/core": "^14.2.10",
+    "@angular-devkit/schematics": "^14.2.10"
   },
   "devDependencies": {
-    "@nativescript/schematics": "^0.7.2",
-    "@schematics/angular": "^8.3.20",
-    "@types/node": "^8.0.31",
-    "typescript": "~3.5.3"
+    "@schematics/angular": "^14.2.10",
+    "@types/node": "^14.20.0",
+    "typescript": "~4.1.6"
   },
   "main": "index.js",
   "repository": {

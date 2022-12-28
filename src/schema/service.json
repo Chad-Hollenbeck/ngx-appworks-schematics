@@ -1,29 +1,20 @@
 {
+  "$id": "firestore-service-schema",
   "$schema": "http://json-schema.org/schema",
-  "id": "firestore-service-schema",
-  "title": "Firestore Service Schema",
-  "type": "object",
   "properties": {
-    "moduleName": {
-      "type": "string",
-      "x-prompt": "Module Name",
-      "description": "The name of the new module to be created prefixed with '+'",
-      "$default": {
-        "$source": "argv",
-        "index": 0
-      }
-    },
     "fileName": {
-      "type": "string",
-      "x-prompt": "Service Name",
-      "description": "The name of the new service to be created in the services folder",
       "$default": {
         "$source": "argv",
         "index": 1
-      }
+      },
+      "description": "The name of the new service",
+      "type": "string",
+      "x-prompt": "Service Name"
     }
   },
   "required": [
-    "moduleName"
-  ]
+    "fileName"
+  ],
+  "title": "Firestore Service Schema",
+  "type": "object"
 }

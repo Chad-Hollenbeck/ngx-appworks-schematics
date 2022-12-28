@@ -11,7 +11,11 @@ Schematics included for both RESTful API and Google's Firebase platform. Both sc
 Please submit any and all issues/enhancements to Github. I monitor the repo multiple times a week and usually respond to requests within a few days.
 
 ## Versions
-Please use the following versions based on which AppWorks Core Template is being used. If your current version is now explicitely shown, use the closest version number of the last digit that does not exceed your version. i.e. `11.160.2` should use `4.0.0`
+Please use the following versions based on which Starter Kit Template is being used. If your current version is not explicitely shown, use the closest version number of the last digit that does not exceed your version. i.e. `11.160.2` should use `4.0.0`
+
+|  NGX Admin       | NGX       |
+|------------------|-----------|
+| 14.100.1         | 5.0.0     |
 
 |  AppWorks Core   | NGX       |
 |------------------|-----------|
@@ -35,20 +39,10 @@ The double hash on the end of the script allows arguments to apply to the `ng g`
 
 ```json
 "scripts": {
-    "ngc:form": "ng g @chollenbeck/ngc:component-form-subscription -- ",
-    "ngc:table": "ng g @chollenbeck/ngc:component-table -- ",
     "ngc:c": "ng g @chollenbeck/ngc:component -- ",
-    "ngc:ce": "ng g @chollenbeck/ngc:component-export -- ",
-    "ngc:list:fire": "ng g @chollenbeck/ngc:component-list-firebase --",
-    "ngc:list:http": "ng g @chollenbeck/ngc:component-list-http --",
-    "ngc:manage:fire": "ng g @chollenbeck/ngc:component-manage-firebase --",
-    "ngc:manage:http": "ng g @chollenbeck/ngc:component-manage-http --",
-    "ngc:f:http": "ng g @chollenbeck/ngc:feature-http --",
-    "ngc:f:fire": "ng g @chollenbeck/ngc:feature-firebase --",
+    "ngc:page": "ng g @chollenbeck/ngc:page -- ",
     "ngc:i": "ng g @chollenbeck/ngc:interface --",
-    "ngc:s:http": "ng g @chollenbeck/ngc:service-http -- ",
-    "ngc:s:fire": "ng g @chollenbeck/ngc:service-http -- ",
-    "ngc:s:fire": "ng g @chollenbeck/ngc:service-firebase --
+    "ngc:service": "ng g @chollenbeck/ngc:service-firebase --
 }
 ```
 
@@ -61,61 +55,32 @@ This package uses symantic versioning and follows these guidelines:
 
 
 ## Schematics List
-Each schematic is run with space separated arguments and includes prompts for any missing arguments. The only required argument is the module name, which can be used to autofill the rest of the prompts with a blank entry (press enter with no input).
+Each schematic is run with space separated arguments and includes prompts for any missing arguments.
 
-*Component and Service schematics have two flavors to cover RESTful API integrations and Firebase Cloud Platform.*
-
-- Module
 - Model
-- C.R.U.D Feature
-- Component Blank
-- Component Table
-- Component Form
-- Component List
-- Component Manage
-- Service
+- Component (Empty)
+- Page (Empty)
+- Firestore Service
 
-
-### Firebase vs RESTful API flavors
-|                | Firebase           | RESTful |
-|----------------|--------------------|---------|
-| Entity ID type | STRING             | NUMBER  |
-| Service Call   | Observable/Promise | Promise |
-
-### Module & Routing
-Generates a new folder and module file under /src/app/+feature. The `+` character is added automatically to the module folder name upon generation. The new module folder also contains a routes folder for component route configurations.
-
-*Example:* `npm run ngc:module my-feature`
-```
-CREATE /src/app/+my-feature/my-feature.module.ts
-CREATE /src/app/+my-feature/routes/my-feature.routes.module.ts
-CREATE /src/app/+my-feature/routes/my-feature.routes.names.ts
-```
 
 ### Interface
 Generates a .ts file with the `{interface-name}.model.ts` naming convention in a `models` folder inside the designated feature folder.
 
 *Example:* `npm run ngc:class my-feature interface-name`
-```
-CREATE /src/app/+my-feature/models/interface-name.model.ts
-```
 
 ### Component
-A blank component with a few default services added to the constructor. Also registers the component with the module and routes files if they exist. This does not generate any spec/test files or scss unlike the standard angular schematic.
+An empty component with stubbed Import & Export properties.
 
 *Example:* `npm run ngc:component my-feature my-component`
-```
-CREATE /src/app/+my-feature/+my-component/my-component.component.ts
-CREATE /src/app/+my-feature/+my-component/my-component.component.html
-UPDATE /src/app/+my-feature/routes/my-feature.routes.module.ts
-UPDATE /src/app/+my-feature/routes/my-feature.routes.names.ts
-UPDATE /src/app/+my-feature/my-feature.module.ts
-```
 
-### Service
-A mostly blank service that extends an IService interface for OOP re-use vs generating the same boilerplate code for each feature. The generated file also includes the super() call with default values. Services are all decorated with `providedIn: root`.
 
-*Example:* `npm run ngc:service my-feature my-service`
-```
-CREATE /src/app/+my-feature/services/my-service.service.ts
-```
+### Page
+An empty page.
+
+*Example:* `npm run ngc:component my-feature my-component`
+
+
+### Firestore Service
+An empty Firestore service which extends the default firestore base service. Includes a constructor with a stubbed converter object for Firestore integration.
+
+*Example:* `npm run ngc:service my-service`

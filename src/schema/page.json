@@ -1,6 +1,6 @@
 {
-  "$schema": "http://json-schema.org/schema",
   "$id": "firestore-component-schema",
+  "$schema": "http://json-schema.org/schema",
   "properties": {
     "moduleName": {
       "$default": {
@@ -16,13 +16,14 @@
         "$source": "argv",
         "index": 1
       },
-      "description": "The name of the new component to be created prefixed with '+'",
+      "description": "The name of the new page",
       "type": "string",
-      "x-prompt": "Component Name"
+      "x-prompt": "Page Name"
     }
   },
   "required": [
-    "moduleName"
+    "moduleName",
+    "fileName"
   ],
   "title": "Component Schema",
   "type": "object"

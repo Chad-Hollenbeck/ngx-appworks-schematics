@@ -1,14 +1,29 @@
 
-import { Injectable, NgZone } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
-import { I<%= classify(fileName) %> } from '../models/<%= dasherize(fileName) %>.model';
+import { Injectable } from '@angular/core';
+import { Firestore } from '@angular/fire/firestore';
+import { BaseFirebaseService } from '@app/core/firestore/services/base-firebase.service';
+import { FirestoreDataConverter } from 'firebase/firestore';
 
 @Injectable({
   providedIn: 'root',
 })
-export class <%= classify(fileName) %>Service extends BaseCrudService<I<%= classify(fileName) %>> {
+export class <%= classify(fileName) %> Service extends BaseFirebaseService<any> {
 
-  constructor(afs: AngularFirestore, zone: NgZone) {
-    super('<%= camelize(fileName) %>', afs, zone);
+  constructor(firestore: Firestore) {
+    const converter: FirestoreDataConverter<any> = {
+      toFirestore: (data) => {
+        return {
+          archived: data.archived,
+        };
+      },
+      fromFirestore: (snapshot, options) => {
+        const data = snapshot.data(options);
+        return {
+          id: snapshot.id,
+          archived: data.archived,
+        } as any;
+      }
+    };
+    super(firestore, 'collection-path', converter);
   }
 }

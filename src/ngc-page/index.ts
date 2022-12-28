@@ -1,11 +1,11 @@
 import { strings } from '@angular-devkit/core';
 import { dasherize } from '@angular-devkit/core/src/utils/strings';
-import { apply, chain, mergeWith, move, Rule, SchematicContext, template, Tree, url } from '@angular-devkit/schematics';
+import { apply, chain, MergeStrategy, mergeWith, move, Rule, SchematicContext, template, Tree, url } from '@angular-devkit/schematics';
 import { ComponentOptions } from '../shared/component.params';
 
 // You don't have to export the function as default. You can also have more than one rule factory
 // per file.
-export function ngcComponent(options: ComponentOptions): Rule {
+export function ngcPage(options: ComponentOptions): Rule {
   return chain([
     (tree: Tree, _context: SchematicContext) => {
       // Default file path
@@ -13,8 +13,9 @@ export function ngcComponent(options: ComponentOptions): Rule {
       options.fileName = dasherize(options.fileName) || dasherize(options.moduleName);
       options.moduleName = dasherize(options.moduleName);
 
+
       // Module and Component paths
-      const modulePath = "/" + defaultProjectPath + "/" + options.moduleName + `/components`;
+      const modulePath = "/" + defaultProjectPath + "/" + options.moduleName + '/pages';
       const componentPath = modulePath + "/" + options.fileName;
 
       // templates folder path
@@ -28,6 +29,11 @@ export function ngcComponent(options: ComponentOptions): Rule {
         }), move(componentPath)
       ]);
 
-      return mergeWith(sourceParametrized)(tree, _context);
+
+      const rule = chain([
+        mergeWith(sourceParametrized, MergeStrategy.Default)
+      ]);
+
+      return rule(tree, _context);
     }]);
 }

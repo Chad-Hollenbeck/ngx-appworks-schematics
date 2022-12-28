@@ -1,4 +1,6 @@
 # Ignores TypeScript files, but keeps definitions.
 #*.ts
 !*.d.ts
-src/app
+src/app/**
+.history
+.vscode

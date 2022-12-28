@@ -1,86 +1,25 @@
 {
   "$schema": "../node_modules/@angular-devkit/schematics/collection-schema.json",
   "schematics": {
-    "feature-http": {
-      "description": "A full CRUD feature with new module, routing, list, and manage components for Http communication.",
-      "factory": "./ngc-feature-http/index#ngcFeatureHttp",
-      "schema": "./schema/component.json"
-    },
-    "feature-firebase": {
-      "description": "A full CRUD feature with new module, routing, list, and manage components for Http communication.",
-      "factory": "./ngc-feature-firebase/index#ngcFeatureFirebase",
-      "schema": "./schema/component.json"
-    },
     "component": {
       "description": "A default component.",
       "factory": "./ngc-component/index#ngcComponent",
       "schema": "./schema/component.json"
     },
-    "component-export": {
-      "description": "A default component exported.",
-      "factory": "./ngc-component-export/index#ngcComponentExport",
-      "schema": "./schema/component.json"
-    },
-    "component-list-firebase": {
-      "description": "A list component w/ table subcomponent.",
-      "factory": "./ngc-component-list-firebase/index#ngcComponentListFirebase",
-      "schema": "./schema/component.json"
-    },
-    "component-list-http": {
-      "description": "A list component w/ table subcomponent.",
-      "factory": "./ngc-component-list-http/index#ngcComponentListHttp",
-      "schema": "./schema/component.json"
-    },
-    "component-manage-firebase": {
-      "description": "A detail component w/ form subcomponent.",
-      "factory": "./ngc-component-manage-firebase/index#ngcComponentManageFirebase",
-      "schema": "./schema/component.json"
-    },
-    "component-manage-http": {
-      "description": "A detail component w/ form subcomponent.",
-      "factory": "./ngc-component-manage-http/index#ngcComponentManageHttp",
-      "schema": "./schema/component.json"
-    },
-    "component-form-subscription": {
-      "description": "A form component.",
-      "factory": "./ngc-component-form-subscription/index#ngcFormSubscriptionComponent",
-      "schema": "./schema/component.json"
-    },
-    "component-form-promise": {
-      "description": "A form component.",
-      "factory": "./ngc-component-form-promise/index#ngcFormPromiseComponent",
-      "schema": "./schema/component.json"
-    },
-    "component-table": {
-      "description": "A table component.",
-      "factory": "./ngc-component-table/index#ngcTableComponent",
-      "schema": "./schema/component.json"
-    },
-    "module": {
-      "description": "A default module.",
-      "factory": "./ngc-module/index#ngcModule",
-      "schema": "./schema/module-routing.json"
-    },
     "interface": {
       "description": "A default model using an interface.",
-      "factory": "./ngc-interface/index#ngcInterface",
+      "factory": "./ngc-model/index#ngcInterface",
       "schema": "./schema/model.json"
     },
-    "service-http": {
-      "description": "A Default service w/ HTTP comms.",
-      "factory": "./ngc-service-http/index#ngcServiceHttp",
-      "schema": "./schema/service.json"
+    "page": {
+      "description": "A default page.",
+      "factory": "./ngc-page/index#ngcPage",
+      "schema": "./schema/page.json"
     },
     "service-firebase": {
       "description": "A Default service w/ Firebase comms.",
       "factory": "./ngc-service-firebase/index#ngcServiceFirebase",
       "schema": "./schema/service.json"
-    },
-    "routing": {
-      "private": true,
-      "description": "Lazy Loaded Routing",
-      "factory": "./ngc-routing/index#ngcRouting",
-      "schema": "./schema/module-routing.json"
     }
   }
 }

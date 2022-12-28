@@ -1,4 +1,11 @@
 ## Version Log
+### 4.3.1 -> 5.0.0
+- Removed all CRUD specific schematics
+- Removed all module and routing steps for any remaining schematics
+- Added Page schematic, refined component into a presentation component.
+- Removed all HTTP specific schematics.
+- Removed any references to "AppWorks" starter kit (mostly affected import paths);
+- Updated folder structure to use the core/features/shared architecture instead of straight feature folders.
 
 ### 4.1.x -> 4.3.1
 - Added boilerplate sorting mechanics to table and list views.
