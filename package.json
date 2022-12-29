@@ -1,6 +1,6 @@
 {
   "name": "@chollenbeck/ngx-schematics",
-  "version": "5.0.4",
+  "version": "5.1.0",
   "description": "Custom angular schematics for Angular 14 development.",
   "scripts": {
     "build": "rimraf ./src/app && tsc -p tsconfig.json",
@@ -9,6 +9,7 @@
     "test": "npm run build && jasmine src/**/*_spec.js",
     "ngc:page": "schematics .:page --debug=false --",
     "ngc:component": "schematics .:component --debug=false --",
+    "ngc:feature": "schematics .:feature-folder --debug=false --",
     "ngc:model": "schematics .:interface --debug=false --",
     "ngc:service": "schematics .:service-firebase --debug=false --"
   },

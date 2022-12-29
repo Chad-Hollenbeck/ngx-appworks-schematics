@@ -1,4 +1,8 @@
 ## Version Log
+
+### 5.0.0 -> 5.1.0
+- Added Feature Folder scheamtic.
+
 ### 4.3.1 -> 5.0.0
 - Removed all CRUD specific schematics
 - Removed all module and routing steps for any remaining schematics

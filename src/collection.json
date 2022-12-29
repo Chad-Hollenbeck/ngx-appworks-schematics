@@ -20,6 +20,11 @@
       "description": "A Default service w/ Firebase comms.",
       "factory": "./ngc-service-firebase/index#ngcServiceFirebase",
       "schema": "./schema/service.json"
+    },
+    "feature-folder": {
+      "description": "An empty feature folder with stubbed modules",
+      "factory": "./ngc-feature-folder/index#ngcFeatureFolder",
+      "schema": "./schema/feature.json"
     }
   }
 }

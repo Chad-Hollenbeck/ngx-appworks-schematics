@@ -38,16 +38,23 @@ This package uses symantic versioning and follows these guidelines:
 ## Schematics List
 Each schematic is run with space separated arguments and includes prompts for any missing arguments.
 
+- Feature
 - Model
 - Component (Empty)
 - Page (Empty)
 - Firestore Service
 
 
-### Interface
+### Feature Folder
+Generates a new folder within the `features` folder with the designated name. Includes a standard feature module and routing module files.
+
+*Example:* `npm run ngc:feature-folder my-feature`
+
+
+### Model
 Generates a .ts file with the `{interface-name}.model.ts` naming convention in a `models` folder inside the designated feature folder.
 
-*Example:* `npm run ngc:class my-feature interface-name`
+*Example:* `npm run ngc:model my-feature model-name`
 
 ### Component
 An empty component with stubbed Import & Export properties.
