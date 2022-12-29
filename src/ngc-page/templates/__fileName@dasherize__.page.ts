@@ -1,25 +1,38 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ReplaySubject } from 'rxjs';
+import { Component } from '@angular/core';
+import { IBreadcrumb } from '@app/core/layout/page-header/models/breadcrumb.interface';
 
 @Component({
-  selector: 'app-<%= dasherize(fileName)%>-manage',
-  templateUrl: './<%= dasherize(fileName) %>-manage.component.html',
-  styleUrls: ['./<%= dasherize(fileName) %>-manage.component.scss']
+  selector: 'app-<%= dasherize(fileName)%>',
+  templateUrl: './<%= dasherize(fileName) %>.page.html'
 })
-export class <%= classify(fileName) %>Page implements OnInit, OnDestroy {
-  private destroyed$: ReplaySubject < boolean > = new ReplaySubject(1);
+export class <%= classify(fileName) %>Page {
+
+  breadcrumbs: IBreadcrumb[];
 
   constructor() {
-    this.loading = true;
   }
 
-  ngOnInit() {
-
-  }
-
-  ngOnDestroy(){
-    this.destroyed$.next(true);
-    this.destroyed$.unsubscribe();
+  buildBreadcrumbs() {
+    this.breadcrumbs = [
+      {
+        url: '/',
+        order: 0,
+        active: false,
+        text: 'Home'
+      },
+      {
+        url: '',
+        order: 1,
+        active: false,
+        text: 'Prev_Page'
+      },
+      {
+        url: '',
+        order: 2,
+        active: true,
+        text: 'Current_Page'
+      },
+    ];
   }
 
 }

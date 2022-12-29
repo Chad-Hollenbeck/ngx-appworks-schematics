@@ -1,30 +1,18 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component } from '@angular/core';
 
 
 @Component({
   selector: 'app-<%= dasherize(fileName) %>',
-  templateUrl: './<%= dasherize(fileName) %>.component.html',
-  styleUrls: ['./<%= dasherize(fileName) %>.component.scss']
+  templateUrl: './<%= dasherize(fileName) %>.component.html'
 })
-export class <%= classify(fileName) %> Component implements OnInit, OnDestroy {
+export class <%= classify(fileName) %>Component {
 
   // Input properties from parent
-  @Input() myProperty: any;
+  // @Input() myProperty: any;
 
   // Output events
-  @Output() onAction = new EventEmitter<any>();
+  // @Output() action = new EventEmitter<any>();
 
   constructor() {
   }
-
-  ngOnInit() {
-    this.loading = true;
-  }
-
-  ngOnDestroy() {
-    this.destroyed$.next(true);
-    this.destroyed$.complete();
-  }
-
-
 }

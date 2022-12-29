@@ -7,7 +7,7 @@ import { FirestoreDataConverter } from 'firebase/firestore';
 @Injectable({
   providedIn: 'root',
 })
-export class <%= classify(fileName) %> Service extends BaseFirebaseService<any> {
+export class <%= classify(fileName) %>Service extends BaseFirebaseService<any> {
 
   constructor(firestore: Firestore) {
     const converter: FirestoreDataConverter<any> = {
@@ -24,6 +24,6 @@ export class <%= classify(fileName) %> Service extends BaseFirebaseService<any> 
         } as any;
       }
     };
-    super(firestore, 'collection-path', converter);
+    super(firestore, null, converter);
   }
 }
